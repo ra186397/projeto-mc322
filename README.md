@@ -14,10 +14,10 @@
 <p align="center">🚀 Linguagem utilizada no desenvolvimento do projeto</p>
 
 <p align="center">
- <a href="#Legends Of Runeterra">Objetivo</a> •
- <a href="#Cartas">Roadmap</a> • 
- <a href="#Feitiços">Tecnologias</a> • 
- <a href="#Campeões">Contribuição</a> • 
- <a href="#Objetivo">Licença</a> • 
- <a href="#Assets">Autor</a>
+ <a href="#Legends Of Runeterra">Legends of Runeterra</a> •
+ <a href="#Cartas">Cartas</a> • 
+ <a href="#Feitiços">Feitiçõs</a> • 
+ <a href="#Seguidores">Seguidores</a> • 
+ <a href="#Campões">Campeões</a> • 
+ <a href="#Objetivo">Objetivo</a>
 </p>
