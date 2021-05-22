@@ -17,6 +17,16 @@
 	🚧 Primeiros passos 🚀 Em construção...  🚧
 </h4>
 
+### 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [VS Code](https://code.visualstudio.com/)
+- [Java](https://www.java.com/pt-BR/)
+- [GitHub](https://github.com)
+- [Driagrama UML](https://pt-br.reactjs.org/)
+
+
 <p align="center">
  <a href="#Legends Of Runeterra">Legends of Runeterra</a> •
  <a href="#Cartas">Cartas</a> • 
