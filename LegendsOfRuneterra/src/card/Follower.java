@@ -17,6 +17,9 @@ public class Follower extends Card{
         this.basePower = basePower;
         this.currentPower = basePower;
         this.traits = new ArrayList<Trait>();
+        for (Trait trait : traits) {
+            this.traits.add(trait);
+        }
 
     }
 
