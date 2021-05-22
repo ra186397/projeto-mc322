@@ -13,3 +13,11 @@
 </h1>
 <p align="center">🚀 Linguagem utilizada no desenvolvimento do projeto</p>
 
+<p align="center">
+ <a href="#Legends Of Runeterra">Objetivo</a> •
+ <a href="#Cartas">Roadmap</a> • 
+ <a href="#Feitiços">Tecnologias</a> • 
+ <a href="#Campeões">Contribuição</a> • 
+ <a href="#Objetivo">Licença</a> • 
+ <a href="#Assets">Autor</a>
+</p>
