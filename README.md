@@ -30,5 +30,5 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [VS Code](https://code.visualstudio.com/)
 - [Java](https://www.java.com/pt-BR/)
 - [GitHub](https://github.com)
-- [Driagrama UML](draw.io)
+- [Driagrama UML](https://app.diagrams.net/)
 
