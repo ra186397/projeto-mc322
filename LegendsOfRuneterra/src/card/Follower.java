@@ -9,5 +9,16 @@ public class Follower extends Card{
     protected int currentPower;
     protected ArrayList<Trait> traits;
 
+    public Follower(String name, String description, int cost, int baseHealth, int basePower, Region region, Effect[] newEffects, Trait[] traits) {
+        
+        super(name, description, cost, region, newEffects);
+        this.baseHealth = baseHealth;
+        this.currentHealth = baseHealth;
+        this.basePower = basePower;
+        this.currentPower = basePower;
+        this.traits = new ArrayList<Trait>();
+
+    }
+
 
 }
