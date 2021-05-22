@@ -14,7 +14,7 @@
  <a href="#-Projeto">Projeto</a> •
  <a href="#-Legends-Of-Runeterra">Legends of Runeterra</a> •
  <a href="#-Cartas">Cartas</a> • 
- <a href="#-Feitiços">Feitiçõs</a> • 
+ <a href="#-Feitiços">Feitiços</a> • 
  <a href="#-Seguidores">Seguidores</a> • 
  <a href="#-Campões">Campeões</a> • 
  <a href="#-Tecnologias">Tecnologias</a>
