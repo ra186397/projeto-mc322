@@ -17,6 +17,7 @@
  <a href="#-Feitiços">Feitiços</a> • 
  <a href="#-Seguidores">Seguidores</a> • 
  <a href="#-Campões">Campeões</a> • 
+ <a href="#-funcionalidades">Funcionalidades</a> •
  <a href="#-Tecnologias">Tecnologias</a>
 </p>
 
@@ -33,7 +34,7 @@
 
 ---
 
-## 🧙‍♂️ Feitiços
+## 🧙‍♂ Feitiços
 
 ---
 
@@ -42,6 +43,10 @@
 ---
 
 ## 🦸‍♂️ Campeões
+
+---
+
+## ⚙️ Funcionalidades
 
 ---
 
