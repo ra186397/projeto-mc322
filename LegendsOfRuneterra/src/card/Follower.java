@@ -23,5 +23,7 @@ public class Follower extends Card{
 
     }
 
+    
+
 
 }

@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import card.Card;
 import card.Region;
@@ -16,5 +17,10 @@ public class Deck {
         this.region1 = region1;
         this.region2 = region2;
         this.cards = new ArrayList<Card>();
+    }
+
+    public void addCard(Card newCard) {
+        if (Collectio)
+        cards.add(newCard);
     }
 }
