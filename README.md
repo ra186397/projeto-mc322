@@ -24,7 +24,7 @@
 <p align="center">👨‍💻 Desenvolvimento do projeto final do curso de POO (MC322) Unicamp.</p>
 
 
-### 🛠 Tecnologias
+# 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
