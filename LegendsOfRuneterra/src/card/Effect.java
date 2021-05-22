@@ -9,6 +9,26 @@ public class Effect {
     int amount2;
     String cardName;
 
+    public Effect(int effect){
+        this.effect = effect;
+    }
+
+    public Effect(int effect, int amount1){
+        this.effect = effect;
+        this.amount1 = amount1;
+    }
+
+    public Effect(int effect, int amount1, int amount2){
+        this.effect = effect;
+        this.amount1 = amount1;
+        this.amount2 = amount2;
+    }
+
+    public Effect(int effect, String cardName){
+        this.effect = effect;
+        this.cardName = cardName;
+    }
+
     public void applyEffect() {
         Scanner scan = new Scanner(System.in);
 
