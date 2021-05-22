@@ -10,10 +10,6 @@
 	🚧 Primeiros passos 🚀 Em construção...  🚧
 </h4>
 
-<h1 align="center"> Projeto MC322 </h1>
-<p align="center">👨‍💻 Desenvolvimento do projeto final do curso de POO (MC322) Unicamp.</p>
-
-
 <p align="center">
  <a href="#Projeto">Projeto</a> •
  <a href="#Legends Of Runeterra">Legends of Runeterra</a> •
@@ -23,6 +19,10 @@
  <a href="#Campões">Campeões</a> • 
  <a href="#Tecnologias">Tecnologias</a>
 </p>
+
+<h1 align="center"> Projeto MC322 </h1>
+<p align="center">👨‍💻 Desenvolvimento do projeto final do curso de POO (MC322) Unicamp.</p>
+
 
 ### 🛠 Tecnologias
 
