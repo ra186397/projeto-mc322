@@ -23,8 +23,7 @@
 <h1 align="center"> Projeto MC322 </h1>
 <p align="center">👨‍💻 Desenvolvimento do projeto final do curso de POO (MC322) Unicamp.</p>
 
-
-# 🛠 Tecnologias
+<h1 align="center"> 🛠 Tecnologias </h1>
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
