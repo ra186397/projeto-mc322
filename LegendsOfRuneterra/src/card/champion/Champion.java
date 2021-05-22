@@ -1,7 +1,11 @@
 package card.champion;
 
-public abstract class Champion {
-  
+import card.Follower;
+
+public abstract class Champion extends Follower {
+
   public abstract void evolve();
+
+  public abstract boolean checkEvolution();
 
 }
