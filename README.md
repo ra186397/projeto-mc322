@@ -13,20 +13,15 @@
 <h1 align="center"> Projeto MC322 </h1>
 <p align="center">👨‍💻 Desenvolvimento do projeto final do curso de POO (MC322) Unicamp.</p>
 
-<h1 align="center">
-    <a href="https://www.java.com/pt-BR/">🔗 Java</a>
-</h1>
-<p align="center">🚀 Linguagem utilizada no desenvolvimento do projeto</p>
-
-
 
 <p align="center">
+ <a href="#Projeto">Projeto</a> •
  <a href="#Legends Of Runeterra">Legends of Runeterra</a> •
  <a href="#Cartas">Cartas</a> • 
  <a href="#Feitiços">Feitiçõs</a> • 
  <a href="#Seguidores">Seguidores</a> • 
  <a href="#Campões">Campeões</a> • 
- <a href="#Objetivo">Objetivo</a>
+ <a href="#Tecnologias">Tecnologias</a>
 </p>
 
 ### 🛠 Tecnologias
