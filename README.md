@@ -13,6 +13,10 @@
 </h1>
 <p align="center">🚀 Linguagem utilizada no desenvolvimento do projeto</p>
 
+<h4 align="center"> 
+	🚧 Primeiros passos 🚀 Em construção...  🚧
+</h4>
+
 <p align="center">
  <a href="#Legends Of Runeterra">Legends of Runeterra</a> •
  <a href="#Cartas">Cartas</a> • 
