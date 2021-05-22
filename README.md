@@ -5,6 +5,7 @@
 <h1 align="center">
     <a href="https://www.java.com/pt-BR/">🔗 Java</a>
 </h1>
+<p align="center">🚀 Linguagem utilizada no desenvolvimento do projeto</p>
 
 Vamo fazer LOR família  
 so vamo nessa porra birll  
