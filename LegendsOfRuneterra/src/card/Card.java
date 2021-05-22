@@ -9,17 +9,16 @@ public abstract class Card {
     protected String description;
     protected int cost;
     protected Region regiao;
-    protected ArrayList efeitos; // i0 = carta ser jogada, i1 = carta morrer, i2 = carta ataca, i3 = efeito de atualização
-    
+    protected ArrayList<Effect> efeitos;
 
-    public Card(String name, String description, int cost, Region regiao, int[] efeitos) {
+    public Card(String name, String description, int cost, Region regiao, Effect[] efeitosNovos) {
         this.name = name;
         this.description = description;
         this.cost = cost;
         this.regiao = regiao;
-        this.efeitos = new int[4];
-        for (int i = 0; i < efeitos.length; i++) {
-            this.efeitos[i] = efeitos[i];
+        this.efeitos = new ArrayList<Effect>();
+        for (int i = 0; i < efeitosNovos.length; i++) {
+            this.efeitos.add(efeitosNovos[i]);
         }
     }
 

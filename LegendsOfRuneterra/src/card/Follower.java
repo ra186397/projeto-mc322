@@ -1,9 +1,13 @@
 package card;
 
-public class Follower {
+import java.util.ArrayList;
+public class Follower extends Card{
     
     protected int baseHealth;
-    protected ArrayList[Trait] traits;
-    
+    protected int currentHealth;
+    protected int basePower;
+    protected int currentPower;
+    protected ArrayList<Trait> traits;
+
 
 }
