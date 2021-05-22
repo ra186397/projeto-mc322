@@ -21,7 +21,7 @@ public class Swain extends Champion {
   @Override
   public void evolve() {
     System.out.println("Swain Evoluiu!");
-    System.out.println("Swain - Vidinhas descartaveis, curve-se!!");
+    System.out.println("Swain - Vidinhas descartáveis, curvem-se!!");
 
     this.basePower = 6;
     this.baseHealth = 6;
