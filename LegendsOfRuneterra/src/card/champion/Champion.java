@@ -1,5 +1,7 @@
 package card.champion;
 
-public class Champion {
-    
+public abstract class Champion {
+  
+  public abstract void evolve();
+
 }
