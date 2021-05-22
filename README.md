@@ -1,4 +1,4 @@
-<img src="https://i.pinimg.com/originals/98/fe/4e/98fe4e6747ba04ee7b192bbbfede7209.png"/>
+<img src="https://gamehall.com.br/wp-content/uploads/2019/10/Legends-of-Runeterra-Banner.jpg"/>
 
 # projeto-mc322
 Vamo fazer LOR família so vamo nessa porra birll  
