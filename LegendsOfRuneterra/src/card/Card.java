@@ -2,9 +2,8 @@ package card;
 
 import java.util.ArrayList;
 
-
 public abstract class Card {
-    
+
     protected String name;
     protected String description;
     protected int cost;
@@ -21,6 +20,5 @@ public abstract class Card {
             this.effects.add(newEffects[i]);
         }
     }
-
 
 }
