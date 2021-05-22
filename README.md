@@ -7,6 +7,3 @@
 </h1>
 <p align="center">🚀 Linguagem utilizada no desenvolvimento do projeto</p>
 
-Vamo fazer LOR família  
-so vamo nessa porra birll  
-Um dia eu aprendo a fazer direito README
