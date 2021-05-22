@@ -17,6 +17,15 @@
 	🚧 Primeiros passos 🚀 Em construção...  🚧
 </h4>
 
+<p align="center">
+ <a href="#Legends Of Runeterra">Legends of Runeterra</a> •
+ <a href="#Cartas">Cartas</a> • 
+ <a href="#Feitiços">Feitiçõs</a> • 
+ <a href="#Seguidores">Seguidores</a> • 
+ <a href="#Campões">Campeões</a> • 
+ <a href="#Objetivo">Objetivo</a>
+</p>
+
 ### 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
@@ -26,12 +35,3 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [GitHub](https://github.com)
 - [Driagrama UML](https://pt-br.reactjs.org/)
 
-
-<p align="center">
- <a href="#Legends Of Runeterra">Legends of Runeterra</a> •
- <a href="#Cartas">Cartas</a> • 
- <a href="#Feitiços">Feitiçõs</a> • 
- <a href="#Seguidores">Seguidores</a> • 
- <a href="#Campões">Campeões</a> • 
- <a href="#Objetivo">Objetivo</a>
-</p>
