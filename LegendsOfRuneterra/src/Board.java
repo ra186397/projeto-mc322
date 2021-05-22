@@ -23,6 +23,20 @@ public class Board {
             this.currentTurn = Color.BLUE;
         }
 
+        this.cardsBlue = new ArrayList<Follower>();
+        this.cardsRed = new ArrayList<Follower>();
+
+
 
     }
+
+    public void addCardByColor(Follower card, Color color) {
+        if (color == Color.RED) {
+            cardsRed.add(card);
+        }
+        else {
+            cardsBlue.add(card);
+        }
+    }   
+
 }
