@@ -25,6 +25,26 @@
 
 ---
 
+## 🕹 Legends Of Runeterra
+
+---
+
+## 🃏 Cartas
+
+---
+
+## 🧙‍♂️ Feitiços
+
+---
+
+## 💂‍♂️ Seguidores
+
+---
+
+## 🦸‍♂️ Campeões
+
+---
+
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
