@@ -21,7 +21,7 @@ public class Leblanc extends Champion {
   public void evolve() {
 
     System.out.println("Leblanc Evoluiu!");
-    System.out.println("Leblanc - A rosa negrra vai desabrochar novamente!!");
+    System.out.println("Leblanc - A rosa negra vai desabrochar novamente!!");
 
     this.basePower = 6;
     this.baseHealth = 3;
