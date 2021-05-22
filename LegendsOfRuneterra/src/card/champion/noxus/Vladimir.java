@@ -6,6 +6,7 @@ import card.Trait;
 import card.champion.Champion;
 
 // SIMPLIFICADO
+// Não verificado
 public class Vladimir extends Champion {
 
   private int deadEnemies;
