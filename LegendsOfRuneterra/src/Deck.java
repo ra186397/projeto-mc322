@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
+import java.lang.System;
 
 import card.Card;
 import card.Region;
@@ -20,7 +22,11 @@ public class Deck {
     }
 
     public void addCard(Card newCard) {
-        if (Collectio)
-        cards.add(newCard);
+        if (Collections.frequency(cards, newCard) == 3) {
+            System.out.println("Você já tem 3 cópias dessa carta no seu deck!");
+        } 
+        else {
+            cards.add(newCard);
+        }
     }
 }
