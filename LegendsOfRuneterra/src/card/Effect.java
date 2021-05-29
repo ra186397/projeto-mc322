@@ -38,7 +38,6 @@ public class Effect {
             if (cardJustPlayed == 1){
                 for (Card card : myBoard) {
                     changeStats(card, amount1, amount2, false);//O false e se e temporario ou nao, false e permanente true e temporario
-                    
                 }
             }
 
