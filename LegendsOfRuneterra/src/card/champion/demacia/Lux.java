@@ -24,7 +24,6 @@ public class Lux extends Champion {
     this.basePower = 5;
     this.baseHealth = 6;
     this.currentHealth += 1;
-    this.currentPower += 1;
 
   }
 

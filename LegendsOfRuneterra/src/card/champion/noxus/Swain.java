@@ -26,7 +26,6 @@ public class Swain extends Champion {
     this.basePower = 6;
     this.baseHealth = 6;
     this.currentHealth += 1;
-    this.currentPower += 1;
 
   }
 

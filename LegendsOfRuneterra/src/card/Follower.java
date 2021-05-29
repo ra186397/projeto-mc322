@@ -7,7 +7,6 @@ public class Follower extends Card{
     protected int currentHealth;
     protected int temporaryHealth;
     protected int basePower;
-    protected int currentPower;
     protected int temporaryPower;
     protected ArrayList<Trait> traits;
 
@@ -18,7 +17,6 @@ public class Follower extends Card{
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
         this.basePower = basePower;
-        this.currentPower = basePower;
         this.temporaryPower = basePower;
         this.traits = new ArrayList<Trait>();
         for (Trait trait : traits) {
@@ -37,7 +35,6 @@ public class Follower extends Card{
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
         this.basePower = basePower;
-        this.currentPower = basePower;
         this.temporaryPower = basePower;
         this.traits = new ArrayList<Trait>();
         for (Effect effect : effects) {
@@ -53,7 +50,6 @@ public class Follower extends Card{
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
         this.basePower = basePower;
-        this.currentPower = basePower;
         this.temporaryPower = basePower;
         this.traits = new ArrayList<Trait>();
         for (Trait trait : traits) {
@@ -69,7 +65,6 @@ public class Follower extends Card{
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
         this.basePower = basePower;
-        this.currentPower = basePower;
         this.temporaryPower = basePower;
         this.traits = new ArrayList<Trait>();
     }

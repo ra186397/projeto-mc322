@@ -26,7 +26,6 @@ public class Leblanc extends Champion {
     this.basePower = 6;
     this.baseHealth = 3;
     this.currentHealth += 1;
-    this.currentPower += 1;
 
   }
 

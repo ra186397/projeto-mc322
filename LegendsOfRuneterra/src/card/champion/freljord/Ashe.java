@@ -24,7 +24,6 @@ public class Ashe extends Champion {
     this.basePower = 6;
     this.baseHealth = 4;
     this.currentHealth += 1;
-    this.currentPower += 1;
   }
 
   @Override

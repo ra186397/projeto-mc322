@@ -24,7 +24,6 @@ public class Anivia extends Champion {
     this.basePower = 3;
     this.baseHealth = 5;
     this.currentHealth += 1;
-    this.currentPower += 1;
   }
 
   @Override

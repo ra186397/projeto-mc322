@@ -52,6 +52,14 @@ public class Board {
         }
     }
 
+    public ArrayList<Follower> getCards(){
+        return cards;
+    }
+
+    public Player getPlayer(){
+        return player;
+    }
+
     void setTurn(boolean turn){
         currentTurn = turn;
     }

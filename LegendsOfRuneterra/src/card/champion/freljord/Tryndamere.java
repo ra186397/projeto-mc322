@@ -24,7 +24,6 @@ public class Tryndamere extends Champion {
     this.basePower = 9;
     this.baseHealth = 9;
     this.currentHealth += 5;
-    this.currentPower += 1;
   }
 
   @Override

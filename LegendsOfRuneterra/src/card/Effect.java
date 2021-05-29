@@ -1,7 +1,7 @@
 package card;
 import java.util.Scanner;
 
-import Board;
+import game.Board;
 
 public class Effect {
     
@@ -30,14 +30,15 @@ public class Effect {
         this.cardName = cardName;
     }
 
-    public void applyEffect(Board myBoard, Board opponentBoard) {
+    public void applyEffect(game.Board myBoard, game.Board opponentBoard) {
         Scanner scan = new Scanner(System.in);
 
         switch(effect) {
             case 0:
             if (cardJustPlayed == 1){
-                for (Card card : myBoard) {
-                    changeStats(card, amount1, amount2, false);//O false e se e temporario ou nao, false e permanente true e temporario
+                for (Follower follower : myBoard.getCards()) {
+                    follower.baseHealth += amount1;
+                    follower.basePower += amount2;//O false e se e temporario ou nao, false e permanente true e temporario
                 }
             }
 
@@ -45,26 +46,31 @@ public class Effect {
             if (cardJustPlayed == 1){
                 System.out.println("Escolha uma unidade aliada");
                 //printar a board
-                changeStats(myBoard. scan.nextInt(), amount1, amount2, true);
+                int card = scan.nextInt();
+                myBoard.getCards().get(card).temporaryHealth = amount1;
+                myBoard.getCards().get(card).temporaryHealth = amount2;
             }
 
             case 2:
             if (cardKilledUnit == 1){
-                hand.addCard(cardName);
+                myBoard.getPlayer().drawCard(1, cardName);
             }
 
             case 3:
             if (cardJustPlayed == 1){
                 System.out.println("Cure inteiramente uma unidade aliada");
                 //printar a board
-                board.curar(scan.nextInt(), card.baseHealth);
+                myBoard.getCards().get(scan.nextInt()).currentHealth = myBoard.getCards().get(scan.nextInt()).baseHealth;
             }
 
             case 4:
             if (cardJustPlayed == 1){
                 System.out.println("Escolha uma unidade aliada");
                 //printar a board
-                changeStats(scan.nextInt(), card.baseHealth, card.currentPower, false);
+                int card = scan.nextInt();
+                myBoard.getCards().get(card).baseHealth = 2 * myBoard.getCards().get(scan.nextInt()).baseHealth;
+                myBoard.getCards().get(card).currentHealth = 2 * myBoard.getCards().get(scan.nextInt()).currentHealth;
+                myBoard.getCards().get(card).basePower = 2 * myBoard.getCards().get(scan.nextInt()).basePower;
             }
 
             case 5:
@@ -80,7 +86,7 @@ public class Effect {
             if (cardJustPlayed == 1){
                 System.out.println("Escolha uma unidade aliada");
                 //printar a board
-                damageNexus(scan.nextInt().currentPower);
+                damageNexus(scan.nextInt().basePower);
             }
 
             case 7:
@@ -88,28 +94,28 @@ public class Effect {
                 System.out.println("Escolha uma unidade aliada");
                 //printar a board
                 int ally = scan.nextInt();
-                for (int unit : opositeBoard.size) {
-                    attack(ally, unit);
+                for (Follower follower : opponentBoard.getCards()) {
+                    attack(ally, follower);
                 }
             }
 
             case 8:
-            if (cardDied == 1){
-                drawCards(1);
+            if (myBoard.getCards().get(scan.nextInt()).currentHealth <= 0){
+                myBoard.getPlayer().drawCard(1);
             }
 
             case 9:
             if (cardJustPlayed == 1){
                 System.out.println("Escolha uma unidade");
                 //printar a board
-                changeStats(scan.nextInt(), 0, card.currentPower, true);
+                myBoard.getCards().get(scan.nextInt()).temporaryPower = 0;
             }
 
             case 10:
             if (cardJustPlayed == 1){
                 System.out.println("Escolha uma unidade");
                 //printar a board
-                giveTrait(scan.nextInt(), barrier /*deve ser um numero mas eu nao sei qual e*/, true);//true nesse caso tambem significa que e temporario
+                myBoard.getCards().get(scan.nextInt()).addTrait(Trait.BARRIER);
             }
 
             case 11:

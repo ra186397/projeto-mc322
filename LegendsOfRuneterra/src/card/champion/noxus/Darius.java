@@ -32,7 +32,6 @@ public class Darius extends Champion {
     this.basePower = 10;
     this.baseHealth = 6;
     this.currentHealth += 1;
-    this.currentPower += 4;
 
   }
 

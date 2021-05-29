@@ -24,7 +24,6 @@ public class Lucian extends Champion {
     this.basePower = 4;
     this.baseHealth = 3;
     this.currentHealth += 1;
-    this.currentPower += 1;
 
   }
 

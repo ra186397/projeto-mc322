@@ -24,7 +24,6 @@ public class Draven extends Champion {
     this.basePower = 4;
     this.baseHealth = 4;
     this.currentHealth += 1;
-    this.currentPower += 1;
 
   }
 
