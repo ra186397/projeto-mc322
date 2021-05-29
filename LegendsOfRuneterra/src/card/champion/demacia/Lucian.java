@@ -1,15 +1,15 @@
-package card.champion.freljord;
+package card.champion.demacia;
 
 import card.Effect;
 import card.Region;
 import card.Trait;
 import card.champion.Champion;
 
-public class Braum extends Champion {
+public class Lucian extends Champion {
 
   private int increasedPower;
 
-  public Braum(String name, String description, int cost, int baseHealth, int basePower, Region region,
+  public Lucian(String name, String description, int cost, int baseHealth, int basePower, Region region,
       Effect[] newEffects, Trait[] traits) {
     super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
 
@@ -18,18 +18,19 @@ public class Braum extends Champion {
 
   @Override
   public void evolve() {
-    System.out.println("Braum Evoluiu!");
-    System.out.println("Braum - Coração é o musculo mais forte!!");
+    System.out.println("Lucian Evoluiu!");
+    System.out.println("Lucian - Todo mundo morre, alguns só precisam de uma ajudinha!!");
 
-    this.basePower = 1;
-    this.baseHealth = 6;
+    this.basePower = 4;
+    this.baseHealth = 3;
     this.currentHealth += 1;
     this.currentPower += 1;
+
   }
 
   @Override
   public boolean checkEvolution() {
-    if (this.increasedPower >= 3) {
+    if (this.increasedPower >= 2) {
       return true;
     }
     return false;
