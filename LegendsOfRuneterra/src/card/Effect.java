@@ -36,14 +36,17 @@ public class Effect {
         switch(effect) {
             case 0:
             if (cardJustPlayed == 1){
-                changeStats(wholeBoard, amount1, amount2, false);//O false e se e temporario ou nao, false e permanente true e temporario
+                for (Card card : myBoard) {
+                    changeStats(card, amount1, amount2, false);//O false e se e temporario ou nao, false e permanente true e temporario
+                    
+                }
             }
 
             case 1:
             if (cardJustPlayed == 1){
                 System.out.println("Escolha uma unidade aliada");
                 //printar a board
-                changeStats(scan.nextInt(), amount1, amount2, true);
+                changeStats(myBoard. scan.nextInt(), amount1, amount2, true);
             }
 
             case 2:
