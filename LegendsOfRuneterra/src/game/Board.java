@@ -10,6 +10,8 @@ public class Board {
 
     private ArrayList<Follower> cardsBlue;
     private ArrayList<Follower> cardsRed;
+    private ArrayList<Follower> cardsInCombatBlue;
+    private ArrayList<Follower> cardsInCombatRed;
     private Player redPlayer;
     private Player bluePlayer;
     private Color currentTurn;
@@ -26,6 +28,8 @@ public class Board {
 
         this.cardsBlue = new ArrayList<Follower>();
         this.cardsRed = new ArrayList<Follower>();
+        this.cardsInCombatBlue = new ArrayList<Follower>();
+        this.cardsInCombatRed = new ArrayList<Follower>();
 
     }
 
