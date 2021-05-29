@@ -62,12 +62,11 @@ public class Menu {
     }
 
     private void createCards() {
-        Effect[] nextEffects;
         // Nota: nas especificações está falando que o Garen deve atacar duas vezes ao invés de golpear duas vezes. Mudamos para golpear assumindo que o professor confundiu golpear com atacar.
         Garen garen = new Garen();
         cards.add(garen);
 
-        nextEffects = {new Effect(6)};
+        Effect[] effectTiana = {new Effect(6)};
         Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8, 7, 7, Region.DEMACIA, effectTiana);
         cards.add(tiana);
 
