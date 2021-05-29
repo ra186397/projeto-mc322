@@ -30,6 +30,12 @@ public class Player {
         }
     }
 
+    public void drawCard(int n, String nameCard) {
+        for (int i = 0; i < n; i++) {
+            deck 
+        }
+    }
+
     public int getCurrentMana(){
         return currentMana;
     }
