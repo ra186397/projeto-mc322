@@ -10,6 +10,7 @@ public class Follower extends Card{
     protected int currentPower;
     protected int temporaryPower;
     protected ArrayList<Trait> traits;
+    protected ArrayList<Effect> effects;
 
     public Follower(String name, String description, int cost, int baseHealth, int basePower, Region region, Effect[] newEffects, Trait[] traits) {
         
@@ -21,8 +22,12 @@ public class Follower extends Card{
         this.currentPower = basePower;
         this.temporaryPower = basePower;
         this.traits = new ArrayList<Trait>();
+        this.effects = new ArrayList<Effect>();
         for (Trait trait : traits) {
             this.traits.add(trait);
+        }
+        for (Effect effect : effects) {
+            this.effects.add(effect);
         }
 
     }

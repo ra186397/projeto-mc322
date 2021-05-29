@@ -3,6 +3,9 @@ package menu;
 import java.lang.System;
 import java.util.Scanner;
 
+import card.Card;
+import card.Region;
+import card.champion.demacia.Garen;
 import game.Deck;
 
 import java.util.ArrayList;
@@ -10,10 +13,12 @@ import java.util.ArrayList;
 public class Menu {
 
     private static Menu menu;
-    private ArrayList<Deck> decks;
+    private static ArrayList<Deck> decks;
+    private static ArrayList<Card> cards;
 
     private Menu() {
         this.decks = new ArrayList<Deck>();
+        Deck demacia = buildBaseDeck();
     }
 
     public static Menu getMenu() {
@@ -23,7 +28,7 @@ public class Menu {
         return menu;
     }
 
-    public void abrirMenu() {
+    public void openMenu() {
 
         int option;
         boolean hasDeck = false;
@@ -38,11 +43,23 @@ public class Menu {
             System.out.println("Depois nois cria o deck, só escolhe o de demacia ai"); //alterar
         }
         else if(option >= 1 && option < decks.size()) {
-            System.out.print
+            System.out.print("Você escolheu o deck " + decks.get(option) + "!");
         }
 
         
     
         Game game = Game.getGame();
+    }
+
+    private Deck buildBaseDeck() {
+
+        Deck baseDeck = new Deck(Region.DEMACIA);
+
+
+    }
+
+    private void createCards() {
+        // Nota: nas especificações está falando que o Garen deve atacar duas vezes ao invés de golpear duas vezes. Mudamos para golpear assumindo que o professor confundiu golpear com atacar.
+        Garen garen = new Garen("Garen", "Eu me curo totalmente no final de cada rodada.\nSubo de nível se golpear duas vezes.", 5, 5, 5, Region.DEMACIA, newEffects, traits)
     }
 }
