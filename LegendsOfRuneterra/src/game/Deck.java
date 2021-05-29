@@ -15,8 +15,15 @@ public class Deck {
     private Region region1;
     private Region region2;
 
-    public Deck (int numCards, Region region1, Region region2) {
-        this.numCards = numCards;
+    public Deck (Region region1) {
+        this.numCards = 0;
+        this.region1 = region1;
+        this.region2 = null;
+        this.cards = new ArrayList<Card>();
+    }
+
+    public Deck (Region region1, Region region2) {
+        this.numCards = 0;
         this.region1 = region1;
         this.region2 = region2;
         this.cards = new ArrayList<Card>();
