@@ -7,7 +7,7 @@ import card.Follower;
 import java.util.Random;
 
 public class Board {
-
+    
     private ArrayList<Follower> cardsBlue;
     private ArrayList<Follower> cardsRed;
     private ArrayList<Follower> cardsInCombatBlue;
@@ -22,7 +22,8 @@ public class Board {
         this.bluePlayer = bluePlayer;
         if (r.nextInt(2) == 0) {
             this.currentTurn = Color.RED;
-        } else {
+        }
+        else {
             this.currentTurn = Color.BLUE;
         }
 
@@ -31,14 +32,17 @@ public class Board {
         this.cardsInCombatBlue = new ArrayList<Follower>();
         this.cardsInCombatRed = new ArrayList<Follower>();
 
+
+
     }
 
     public void addCardByColor(Follower card, Color color) {
         if (color == Color.RED) {
             cardsRed.add(card);
-        } else {
+        }
+        else {
             cardsBlue.add(card);
         }
-    }
+    }   
 
 }

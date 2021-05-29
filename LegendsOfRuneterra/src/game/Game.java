@@ -1,7 +1,7 @@
 package game;
 
 public class Game {
-    
+
     private static Game game;
     Player p1;
     Player p2;
@@ -16,6 +16,10 @@ public class Game {
             game = new Game(p1, p2);
         }
         return game;
+    }
+
+    public void startCombat() {
+
     }
 
 }
