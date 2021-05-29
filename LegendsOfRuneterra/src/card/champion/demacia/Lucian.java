@@ -5,31 +5,32 @@ import card.Region;
 import card.Trait;
 import card.champion.Champion;
 
-public class Garen extends Champion {
+public class Lucian extends Champion {
 
-  private int numAttacks;
+  private int increasedPower;
 
-  public Garen(String name, String description, int cost, int baseHealth, int basePower, Region region,
+  public Lucian(String name, String description, int cost, int baseHealth, int basePower, Region region,
       Effect[] newEffects, Trait[] traits) {
     super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
 
-    this.numAttacks = 0;
+    this.increasedPower = 0;
   }
 
   @Override
   public void evolve() {
-    System.out.println("Garen Evoluiu!");
-    System.out.println("Garen - Por demaciaaaa!!");
+    System.out.println("Lucian Evoluiu!");
+    System.out.println("Lucian - Todo mundo morre, alguns só precisam de uma ajudinha!!");
 
-    this.basePower = 6;
-    this.baseHealth = 6;
+    this.basePower = 4;
+    this.baseHealth = 3;
     this.currentHealth += 1;
     this.currentPower += 1;
+
   }
 
   @Override
   public boolean checkEvolution() {
-    if (this.numAttacks >= 2) {
+    if (this.increasedPower >= 2) {
       return true;
     }
     return false;
