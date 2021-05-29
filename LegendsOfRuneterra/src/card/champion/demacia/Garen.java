@@ -1,5 +1,7 @@
 package card.champion.demacia;
 
+import java.util.ArrayList;
+
 import card.Effect;
 import card.Region;
 import card.Trait;
@@ -9,10 +11,9 @@ public class Garen extends Champion {
 
   private int numAttacks;
 
-  public Garen(String name, String description, int cost, int baseHealth, int basePower, Region region,
-      Effect[] newEffects, Trait[] traits) {
-    super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
-
+  public Garen() {
+    super("Garen", "Subir de nível\n Golpeie duas vezes", 5, 5, 5, Region.DEMACIA);
+    this.traits.add(Trait.REGENERATION);
     this.numAttacks = 0;
   }
 
@@ -20,6 +21,8 @@ public class Garen extends Champion {
   public void evolve() {
     System.out.println("Garen Evoluiu!");
     System.out.println("Garen - Por demaciaaaa!!");
+
+    this.traits.add(Trait.ELUSIVE);
 
     this.basePower = 6;
     this.baseHealth = 6;
