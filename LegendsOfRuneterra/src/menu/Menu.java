@@ -4,6 +4,7 @@ import java.lang.System;
 import java.util.Scanner;
 
 import card.Card;
+import card.Effect;
 import card.Follower;
 import card.Region;
 import card.Trait;
@@ -62,7 +63,14 @@ public class Menu {
 
     private void createCards() {
         // Nota: nas especificações está falando que o Garen deve atacar duas vezes ao invés de golpear duas vezes. Mudamos para golpear assumindo que o professor confundiu golpear com atacar.
-        Garen garen = new Garen("Garen", "Eu me curo totalmente no final de cada rodada.\nSubo de nível se golpear duas vezes.", 5, 5, 5, Region.DEMACIA, [], [Trait.REGENERATION]);
-        Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8, 7, 7, Region.DEMACIA, newEffects, traits)
+        Garen garen = new Garen();
+        cards.add(garen);
+
+        Effect[] effectTiana = {new Effect(6)};
+        Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8, 7, 7, Region.DEMACIA, effectTiana);
+        cards.add(tiana);
+
+        Effect[] effectVanguarda = {new Effect(0, 1, 1)};
+        Follower vanguarda = new Follower("Vanguarda", "Dê +1/+1 a todos os seguidores aliados", 4, 3, 3, Region.DEMACIA, effectVanguarda);
     }
 }

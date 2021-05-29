@@ -69,7 +69,9 @@ public class Follower extends Card{
         this.traits = new ArrayList<Trait>();
     }
 
-    
+    public void addTrait(Trait trait) {
+        this.traits.add(trait);
+    }
 
 
 }

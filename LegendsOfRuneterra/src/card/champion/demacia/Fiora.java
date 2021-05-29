@@ -9,10 +9,8 @@ public class Fiora extends Champion {
 
   private int deadEnemies;
 
-  public Fiora(String name, String description, int cost, int baseHealth, int basePower, Region region,
-      Effect[] newEffects, Trait[] traits) {
-    super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
-
+  public Fiora() {
+    super("Fiora", "Subir de nível\n Elimine 2 inimigos", 3, 2, 3, Region.DEMACIA);
     this.deadEnemies = 0;
   }
 

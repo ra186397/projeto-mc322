@@ -9,9 +9,9 @@ public class Lucian extends Champion {
 
   private int increasedPower;
 
-  public Lucian(String name, String description, int cost, int baseHealth, int basePower, Region region,
-      Effect[] newEffects, Trait[] traits) {
-    super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
+  public Lucian() {
+    super("Lucian", "Subir de nível\n ", 2, 2, 3, Region.DEMACIA);
+    this.traits.add(Trait.DOUBLE_ATTACK);
 
     this.increasedPower = 0;
   }
