@@ -21,6 +21,15 @@ public abstract class Card {
         }
     }
 
+    public Card(String name, String description, int cost, Region region) {
+        this.name = name;
+        this.description = description;
+        this.cost = cost;
+        this.region = region;
+        this.effects = new ArrayList<Effect>();
+
+    }
+
     public int getCost(){
         return cost;
     }

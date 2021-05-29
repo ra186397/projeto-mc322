@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Board {
 
     private ArrayList<Follower> cards;
+    private ArrayList<Follower> combatingFollowers;
     private Player player;
     private boolean currentTurn;
     private Scanner scan;
@@ -21,6 +22,7 @@ public class Board {
         this.player = player;
         this.scan = new Scanner(System.in);
         this.cards = new ArrayList<Follower>();
+        this.combatingFollowers = new ArrayList<Follower>();
     }
 
     public void addCard(Follower card) {
@@ -63,6 +65,16 @@ public class Board {
 
     public void removeCard(int card) {
         cards.remove(card);
+    }
+
+    public void moveToCombat(int n){
+        combatingFollowers.add(cards.get(n));
+        cards.remove(n);
+    }
+
+    public void returnFromCombat(int n){
+        cards.add(combatingFollowers.get(n));
+        combatingFollowers.remove(n);
     }
 
 }
