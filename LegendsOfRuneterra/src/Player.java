@@ -29,4 +29,12 @@ public class Player {
         }
     }
 
+    public int getCurrentMana(){
+        return currentMana;
+    }
+
+    public void spendMana(int n){
+        currentMana -= n;
+    }
+
 }
