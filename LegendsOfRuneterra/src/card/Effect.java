@@ -1,6 +1,7 @@
 package card;
-
 import java.util.Scanner;
+
+import Board;
 
 public class Effect {
     
@@ -29,7 +30,7 @@ public class Effect {
         this.cardName = cardName;
     }
 
-    public void applyEffect() {
+    public void applyEffect(Board myBoard, Board opponentBoard) {
         Scanner scan = new Scanner(System.in);
 
         switch(effect) {
