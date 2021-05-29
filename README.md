@@ -28,6 +28,8 @@
 
 ## 🕹 Legends Of Runeterra
 
+Legends of Runeterra (abreviado como LoR) é um jogo de cartas colecionáveis gratuito desenvolvido e publicado pela Riot Games. Foi lançado em 28 abril de 2020 para dispositivos Android, iOS e Microsoft Windows. Lançado em beta em 24 de janeiro de 2020, situa-se no mesmo universo de League of Legends, o jogo MOBA da Riot Games.
+
 ---
 
 ## 🃏 Cartas
