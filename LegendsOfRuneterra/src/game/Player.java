@@ -1,3 +1,4 @@
+package game;
 
 import java.util.ArrayList;
 
@@ -23,9 +24,9 @@ public class Player {
         this.playerColor = playerColor;
     }
 
-    public Card drawCard(int n) {
+    public void drawCard(int n) {
         for (int i = 0; i < n; i++) {
-            
+            deck 
         }
     }
 
