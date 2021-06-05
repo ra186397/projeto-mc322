@@ -7,9 +7,11 @@ import card.Card;
 import card.Effect;
 import card.Follower;
 import card.Region;
+import card.Spell;
 import card.Trait;
 import card.champion.demacia.Garen;
 import game.Deck;
+import game.Game;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,7 @@ public class Menu {
     private static ArrayList<Card> cards;
 
     private Menu() {
+        this.cards = new ArrayList<Card>();
         this.decks = new ArrayList<Deck>();
         Deck demacia = buildBaseDeck();
     }
@@ -72,5 +75,39 @@ public class Menu {
 
         Effect[] effectVanguarda = {new Effect(0, 1, 1)};
         Follower vanguarda = new Follower("Vanguarda", "Dê +1/+1 a todos os seguidores aliados", 4, 3, 3, Region.DEMACIA, effectVanguarda);
+        cards.add(vanguarda);
+
+        Effect[] effectDuelista = {new Effect(2, "Poro")};
+        Follower duelista = new Follower("Duelista", "Se a carta destruir um seguidor do inimigo nesta rodada, uma carta \"Poro\" é colocada em sua mão.", 3, 3, 2, Region.DEMACIA, effectDuelista);
+        cards.add(duelista);
+
+        Trait[] traitDefensor = {Trait.FURY};
+        Follower defensor = new Follower("Defensor", "", 2, 2, 2, Region.DEMACIA, traitDefensor, 0, 1);
+        cards.add(defensor);
+
+        Follower poro = new Follower("Poro","", 1, 2, 1, Region.DEMACIA);
+        cards.add(poro)
+        ;
+        Effect[] effectPoroDefensor = {new Effect(8)};
+        Follower poroDefensor = new Follower("Poro Defensor", "Ao ser destruído, você ganha uma carta.", 1, 1, 2, Region.DEMACIA, effectPoroDefensor);
+        cards.add(poroDefensor);
+
+        Effect[] effectJulgamento = {new Effect(7)};
+        Spell julgamento = new Spell("Julgamento", "Um aliado atacante golpeia todos os oponentes defensores", 8, effectJulgamento, Region.DEMACIA);
+        cards.add(julgamento);
+
+        Effect[] effectValorRedobrado = {new Effect(3), new Effect(4)};
+        Spell valorRedobrado = new Spell("Valor Redobrado", "Cure inteiramente um aliado;\nDobre o ataque e defesa deste aliado", 6, effectValorRedobrado, Region.DEMACIA);
+        cards.add(valorRedobrado);
+
+        Effect[] effectGolpeCerteiro = {new Effect(1, 1, 1)};
+        Spell golpeCerteiro = new Spell("Golpe Certeiro", "Dê +1/+1 a um aliado nesta rodada", 1, effectGolpeCerteiro, Region.DEMACIA);
+        cards.add(golpeCerteiro);
+
+        Effect[] effectCombateUmAUm = {new Effect(5)};
+        Spell combateUmAUm = new Spell("Combate um-a-um", "Escolha um aliado e um oponente para um combate imediato", 2, effectCombateUmAUm, Region.DEMACIA);
+        cards.add(combateUmAUm);
+
+
     }
 }
