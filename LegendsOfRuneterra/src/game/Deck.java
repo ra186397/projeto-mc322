@@ -29,6 +29,10 @@ public class Deck {
         this.cards = new ArrayList<Card>();
     }
 
+    public ArrayList<Card> getCards(){
+        return cards;
+    }
+
     public void addCard(Card newCard) {
         if (Collections.frequency(cards, newCard) == 3) {
             System.out.println("Você já tem 3 cópias dessa carta no seu deck!");

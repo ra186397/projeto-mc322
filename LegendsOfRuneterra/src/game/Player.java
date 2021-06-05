@@ -26,13 +26,19 @@ public class Player {
 
     public void drawCard(int n) {
         for (int i = 0; i < n; i++) {
-            deck 
+            hand.add(deck.getCards().get(0));
+            deck.getCards().remove(0);
         }
     }
 
     public void drawCard(int n, String nameCard) {
         for (int i = 0; i < n; i++) {
-            deck 
+            for (Card card : deck.getCards()) {
+                if (card.getName() == nameCard){
+                    hand.add(card);
+                    deck.getCards().remove(card);
+                }
+            }
         }
     }
 

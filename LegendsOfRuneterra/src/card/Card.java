@@ -30,6 +30,10 @@ public abstract class Card {
 
     }
 
+    public String getName(){
+        return name;
+    }
+
     public int getCost() {
         return cost;
     }
