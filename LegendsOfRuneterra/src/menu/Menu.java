@@ -1,6 +1,7 @@
 package menu;
 
 import java.lang.System;
+import java.net.ConnectException;
 import java.util.Scanner;
 
 import card.Card;
@@ -23,6 +24,7 @@ public class Menu {
 
     private Menu() {
         this.cards = new ArrayList<Card>();
+        createCards();
         this.decks = new ArrayList<Deck>();
         Deck demacia = buildBaseDeck();
     }
@@ -32,6 +34,15 @@ public class Menu {
             menu = new Menu();
         }
         return menu;
+    }
+
+    private Card getCard(String name) {
+        for (Card card : cards) {
+            if (card.getName() == name) {
+                return card;
+            }
+        }
+        return null;
     }
 
     public void openMenu() {
@@ -60,11 +71,24 @@ public class Menu {
     private Deck buildBaseDeck() {
 
         Deck baseDeck = new Deck(Region.DEMACIA);
+        baseDeck.addCard(getCard("Garen"));
+        baseDeck.addCard(getCard("Tiana"));
+        baseDeck.addCard(getCard("Vanguarda"));
+        baseDeck.addCard(getCard("Duelista"));
+        baseDeck.addCard(getCard("Defensor"));
+        baseDeck.addCard(getCard("Poro"));
+        baseDeck.addCard(getCard("Poro Defensor"));
+        baseDeck.addCard(getCard("Julgamento"));
+        baseDeck.addCard(getCard("Valor Redobrado"));
+        baseDeck.addCard(getCard("Golpe Certeiro"));
+        baseDeck.addCard(getCard("Combate um-a-um"));
+
+        return baseDeck;
 
 
     }
 
-    private void createCards() {
+    private void createCards() { //Método que instancia todas as cartas implementadas.
         // Nota: nas especificações está falando que o Garen deve atacar duas vezes ao invés de golpear duas vezes. Mudamos para golpear assumindo que o professor confundiu golpear com atacar.
         Garen garen = new Garen();
         cards.add(garen);
@@ -108,6 +132,6 @@ public class Menu {
         Spell combateUmAUm = new Spell("Combate um-a-um", "Escolha um aliado e um oponente para um combate imediato", 2, effectCombateUmAUm, Region.DEMACIA);
         cards.add(combateUmAUm);
 
-
     }
+
 }

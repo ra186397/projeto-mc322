@@ -34,4 +34,8 @@ public abstract class Card {
         return cost;
     }
 
+    public String getName() {
+        return name;
+    }
+
 }
