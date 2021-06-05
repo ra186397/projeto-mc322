@@ -10,7 +10,9 @@ import card.Follower;
 import card.Region;
 import card.Spell;
 import card.Trait;
-import card.champion.demacia.Garen;
+import card.champion.demacia.*;
+import card.champion.freljord.*;
+import card.champion.noxus.*;
 import game.Deck;
 import game.Game;
 
@@ -19,14 +21,15 @@ import java.util.ArrayList;
 public class Menu {
 
     private static Menu menu;
-    private static ArrayList<Deck> decks;
-    private static ArrayList<Card> cards;
+    private ArrayList<Deck> decks;
+    private ArrayList<Card> cards;
 
     private Menu() {
         this.cards = new ArrayList<Card>();
         createCards();
         this.decks = new ArrayList<Deck>();
         Deck demacia = buildBaseDeck();
+        decks.add(demacia);
     }
 
     public static Menu getMenu() {
@@ -92,6 +95,9 @@ public class Menu {
         // Nota: nas especificações está falando que o Garen deve atacar duas vezes ao invés de golpear duas vezes. Mudamos para golpear assumindo que o professor confundiu golpear com atacar.
         Garen garen = new Garen();
         cards.add(garen);
+
+        Fiora fiora = new Fiora();
+        cards.add(fiora);
 
         Effect[] effectTiana = {new Effect(6)};
         Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8, 7, 7, Region.DEMACIA, effectTiana);
