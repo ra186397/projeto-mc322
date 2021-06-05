@@ -51,7 +51,7 @@ public class Effect {
                 myBoard.getCards().get(card).temporaryHealth = amount2;
             }
 
-            case 2: // Se a carta destruir uma unidade do inimigo nessa rodada, é colocada uma nova carta de uma unidade específico na sua mão.
+            case 2: // Se a carta destruir uma unidade do inimigo nessa rodada, é colocada uma nova carta de uma unidade específica na sua mão.
             if (cardKilledUnit == 1){
                 myBoard.getPlayer().drawCard(1, cardName);
             }
@@ -99,7 +99,7 @@ public class Effect {
                 }
             }
 
-            case 8:
+            case 8: // Ao ser destruído, você ganha uma carta.
             if (myBoard.getCards().get(scan.nextInt()).currentHealth <= 0){
                 myBoard.getPlayer().drawCard(1);
             }
