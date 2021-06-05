@@ -49,10 +49,10 @@ public class Game {
 
         for (int i = 0; i < attackers.size(); i++) {
             if (defenders.get(i) == null) {
-                defender.takeDamage(attackers.get(i).attack());
+                attackers.get(i).strike(defender);
             } else {
-                defenders.get(i).takeDamage(attackers.get(i).attack());
-                attackers.get(i).takeDamage(defenders.get(i).attack());
+                attackers.get(i).strike(defenders.get(i));
+                defenders.get(i).strike(attackers.get(i));
             }
         }
 
