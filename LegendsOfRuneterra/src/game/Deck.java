@@ -12,13 +12,15 @@ public class Deck {
     
     private int numCards;
     private ArrayList<Card> cards;
+    private String name;
     private Region region1;
     private Region region2;
 
-    public Deck (Region region1) {
+    public Deck (Region region1, String name) {
         this.numCards = 0;
         this.region1 = region1;
         this.region2 = null;
+        this.name = name;
         this.cards = new ArrayList<Card>();
     }
 
@@ -40,5 +42,9 @@ public class Deck {
         else {
             cards.add(newCard);
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
