@@ -83,9 +83,17 @@ public class Board {
         cards.remove(card);
     }
 
-    public void moveToCombat(int n) {
-        combatingFollowers.add(cards.get(n));
-        cards.remove(n);
+    public void moveToCombat(int position, int follower) {
+        if (follower == -1 && currentTurn == true){
+            combatingFollowers.set(position, null);
+        }
+        else if (follower > cards.size()) {
+            combatingFollowers.set(position, cards.get(follower));
+            cards.remove(follower);
+        }
+        else {
+            System.out.print("Nao é uma unidade válida");
+        }
     }
 
     public void returnFromCombat(int n) {
