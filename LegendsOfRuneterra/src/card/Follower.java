@@ -2,6 +2,8 @@ package card;
 
 import java.util.ArrayList;
 
+import game.Player;
+
 public class Follower extends Card {
 
     protected int baseHealth;
@@ -77,12 +79,20 @@ public class Follower extends Card {
         this.traits.add(trait);
     }
 
-    public int attack() {
-        return this.basePower;
+    public void strike(Player player) {
+        if (this.temporaryPower > 0) {
+            player.takeDamage(this.temporaryPower);
+        }
     }
 
-    public void takeDamage(int n) {
-        this.currentHealth -= n;
+    public void strike(Follower defender) {
+        if (this.temporaryPower > 0) {
+            defender.takeDamage(this.temporaryPower);
+        }
+    }
+
+    public void takeDamage(int damage) {
+        this.currentHealth -= damage;
     }
 
     public int getCurrentHealth() {

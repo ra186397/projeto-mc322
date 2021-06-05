@@ -30,14 +30,18 @@ public class Player {
         }
     }
 
-    public void takeDamage(int n) {
-        this.nexusLife -= n;
-    }
-
     public void drawCard(int n, String nameCard) {
         for (int i = 0; i < n; i++) {
             deck 
         }
+    }
+
+    public void takeDamage(int damage) {
+        this.nexusLife -= damage;
+    }
+
+    public int getNexusLife() {
+        return this.nexusLife;
     }
 
     public int getCurrentMana() {
