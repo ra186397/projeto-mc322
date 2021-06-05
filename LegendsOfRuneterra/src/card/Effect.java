@@ -2,7 +2,7 @@ package card;
 import java.util.Scanner;
 
 import game.Board;
-
+import card.Follower;
 public class Effect {
     
     int effect;
@@ -79,14 +79,14 @@ public class Effect {
                 int ally = scan.nextInt();
                 //printar a board
                 System.out.println("Escolha uma unidade inimiga");
-                fightIdk(ally, scan.nextInt());
+                myBoard.getCards().get(ally).strike(opponentBoard.getCards().get(scan.nextInt()));
             }
 
             case 6: // Uma unidade evocada ataca o nexus do adversário.
             if (cardJustPlayed == 1){
                 System.out.println("Escolha uma unidade aliada");
                 //printar a board
-                damageNexus(scan.nextInt().basePower);
+                myBoard.getCards().get(scan.nextInt()).strike(opponentBoard.getPlayer());
             }
 
             case 7: // Um aliado atacante golpeia todos os oponentes defensores.
@@ -95,7 +95,7 @@ public class Effect {
                 //printar a board
                 int ally = scan.nextInt();
                 for (Follower follower : opponentBoard.getCards()) {
-                    attack(ally, follower);
+                    myBoard.getCards().get(ally).strike(follower);
                 }
             }
 
@@ -120,7 +120,7 @@ public class Effect {
 
             case 11: //Golpeia o nexus do adversário para n pontos de dano.
             if (cardJustPlayed == 1){
-                damageNexus(amount1);
+                opponentBoard.getPlayer().takeDamage(amount1);
             }
         }
     }
