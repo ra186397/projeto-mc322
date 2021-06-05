@@ -1,8 +1,5 @@
 package card.champion.demacia;
 
-import java.util.ArrayList;
-
-import card.Effect;
 import card.Region;
 import card.Trait;
 import card.champion.Champion;

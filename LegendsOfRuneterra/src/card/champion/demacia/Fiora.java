@@ -1,8 +1,6 @@
 package card.champion.demacia;
 
-import card.Effect;
 import card.Region;
-import card.Trait;
 import card.champion.Champion;
 
 public class Fiora extends Champion {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import card.Card;
 
 public class Player {
-    
+
     private ArrayList<Card> hand;
     private int maxMana;
     private int currentMana;
@@ -30,17 +30,21 @@ public class Player {
         }
     }
 
+    public void takeDamage(int n) {
+        this.nexusLife -= n;
+    }
+
     public void drawCard(int n, String nameCard) {
         for (int i = 0; i < n; i++) {
             deck 
         }
     }
 
-    public int getCurrentMana(){
+    public int getCurrentMana() {
         return currentMana;
     }
 
-    public void spendMana(int n){
+    public void spendMana(int n) {
         currentMana -= n;
     }
 

@@ -49,15 +49,23 @@ public class Board {
         }
     }
 
-    public ArrayList<Follower> getCards(){
+    public ArrayList<Follower> getCards() {
         return cards;
     }
 
-    public Player getPlayer(){
+    public boolean getCurrentTurn() {
+        return this.currentTurn;
+    }
+
+    public ArrayList<Follower> getCombatingFollowers() {
+        return this.combatingFollowers;
+    }
+
+    public Player getPlayer() {
         return player;
     }
 
-    void setTurn(boolean turn){
+    void setTurn(boolean turn) {
         currentTurn = turn;
     }
 
@@ -75,12 +83,12 @@ public class Board {
         cards.remove(card);
     }
 
-    public void moveToCombat(int n){
+    public void moveToCombat(int n) {
         combatingFollowers.add(cards.get(n));
         cards.remove(n);
     }
 
-    public void returnFromCombat(int n){
+    public void returnFromCombat(int n) {
         cards.add(combatingFollowers.get(n));
         combatingFollowers.remove(n);
     }

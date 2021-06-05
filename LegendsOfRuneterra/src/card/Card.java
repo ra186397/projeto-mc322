@@ -30,7 +30,7 @@ public abstract class Card {
 
     }
 
-    public int getCost(){
+    public int getCost() {
         return cost;
     }
 

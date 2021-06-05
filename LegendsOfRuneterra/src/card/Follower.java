@@ -1,8 +1,9 @@
 package card;
 
 import java.util.ArrayList;
-public class Follower extends Card{
-    
+
+public class Follower extends Card {
+
     protected int baseHealth;
     protected int currentHealth;
     protected int temporaryHealth;
@@ -10,8 +11,9 @@ public class Follower extends Card{
     protected int temporaryPower;
     protected ArrayList<Trait> traits;
 
-    public Follower(String name, String description, int cost, int baseHealth, int basePower, Region region, Effect[] newEffects, Trait[] traits) {
-        
+    public Follower(String name, String description, int cost, int baseHealth, int basePower, Region region,
+            Effect[] newEffects, Trait[] traits) {
+
         super(name, description, cost, region, newEffects);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
@@ -28,8 +30,9 @@ public class Follower extends Card{
 
     }
 
-    public Follower(String name, String description, int cost, int baseHealth, int basePower, Region region, Effect[] newEffects) {
-        
+    public Follower(String name, String description, int cost, int baseHealth, int basePower, Region region,
+            Effect[] newEffects) {
+
         super(name, description, cost, region, newEffects);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
@@ -43,8 +46,9 @@ public class Follower extends Card{
 
     }
 
-    public Follower(String name, String description, int cost, int baseHealth, int basePower, Region region, Trait[] traits) {
-        
+    public Follower(String name, String description, int cost, int baseHealth, int basePower, Region region,
+            Trait[] traits) {
+
         super(name, description, cost, region);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
@@ -59,7 +63,7 @@ public class Follower extends Card{
     }
 
     public Follower(String name, String description, int cost, int baseHealth, int basePower, Region region) {
-        
+
         super(name, description, cost, region);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
@@ -73,5 +77,15 @@ public class Follower extends Card{
         this.traits.add(trait);
     }
 
+    public int attack() {
+        return this.basePower;
+    }
 
+    public void takeDamage(int n) {
+        this.currentHealth -= n;
+    }
+
+    public int getCurrentHealth() {
+        return this.currentHealth;
+    }
 }
