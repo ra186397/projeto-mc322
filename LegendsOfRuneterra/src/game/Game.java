@@ -59,14 +59,9 @@ public class Game {
         for (int i = 0; i < attackers.size(); i++) {
             if (attackers.get(i).getCurrentHealth() > 0 && attackers.get(i) != null) {
                 attackingBoard.returnFromCombat(i);
-            } else {
-                attackers.remove(i);
             }
-
             if (defenders.get(i).getCurrentHealth() > 0 && attackers.get(i) != null) {
                 defendingBoard.returnFromCombat(i);
-            } else {
-                defenders.remove(i);
             }
         }
 
