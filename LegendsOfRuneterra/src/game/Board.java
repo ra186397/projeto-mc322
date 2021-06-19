@@ -33,20 +33,20 @@ public class Board {
             int follower_num = scan.nextInt();
             Follower follower = cards.get(follower_num);
             if (follower.getCost() < card.getCost()) {
-                if (player.hasMana(card.getCost() - Follower.getCost())) {
+                if (player.spendMana(card.getCost() - follower.getCost(), false)) {
                     cards.remove(follower_num);
                     cards.add(card);
                     for (Effect effect : card.getEffects()) {
                         effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
                     }
-            } else if (player.hasMana(card.getCost())) {
+            } else if (player.spendMana(card.getCost(), false)) {
                 cards.remove(follower_num);
                 cards.add(card);
                 for (Effect effect : card.getEffects()) {
                     effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
                 }
             }
-        } else if (player.hasMana(card.getCost())) {
+        } else if (player.spendMana(card.getCost(), false)) {
             cards.add(card);
             for (Effect effect : card.getEffects()) {
                 effect.checkTrigger(Trigger.PLAY, this, opponentBoard);

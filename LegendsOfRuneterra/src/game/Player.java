@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import card.Card;
 
@@ -52,6 +53,23 @@ public class Player {
         return currentMana;
     }
 
+    public Card playCard() {
+        Card nextCard;
+        int numCard = 0;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite o número da carta que deseja jogar: ");
+        for (Card card : hand) {
+            System.out.println(numCard + " - " + card.getName());
+            numCard++;
+        }
+        System.out.println();
+        numCard = sc.nextInt();
+        nextCard = hand.get(numCard);
+        sc.close();
+
+        return nextCard;
+    }
+
     public void updateMana() {
         spellMana = spellMana + currentMana;
         if (spellMana > 3) {
@@ -88,7 +106,7 @@ public class Player {
                 return false;
             }
         }
+
         }
-    }
 
 }
