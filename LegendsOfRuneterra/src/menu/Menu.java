@@ -63,14 +63,15 @@ public class Menu {
 
         while (!hasDeck) {
 
-            System.out.println("Digite o número do deck que você deseja usar, ou digite 0 para criar um novo deck.");
+            System.out.println("Digite o índice do deck que você deseja usar, ou digite -1 para criar um novo deck.");
             option = sc.nextInt();
-            if (option == 0) {
+            if (option == -1) {
                 System.out.println("Depois nois cria o deck, só escolhe o de demacia ai"); //alterar
             }
-            else if(option >= 1 && option < decks.size()) {
-                System.out.print("Você escolheu o deck " + decks.get(option).getName() + "!");
-                p1 = new Player(decks.get(option - 1));
+            else if(option >= 0 && option < decks.size()) {
+                System.out.println("Você escolheu o deck " + decks.get(option).getName() + "!");
+                p1 = new Player(decks.get(option));
+                hasDeck = true;
             }
         }
         // Fazer o jogador escolher com quem ele quer jogar.
@@ -79,6 +80,7 @@ public class Menu {
         
     
         Game game = Game.getGame(p1, p2);
+        game.startGame();
     }
 
     private Deck buildBaseDeck() {

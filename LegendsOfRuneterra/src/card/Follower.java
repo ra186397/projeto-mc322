@@ -16,7 +16,7 @@ public class Follower extends Card {
     protected int furyHealth;
 
     public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, //Tem traço e efeito mas não tem fúria
-            Effect[] newEffects, Trait[] traits) {
+            Effect[] newEffects, Trait[] newTraits) {
 
         super(name, description, cost, region, newEffects);
         this.baseHealth = baseHealth;
@@ -25,10 +25,10 @@ public class Follower extends Card {
         this.basePower = basePower;
         this.temporaryPower = basePower;
         this.traits = new ArrayList<Trait>();
-        for (Trait trait : traits) {
+        for (Trait trait : newTraits) {
             this.traits.add(trait);
         }
-        for (Effect effect : effects) {
+        for (Effect effect : newEffects) {
             this.effects.add(effect);
         }
     }
@@ -43,13 +43,13 @@ public class Follower extends Card {
         this.basePower = basePower;
         this.temporaryPower = basePower;
         this.traits = new ArrayList<Trait>();
-        for (Effect effect : effects) {
+        for (Effect effect : newEffects) {
             this.effects.add(effect);
         }
     }
 
     public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Não possui efeitos nem fúria
-            Trait[] traits) {
+            Trait[] newTraits) {
 
         super(name, description, cost, region);
         this.baseHealth = baseHealth;
@@ -58,7 +58,7 @@ public class Follower extends Card {
         this.basePower = basePower;
         this.temporaryPower = basePower;
         this.traits = new ArrayList<Trait>();
-        for (Trait trait : traits) {
+        for (Trait trait : newTraits) {
             this.traits.add(trait);
         }
     }
@@ -75,7 +75,7 @@ public class Follower extends Card {
     }
 
     public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, //Tem traço (um deles sendo fúria) e efeito.
-            Effect[] newEffects, Trait[] traits, int furyPower, int furyHealth) {
+            Effect[] newEffects, Trait[] newTraits, int furyPower, int furyHealth) {
 
         super(name, description, cost, region, newEffects);
         this.baseHealth = baseHealth;
@@ -86,16 +86,16 @@ public class Follower extends Card {
         this.traits = new ArrayList<Trait>();
         this.furyHealth = furyHealth;
         this.furyPower = furyPower;
-        for (Trait trait : traits) {
+        for (Trait trait : newTraits) {
             this.traits.add(trait);
         }
-        for (Effect effect : effects) {
+        for (Effect effect : newEffects) {
             this.effects.add(effect);
         }
     }
 
     public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Possui apenas traços, um deles sendo fúria.
-            Trait[] traits, int furyPower, int furyHealth) {
+            Trait[] newTraits, int furyPower, int furyHealth) {
 
         super(name, description, cost, region);
         this.baseHealth = baseHealth;
@@ -106,7 +106,7 @@ public class Follower extends Card {
         this.traits = new ArrayList<Trait>();
         this.furyHealth = furyHealth;
         this.furyPower = furyPower;
-        for (Trait trait : traits) {
+        for (Trait trait : newTraits) {
             this.traits.add(trait);
         }
     }
