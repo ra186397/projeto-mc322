@@ -12,16 +12,14 @@ public class Player {
     private int spellMana;
     private int nexusLife;
     private Deck deck;
-    private Color playerColor;
 
-    public Player(Deck deck, Color playerColor) {
+    public Player(Deck deck) {
         this.hand = new ArrayList<Card>();
         this.maxMana = 0;
         this.currentMana = 0;
         this.spellMana = 0;
         this.nexusLife = 20;
         this.deck = deck;
-        this.playerColor = playerColor;
     }
 
     public void drawCard(int n) {

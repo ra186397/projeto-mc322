@@ -27,6 +27,11 @@ public class Game {
         return game;
     }
 
+    public void startGame() {
+        System.out.println("Até aqui tá tudo certo.");
+    }
+
+
     public void startCombat() {
 
         ArrayList<Follower> attackers = redBoard.getCombatingFollowers();
