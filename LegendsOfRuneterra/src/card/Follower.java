@@ -33,8 +33,7 @@ public class Follower extends Card {
         }
     }
 
-    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Não possui traços
-            Effect[] newEffects) {
+    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, Effect[] newEffects) { //Não possui traços
 
         super(name, description, cost, region, newEffects);
         this.baseHealth = baseHealth;
