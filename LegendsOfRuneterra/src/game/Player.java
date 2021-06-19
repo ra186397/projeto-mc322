@@ -52,8 +52,43 @@ public class Player {
         return currentMana;
     }
 
-    public void spendMana(int n) {
-        currentMana -= n;
+    public void updateMana() {
+        spellMana = spellMana + currentMana;
+        if (spellMana > 3) {
+            spellMana = 3;
+        }
+
+        maxMana++;
+        currentMana = maxMana;
+    }
+
+    public boolean spendMana(int n, boolean isSpell) {
+        
+        if (isSpell) {
+            if (currentMana + spellMana >= n) {
+                if (spellMana >= n) {
+                    spellMana -= n;
+                }
+                else {
+                    n -= spellMana;
+                    currentMana -= n;
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            if (currentMana >= n) {
+                currentMana -= n;
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        }
     }
 
 }

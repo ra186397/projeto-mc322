@@ -7,6 +7,7 @@ import card.Follower;
 public class Game {
 
     private static Game game;
+    boolean gameOver;
     Player bluePlayer;
     Player redPlayer;
     Board blueBoard;
@@ -15,6 +16,7 @@ public class Game {
     private Game(Player p1, Player p2) {
         this.bluePlayer = p1;
         this.redPlayer = p2;
+        this.gameOver = false;
 
         blueBoard = new Board(bluePlayer);
         redBoard = new Board(redPlayer);
@@ -28,7 +30,22 @@ public class Game {
     }
 
     public void startGame() {
-        System.out.println("Até aqui tá tudo certo.");
+        
+        while (!gameOver) {
+            if (blueBoard.getCurrentTurn()) {
+                System.out.println("Jogador azul, é sua vez!");
+            }
+            else {
+                System.out.println("Jogador vermelho, é sua vez!");
+            }
+
+            startNewRound();
+
+
+
+
+        }
+
     }
 
 
