@@ -2,7 +2,9 @@ package game;
 
 import java.util.ArrayList;
 
+import card.Effect;
 import card.Follower;
+import card.Trigger;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -31,21 +33,24 @@ public class Board {
             int follower_num = scan.nextInt();
             Follower follower = cards.get(follower_num);
             if (follower.getCost() < card.getCost()) {
-                if (player.getCurrentMana() >= card.getCost() - follower.getCost()) {
-                    player.spendMana(card.getCost() - follower.getCost());
+                if (player.hasMana(card.getCost() - Follower.getCost())) {
                     cards.remove(follower_num);
                     cards.add(card);
-                } else {
-                    System.out.println("Sem mana o suficiente");
-                }
-            } else if (player.getCurrentMana() >= card.getCost()) {
-                player.spendMana(card.getCost());
+                    for (Effect effect : card.getEffects()) {
+                        effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
+                    }
+            } else if (player.hasMana(card.getCost())) {
                 cards.remove(follower_num);
                 cards.add(card);
+                for (Effect effect : card.getEffects()) {
+                    effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
+                }
             }
-        } else if (player.getCurrentMana() >= card.getCost()) {
-            player.spendMana(card.getCost());
+        } else if (player.hasMana(card.getCost())) {
             cards.add(card);
+            for (Effect effect : card.getEffects()) {
+                effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
+            }
         }
     }
 

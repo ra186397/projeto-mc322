@@ -30,6 +30,10 @@ public abstract class Card {
 
     }
 
+    public ArrayList<Effect> getEffects(){
+        return effects;
+    }
+
     public String getName(){
         return name;
     }
