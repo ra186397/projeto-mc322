@@ -13,6 +13,7 @@ public class Player {
     private int spellMana;
     private int nexusLife;
     private Deck deck;
+    private Board board;
 
     public Player(Deck deck) {
         this.hand = new ArrayList<Card>();
@@ -53,21 +54,34 @@ public class Player {
         return currentMana;
     }
 
-    public Card playCard() {
+    public void setBoard(Board newBoard) {
+        this.board = newBoard;
+    }
+
+    public Card selectCard() {
         Card nextCard;
         int numCard = 0;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Digite o número da carta que deseja jogar: ");
+        System.out.println("Digite o número da carta que deseja jogar, ou -1 se deseja passar o turno: ");
         for (Card card : hand) {
             System.out.println(numCard + " - " + card.getName());
             numCard++;
         }
         System.out.println();
         numCard = sc.nextInt();
-        nextCard = hand.get(numCard);
+        if (numCard == -1) {
+            nextCard = null;
+        }
+        else {
+            nextCard = hand.get(numCard);
+        }
         sc.close();
 
         return nextCard;
+    }
+
+    public void playCard(Card nextCard) {
+        nextCard.playCard(board);
     }
 
     public void updateMana() {

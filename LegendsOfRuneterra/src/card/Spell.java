@@ -2,6 +2,8 @@ package card;
 
 import java.util.ArrayList;
 
+import game.Board;
+
 public class Spell extends Card{
     
     String name;
@@ -13,6 +15,10 @@ public class Spell extends Card{
 
     public Spell(String name, String description, int cost, Effect[] newEffects, Region region) {
         super(name, description, cost, region, newEffects);
+    }
+
+    public void playCard(Board board) {
+        
     }
 
 }

@@ -27,9 +27,9 @@ public class Board {
         this.combatingFollowers = new ArrayList<Follower>();
     }
 
-    public void addCard(Follower card) {
-        if (cards.size() >= 6) {
-            System.out.println("Escolha uma unidade aliada");
+    public boolean addCard(Follower card) { //Retorna true se foi possível jogar a carta, false senão.
+        if (cards.size() >= 6) { 
+            System.out.println("Escolha uma unidade aliada para substituir");
             int follower_num = scan.nextInt();
             Follower follower = cards.get(follower_num);
             if (follower.getCost() < card.getCost()) {
@@ -39,19 +39,27 @@ public class Board {
                     for (Effect effect : card.getEffects()) {
                         effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
                     }
+                    return true;
+                }
+
             } else if (player.spendMana(card.getCost(), false)) {
                 cards.remove(follower_num);
                 cards.add(card);
                 for (Effect effect : card.getEffects()) {
                     effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
                 }
+                return true;
             }
+
         } else if (player.spendMana(card.getCost(), false)) {
             cards.add(card);
             for (Effect effect : card.getEffects()) {
                 effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
             }
+            return true;
         }
+
+        return false;
     }
 
     public ArrayList<Follower> getCards() {

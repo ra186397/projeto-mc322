@@ -2,6 +2,7 @@ package card;
 
 import java.util.ArrayList;
 
+import game.Board;
 import game.Player;
 
 public class Follower extends Card {
@@ -112,6 +113,10 @@ public class Follower extends Card {
 
     public void addTrait(Trait trait) {
         this.traits.add(trait);
+    }
+
+    public void playCard(Board board) {
+        board.addCard(this);
     }
 
     public void strike(Player player) {

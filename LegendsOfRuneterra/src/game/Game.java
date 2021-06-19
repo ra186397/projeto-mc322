@@ -26,6 +26,9 @@ public class Game {
 
         blueBoard = new Board(bluePlayer);
         redBoard = new Board(redPlayer);
+
+        p1.setBoard(blueBoard);
+        p2.setBoard(redBoard);
     }
 
     public static Game getGame(Player p1, Player p2) {
@@ -39,6 +42,7 @@ public class Game {
         
         Player currentPlayer;
         Card nextCard;
+        boolean validCard = false;
         Scanner sc = new Scanner(System.in);
         while (!gameOver) {
             startNewRound();
@@ -54,9 +58,14 @@ public class Game {
                     currentPlayer = redPlayer;
                 }
 
-                System.out.println("Digite 0 se deseja passar seu turno ou 1 se deseja jogar uma carta.");
-                if (sc.nextInt() == 1) {
-                    nextCard = currentPlayer.playCard();
+                do {
+                    nextCard = currentPlayer.selectCard();
+                }    
+                while (nextCard == null);
+                currentPlayer.playCard(nextCard);
+
+
+
                 }
             }
 

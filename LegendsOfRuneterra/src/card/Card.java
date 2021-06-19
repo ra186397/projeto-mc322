@@ -2,6 +2,8 @@ package card;
 
 import java.util.ArrayList;
 
+import game.Board;
+
 public abstract class Card {
 
     protected String name;
@@ -30,6 +32,8 @@ public abstract class Card {
 
     }
 
+    public abstract void playCard(Board board);
+
     public ArrayList<Effect> getEffects(){
         return effects;
     }
@@ -40,10 +44,6 @@ public abstract class Card {
 
     public int getCost() {
         return cost;
-    }
-
-    public String getName() {
-        return name;
     }
 
 }
