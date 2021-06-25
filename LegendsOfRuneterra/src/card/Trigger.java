@@ -9,6 +9,7 @@ public enum Trigger {
     STRIKE,
     ATTACK,
     TAKE_DAMAGE,
-    ROUND_END
+    ROUND_END,
+    BUY_CARD
     
 }

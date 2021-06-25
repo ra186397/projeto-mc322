@@ -9,7 +9,7 @@ import card.Trigger;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Board {
+public class Board{
 
     private ArrayList<Follower> cards;
     private ArrayList<Follower> combatingFollowers;

@@ -62,7 +62,9 @@ public class Menu {
 
         switch (option) {
             case 1:
-                deckSelection(scanner);
+                deckNovo = deckSelection(scanner);
+                Player p1 = new Player(deckNovo, true);
+                Player p2 = new Player(getRandomDeck(), false);
         }
 
     }
