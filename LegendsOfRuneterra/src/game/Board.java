@@ -36,9 +36,15 @@ public class Board{
     }
 
     public boolean addCard(Follower card) { //Retorna true se foi possível jogar a carta, false senão.
-        if (cards.size() >= 6) { 
-            System.out.println("Escolha uma unidade aliada para substituir");
-            int followerNum = scan.nextInt();
+        if (cards.size() >= 6) {
+            int followerNum;
+            if (player.isHuman()){
+                System.out.println("Escolha uma unidade aliada para substituir");
+                followerNum = scan.nextInt();
+            }
+            else {
+                followerNum = player.getRandomResult(6);//tamanho maximo da board, talvez seja bom tacar um define ou sla
+            }
             Follower follower = cards.get(followerNum);
             if (follower.getCost() < card.getCost()) {
                 if (player.spendMana(card.getCost() - follower.getCost(), false)) {

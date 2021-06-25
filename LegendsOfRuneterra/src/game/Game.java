@@ -44,7 +44,7 @@ public class Game {
         Card nextCard;
         int nextMove;
         boolean validTurn= false;
-        Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
         while (!gameOver) {
