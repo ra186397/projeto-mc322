@@ -10,6 +10,7 @@ import card.Follower;
 import card.Region;
 import card.Spell;
 import card.Trait;
+import card.Trigger;
 import card.champion.demacia.*;
 import card.champion.freljord.*;
 import card.champion.noxus.*;
@@ -200,17 +201,17 @@ public class Menu {
         Fiora fiora = new Fiora();
         cards.add(fiora);
 
-        Effect[] effectTiana = { new Effect(6) };
+        Effect[] effectTiana = { new Effect(6, Trigger.PLAY) };
         Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8,
                 7, 7, Region.DEMACIA, effectTiana);
         cards.add(tiana);
 
-        Effect[] effectVanguarda = { new Effect(0, 1, 1) };
+        Effect[] effectVanguarda = { new Effect(0, 1, 1, Trigger.PLAY) };
         Follower vanguarda = new Follower("Vanguarda", "Dê +1/+1 a todos os seguidores aliados", 4, 3, 3,
                 Region.DEMACIA, effectVanguarda);
         cards.add(vanguarda);
 
-        Effect[] effectDuelista = { new Effect(2, "Poro") };
+        Effect[] effectDuelista = { new Effect(2, "Poro", Trigger.DESTROY_OPPONENT) };
         Follower duelista = new Follower("Duelista",
                 "Se a carta destruir um seguidor do inimigo nesta rodada, uma carta \"Poro\" é colocada em sua mão.", 3,
                 3, 2, Region.DEMACIA, effectDuelista);
@@ -222,28 +223,28 @@ public class Menu {
 
         Follower poro = new Follower("Poro", "", 1, 2, 1, Region.DEMACIA);
         cards.add(poro);
-        Effect[] effectPoroDefensor = { new Effect(8) };
+        Effect[] effectPoroDefensor = { new Effect(8, Trigger.LAST_BREATH) };
         Follower poroDefensor = new Follower("Poro Defensor", "Ao ser destruído, você ganha uma carta.", 1, 1, 2,
                 Region.DEMACIA, effectPoroDefensor);
         cards.add(poroDefensor);
 
-        Effect[] effectJulgamento = { new Effect(7) };
+        Effect[] effectJulgamento = { new Effect(7, Trigger.PLAY) };
         Spell julgamento = new Spell("Julgamento", "Um aliado atacante golpeia todos os oponentes defensores", 8,
                 effectJulgamento, Region.DEMACIA);
         cards.add(julgamento);
 
-        Effect[] effectValorRedobrado = { new Effect(3), new Effect(4) };
+        Effect[] effectValorRedobrado = { new Effect(3, Trigger.PLAY), new Effect(4, Trigger.PLAY) };
         Spell valorRedobrado = new Spell("Valor Redobrado",
                 "Cure inteiramente um aliado;\nDobre o ataque e defesa deste aliado", 6, effectValorRedobrado,
                 Region.DEMACIA);
         cards.add(valorRedobrado);
 
-        Effect[] effectGolpeCerteiro = { new Effect(1, 1, 1) };
+        Effect[] effectGolpeCerteiro = { new Effect(1, 1, 1, Trigger.PLAY) };
         Spell golpeCerteiro = new Spell("Golpe Certeiro", "Dê +1/+1 a um aliado nesta rodada", 1, effectGolpeCerteiro,
                 Region.DEMACIA);
         cards.add(golpeCerteiro);
 
-        Effect[] effectCombateUmAUm = { new Effect(5) };
+        Effect[] effectCombateUmAUm = { new Effect(5, Trigger.PLAY) };
         Spell combateUmAUm = new Spell("Combate um-a-um", "Escolha um aliado e um oponente para um combate imediato", 2,
                 effectCombateUmAUm, Region.DEMACIA);
         cards.add(combateUmAUm);

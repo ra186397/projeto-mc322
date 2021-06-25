@@ -27,27 +27,27 @@ public class Board{
         this.combatingFollowers = new ArrayList<Follower>();
     }
 
+    public void replaceFollower(Follower card, int followerNum){
+        cards.remove(followerNum);
+        cards.add(card);
+        for (Effect effect : card.getEffects()) {
+            effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
+        }
+    }
+
     public boolean addCard(Follower card) { //Retorna true se foi possível jogar a carta, false senão.
         if (cards.size() >= 6) { 
             System.out.println("Escolha uma unidade aliada para substituir");
-            int follower_num = scan.nextInt();
-            Follower follower = cards.get(follower_num);
+            int followerNum = scan.nextInt();
+            Follower follower = cards.get(followerNum);
             if (follower.getCost() < card.getCost()) {
                 if (player.spendMana(card.getCost() - follower.getCost(), false)) {
-                    cards.remove(follower_num);
-                    cards.add(card);
-                    for (Effect effect : card.getEffects()) {
-                        effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
-                    }
+                    replaceFollower(card, followerNum);
                     return true;
                 }
 
             } else if (player.spendMana(card.getCost(), false)) {
-                cards.remove(follower_num);
-                cards.add(card);
-                for (Effect effect : card.getEffects()) {
-                    effect.checkTrigger(Trigger.PLAY, this, opponentBoard);
-                }
+                replaceFollower(card, followerNum);
                 return true;
             }
 
