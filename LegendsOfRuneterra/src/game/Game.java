@@ -42,8 +42,11 @@ public class Game {
         
         Player currentPlayer;
         Card nextCard;
-        boolean validCard = false;
+        int nextMove;
+        boolean validTurn= false;
         Scanner sc = new Scanner(System.in);
+        bluePlayer.drawStartingHand();
+        redPlayer.drawStartingHand();
         while (!gameOver) {
             startNewRound();
 
@@ -58,15 +61,25 @@ public class Game {
                     currentPlayer = redPlayer;
                 }
 
-                do {
-                    nextCard = currentPlayer.selectCard();
-                }    
-                while (nextCard == null);
-                currentPlayer.playCard(nextCard);
+                while (!validTurn) {
 
+                    nextMove = currentPlayer.selectAction(); 
+                    if (nextMove == 0) {
+                        nextCard = currentPlayer.selectCard();
+                        if (!nextCard.playCard(currentPlayer.getBoard())) {
+                            System.out.println("Você não tem mana o suficiente para jogar essa carta! Selecione outra ou passe a vez.");
+                        }
+                        else {
+                            validTurn = true;
+                        }
+                    }
+                    else {
+                        validTurn = true;
+                    }
 
-
+                
                 }
+
             }
 
 

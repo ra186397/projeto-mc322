@@ -32,7 +32,7 @@ public abstract class Card {
 
     }
 
-    public abstract void playCard(Board board);
+    public abstract boolean playCard(Board board);
 
     public ArrayList<Effect> getEffects(){
         return effects;
