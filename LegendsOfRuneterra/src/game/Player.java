@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -74,6 +75,15 @@ public class Player {
         return this.nexusLife;
     }
 
+    public boolean hasCards() {
+        if (hand.isEmpty()) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     public boolean isHuman() {
         return isHuman;
     }
@@ -103,8 +113,7 @@ public class Player {
     public Card selectCard() {
         Card nextCard;
         int numCard = 0;
-        if (isHuman == true) {
-            boolean validNumber = false;
+        if (isHuman) {
             Scanner scan = new Scanner(System.in);
             System.out.println("Digite o número da carta que deseja jogar: ");
             for (Card card : hand) {
@@ -112,27 +121,21 @@ public class Player {
                 numCard++;
             }
             System.out.println();
-            while (!validNumber) {
+            while (true) {
                 try {
                     numCard = scan.nextInt();
-                    validNumber = true;
-                } catch (Exception inputMismatchException) {
-                    System.out.println("Número inválido, tente denovo: ");
+                    nextCard = hand.get(numCard);
+                    scan.close();
+                    return nextCard;
+                } catch (InputMismatchException | IndexOutOfBoundsException f) {
+                    System.out.println("número inválido, tente novamente: ");
                 }
             }
-            scan.close();
         }
         else {
             numCard = getRandomResult(hand.size()+1) - 1;
             
         }
-        if (numCard == -1) {
-            nextCard = null;
-        }
-        else {
-            nextCard = hand.get(numCard);
-        }
-        return nextCard;
     }
 
     public void updateMana() {

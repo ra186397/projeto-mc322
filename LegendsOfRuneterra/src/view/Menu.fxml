@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuController">
+  <children>
+    <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-border-color: #E7B757; -fx-background-color: #201B21;">
+               <children>
+                  <Label layoutX="296.0" layoutY="99.0" text="ESCOLHA O MODO DE JOGO" textAlignment="CENTER">
+                     <font>
+                        <Font name="Lucida Console" size="52.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <ImageView fitHeight="253.0" fitWidth="473.0" layoutX="415.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logo.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton fx:id="jxj_button" layoutX="518.0" layoutY="215.0" onAction="#handleMoveToDeckSelection" style="-fx-border-color: #E7B757;" text="Jogador x Jogador" textAlignment="CENTER" textFill="#cfc6b7">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <ripplerFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.4431372582912445" green="0.3019607961177826" blue="0.1921568661928177" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.48235294222831726" green="0.34117648005485535" blue="0.20392157137393951" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <JFXButton layoutX="518.0" layoutY="307.0" prefHeight="53.0" prefWidth="245.0" style="-fx-border-color: #E7B757;" text="Jogador x IA" textFill="#cfc6b7">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="518.0" layoutY="406.0" prefHeight="53.0" prefWidth="245.0" style="-fx-border-color: #E7B757;" text="IA x IA" textFill="#cfc6b7">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
+         </children></AnchorPane>
+  </children>
+</VBox>
