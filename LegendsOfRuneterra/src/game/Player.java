@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 import card.Card;
@@ -32,14 +33,14 @@ public class Player {
     public void drawStartingHand() {
         deck.shuffle();
         drawCard(4);
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço, ou -1: ");
-        String[] numeros = sc.nextLine().split(" ");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço: ");
+        String[] numeros = scan.nextLine().split(" ");
         for (String num : numeros) {
             changeCard(Integer.parseInt(num));
         }
 
-        sc.close();
+        scan.close();
         
     }
 
@@ -97,34 +98,44 @@ public class Player {
 
     public int selectAction() {
         int action;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Digite 0 para jogar uma carta, 1 para combater e 2 para passar o turno: ");
-        action = sc.nextInt();
-        sc.close();
+        if (isHuman == true){
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Digite 0 para jogar uma carta, 1 para combater e 2 para passar o turno: ");
+            action = scan.nextInt();
+            scan.close();
+        }
+        else {
+            action = getRandomResult(3);
+        }
         return action;
     }
 
     public Card selectCard() {
         Card nextCard;
         int numCard = 0;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Digite o número da carta que deseja jogar: ");
-        for (Card card : hand) {
-            System.out.println(numCard + " - " + card.getName());
-            numCard++;
-        }
-        System.out.println();
-        while (true) {
-            try {
-                numCard = sc.nextInt();
-                nextCard = hand.get(numCard);
-                sc.close();
-                return nextCard;
-            } catch (InputMismatchException | IndexOutOfBoundsException f) {
-                System.out.println("número inválido, tente novamente: ");
+        if (isHuman) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Digite o número da carta que deseja jogar: ");
+            for (Card card : hand) {
+                System.out.println(numCard + " - " + card.getName());
+                numCard++;
+            }
+            System.out.println();
+            while (true) {
+                try {
+                    numCard = scan.nextInt();
+                    nextCard = hand.get(numCard);
+                    scan.close();
+                    return nextCard;
+                } catch (InputMismatchException | IndexOutOfBoundsException f) {
+                    System.out.println("número inválido, tente novamente: ");
+                }
             }
         }
-
+        else {
+            numCard = getRandomResult(hand.size()+1) - 1;
+            
+        }
     }
 
     public void updateMana() {
@@ -164,10 +175,14 @@ public class Player {
             }
         }
 
-        }
+    }
 
-        public Board getBoard() {
-            return this.board;
-        }
+    public Board getBoard() {
+        return this.board;
+    }
 
+    public int getRandomResult(int max) {
+        Random rand = new Random();
+        return rand.nextInt(max);
+    }
 }
