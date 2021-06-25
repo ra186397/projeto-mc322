@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import card.Card;
@@ -32,7 +33,7 @@ public class Player {
         deck.shuffle();
         drawCard(4);
         Scanner sc = new Scanner(System.in);
-        System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço: ");
+        System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço, ou -1: ");
         String[] numeros = sc.nextLine().split(" ");
         for (String num : numeros) {
             changeCard(Integer.parseInt(num));
@@ -73,6 +74,15 @@ public class Player {
         return this.nexusLife;
     }
 
+    public boolean hasCards() {
+        if (hand.isEmpty()) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     public boolean isHuman() {
         return isHuman;
     }
@@ -96,7 +106,6 @@ public class Player {
 
     public Card selectCard() {
         Card nextCard;
-        boolean validNumber = false;
         int numCard = 0;
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite o número da carta que deseja jogar: ");
@@ -105,23 +114,17 @@ public class Player {
             numCard++;
         }
         System.out.println();
-        while (!validNumber) {
+        while (true) {
             try {
                 numCard = sc.nextInt();
-                validNumber = true;
-            } catch (Exception inputMismatchException) {
-                System.out.println("Número inválido, tente denovo: ");
+                nextCard = hand.get(numCard);
+                sc.close();
+                return nextCard;
+            } catch (InputMismatchException | IndexOutOfBoundsException f) {
+                System.out.println("número inválido, tente novamente: ");
             }
         }
-        if (numCard == -1) {
-            nextCard = null;
-        }
-        else {
-            nextCard = hand.get(numCard);
-        }
-        sc.close();
 
-        return nextCard;
     }
 
     public void updateMana() {

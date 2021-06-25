@@ -11,8 +11,6 @@ import card.Trigger;
 public class Game {
 
     private static Game game;
-    boolean gameOver;
-    boolean endRound;
     Player bluePlayer;
     Player redPlayer;
     Board blueBoard;
@@ -21,8 +19,6 @@ public class Game {
     private Game(Player p1, Player p2) {
         this.bluePlayer = p1;
         this.redPlayer = p2;
-        this.gameOver = false;
-        this.endRound = false;
 
         blueBoard = new Board(bluePlayer);
         redBoard = new Board(redPlayer);
@@ -44,6 +40,8 @@ public class Game {
         Card nextCard;
         int nextMove;
         boolean validTurn= false;
+        boolean gameOver = false;
+        boolean endRound = false;
         Scanner sc = new Scanner(System.in);
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
@@ -64,7 +62,7 @@ public class Game {
                 while (!validTurn) {
 
                     nextMove = currentPlayer.selectAction(); 
-                    if (nextMove == 0) {
+                    if (nextMove == 0 && currentPlayer.hasCards()) {
                         nextCard = currentPlayer.selectCard();
                         if (!nextCard.playCard(currentPlayer.getBoard())) {
                             System.out.println("Você não tem mana o suficiente para jogar essa carta! Selecione outra ou passe a vez.");
@@ -73,21 +71,21 @@ public class Game {
                             validTurn = true;
                         }
                     }
+                    else if (nextMove == 1 && !currentPlayer.getBoard().getCards().isEmpty()){
+                        startCombat();
+                        validTurn = true;
+                    }
                     else {
                         validTurn = true;
                     }
-
                 
                 }
 
             }
 
-
-
-
-
-
         }
+        
+        sc.close();
 
     }
 
@@ -156,3 +154,27 @@ private void updateAllEffects(Trigger trigger) {
         }
     }
 }
+
+
+
+
+/*
+array de todos os seguidores em jogo (Ax)
+
+foreach seguidor em Ax
+
+seguidor.AtualizarFisico(indice do seguidor em Ax)
+
+
+public void atualizarFisico() {
+
+    posicao 0:
+    se tiver seguidor de indice 0
+        colocar seguidor de indice 0
+
+    posicao 1:
+        se tiver seguidor de indice 1
+        colocar seguidor de indice 1
+}
+*/
+
