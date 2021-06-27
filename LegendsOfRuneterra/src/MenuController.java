@@ -1,8 +1,10 @@
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
+import game.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,16 +15,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import menu.Menu;
+import menu.TypePlayer;
 
 public class MenuController implements Initializable {
 
-  private Menu menu;
+  private Menu menu = Menu.getMenu();
 
   @FXML
   void handleIA(ActionEvent event) {
     this.handleMoveToDeckSelection(event);
 
-    this.menu.openMenu();
+    this.menu.selectPlayers(TypePlayer.IAVIA);
 
   }
 
@@ -30,14 +33,14 @@ public class MenuController implements Initializable {
   void handlePlayerIA(ActionEvent event) {
     this.handleMoveToDeckSelection(event);
 
-    this.menu.openMenu();
+    this.menu.selectPlayers(TypePlayer.PVIA);
   }
 
   @FXML
   void handlePlayerPlayer(ActionEvent event) {
     this.handleMoveToDeckSelection(event);
 
-    this.menu.openMenu();
+    this.menu.selectPlayers(TypePlayer.PVP);
   }
 
   public void handleMoveToDeckSelection(ActionEvent event) {

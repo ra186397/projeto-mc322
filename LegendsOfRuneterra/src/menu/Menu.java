@@ -27,6 +27,8 @@ public class Menu {
     private static Menu menu;
     private ArrayList<Deck> decks;
     private ArrayList<Card> cards;
+    private Player p1;
+    private Player p2;
 
     private Menu() {
         this.cards = new ArrayList<Card>();
@@ -34,6 +36,8 @@ public class Menu {
         this.decks = new ArrayList<Deck>();
         Deck demacia = buildBaseDeck();
         decks.add(demacia);
+        this.p1 = null;
+        this.p2 = null;
     }
 
     public static Menu getMenu() {
@@ -52,11 +56,7 @@ public class Menu {
         return null;
     }
 
-<<<<<<< HEAD
-    public ArrayList<Player> selectPlayers(TypePlayer type) {
-        Player p1;
-        Player p2;
-        ArrayList<Player> players = new ArrayList<Player>();
+    public void selectPlayers(TypePlayer type) {
         switch (type) {
             case PVP:
 
@@ -73,31 +73,23 @@ public class Menu {
                 break;
         }
 
-        players.add(p1);
-        players.add(p2);
-        return players;
-
     }
-=======
-    public void openMenu() {
-
-        System.out.println("Eaew monark akew");
-        /*
-         * int option = 0; Scanner scanner = new Scanner(System.in);
-         * 
-         * option = scanner.nextInt();
-         * 
-         * switch (option) { case 1: deckNovo = deckSelection(scanner); Player p1 = new
-         * Player(deckNovo, true); Player p2 = new Player(getRandomDeck(), false);
-         */
-        // }
->>>>>>> 85511087ad1025cc6e9c80f99a60d4c5a2075a84
 
     private Deck getRandomDeck() {
         Random r = new Random();
         int i = r.nextInt(decks.size());
         return decks.get(i);
     }
+
+    public Player getPlayer1() {
+        return this.p1;
+    }
+
+    public Player getPlayer2() {
+        return this.p2;
+    }
+
+
 
     /*private void deckSelection(Scanner scanner) {
 
