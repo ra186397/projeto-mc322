@@ -24,7 +24,9 @@ public class Game {
         redBoard = new Board(redPlayer);
 
         p1.setBoard(blueBoard);
+        p1.setColor(Color.BLUE);
         p2.setBoard(redBoard);
+        p2.setColor(Color.RED);
     }
 
     public static Game getGame(Player p1, Player p2) {
@@ -36,17 +38,24 @@ public class Game {
 
     public void startGame() {
         
-        Player currentPlayer;
+        Player currentPlayer = null;
+        Color loser;
         Card nextCard;
         int nextMove;
-        boolean validTurn= false;
+        boolean validTurn = false;
         boolean gameOver = false;
         boolean endRound = false;
+        boolean passed = false;
         Scanner sc = new Scanner(System.in);
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
         while (!gameOver) {
-            startNewRound();
+            loser = startNewRound(currentPlayer);
+
+            if (loser != Color.NONE) {
+                endRound = true;
+                gameOver = true;
+            }
 
             while (!endRound) {
 
@@ -69,20 +78,33 @@ public class Game {
                         }
                         else {
                             validTurn = true;
+                            passed = false;
                         }
                     }
                     else if (nextMove == 1 && !currentPlayer.getBoard().getCards().isEmpty()){
                         startCombat();
                         validTurn = true;
+                        passed = false;
                     }
                     else {
                         validTurn = true;
+                        if (passed) {
+                            endRound = true;
+                        }
+                        passed = true;
                     }
                 
                 }
 
             }
 
+        }
+
+        if (loser == Color.BLUE) {
+            System.out.println("Parabéns, jogador azul! Você provou ser um verdadeiro mestre de Legends Of Runeterra!");
+        }
+        else {
+            System.out.println("Parabéns, jogador vermelho! Você se mostrou um jogador muito habilidoso de Legends Of Runeterra!");
         }
 
         sc.close();
@@ -132,13 +154,16 @@ public class Game {
 
 }
 
-private void startNewRound() {
+private Color startNewRound(Player currentPlayer) {
+    Color loser;
     redPlayer.updateMana();
     bluePlayer.updateMana();
-    redPlayer.drawCard(1);
-    bluePlayer.drawCard(1);
+    loser = redPlayer.drawCard(1);
+    loser = bluePlayer.drawCard(1);
+    if ()
     
     updateAllEffects(Trigger.ROUND_START);
+    return loser;
 }
 
 
