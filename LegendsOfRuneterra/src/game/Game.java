@@ -78,9 +78,7 @@ public class Game {
                     else {
                         validTurn = true;
                     }
-                
                 }
-
             }
 
         }
