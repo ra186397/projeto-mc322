@@ -20,6 +20,7 @@ import game.Player;
 import jdk.nashorn.internal.runtime.Undefined;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Menu {
 
@@ -51,24 +52,39 @@ public class Menu {
         return null;
     }
 
-    public void openMenu() {
+    public ArrayList<Player> selectPlayers(TypePlayer type) {
+        Player p1;
+        Player p2;
+        ArrayList<Player> players = new ArrayList<Player>();
+        switch (type) {
+            case PVP:
 
-        System.out.println("Eaew monark akew");
-        /*int option = 0;
-        Scanner scanner = new Scanner(System.in);
-
-        option = scanner.nextInt();
-
-        switch (option) {
-            case 1:
-                deckNovo = deckSelection(scanner);
-                Player p1 = new Player(deckNovo, true);
-                Player p2 = new Player(getRandomDeck(), false);*/
+                p1 = new Player(null, true);
+                p2 = new Player(null, true);
+                break;
+            case PVIA:
+                p1 = new Player(null, true);
+                p2 = new Player(getRandomDeck(), false);
+                break;
+            case IAVIA:
+                p1 = new Player(getRandomDeck(), false);
+                p2 = new Player(getRandomDeck(), false);
+                break;
         }
+
+        players.add(p1);
+        players.add(p2);
+        return players;
 
     }
 
-    private void deckSelection(Scanner scanner) {
+    private Deck getRandomDeck() {
+        Random r = new Random();
+        int i = r.nextInt(decks.size());
+        return decks.get(i);
+    }
+
+    /*private void deckSelection(Scanner scanner) {
 
         int option;
         Deck chosenDeck;
@@ -94,7 +110,7 @@ public class Menu {
             }
         }
 
-    }
+    }*/
 
     private Deck createNewDeck(Scanner scanner) {
 

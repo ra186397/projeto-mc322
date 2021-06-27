@@ -108,6 +108,12 @@ public class Player {
         this.color = newColor;
     }
 
+    public void selectDeck(Deck deck) {
+        if (this.deck == null) {    
+            this.deck = deck;
+        }
+    }
+
     public int selectAction() {
         int action;
         if (isHuman == true){
