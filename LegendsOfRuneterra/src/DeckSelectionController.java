@@ -1,6 +1,7 @@
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
 import javafx.collections.FXCollections;
@@ -16,26 +17,39 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
 
 public class DeckSelectionController implements Initializable {
 
   @FXML
   private JFXListView<String> listOfDecks;
 
+  @FXML
+  private Label escolha;
+
+  @FXML
+  private JFXButton readyToPlay;
+
   ObservableList<String> listView = FXCollections.observableArrayList("Demacia", "Noxus");
 
   static class Cell extends ListCell<String> {
     HBox hbox = new HBox();
-    Button btn = new Button("Escolher Deck");
+    JFXButton btn = new JFXButton("Escolher Deck");
     Label label = new Label("");
     Pane pane = new Pane();
 
-    public Cell() {
+    public Cell(Label escolha) {
       super();
 
+      Color color = Color.valueOf("#cfc6b7");
+
+      this.setStyle("-fx-background-color: #201B21");
       hbox.getChildren().addAll(label, pane, btn);
       hbox.setHgrow(pane, Priority.ALWAYS);
-      btn.addEventHandler();
+      hbox.setStyle("-fx-background-color: #201B21");
+      label.setTextFill(color);
+      btn.setTextFill(color);
+      btn.setOnAction(e -> escolha.setText(getListView().getItems().get(getIndex())));
     }
 
     public void updateItem(String name, boolean empty) {
@@ -55,7 +69,7 @@ public class DeckSelectionController implements Initializable {
 
     listOfDecks.setItems(listView);
 
-    listOfDecks.setCellFactory(param -> new Cell());
+    listOfDecks.setCellFactory(param -> new Cell(escolha));
 
   }
 

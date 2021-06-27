@@ -74,18 +74,18 @@
                   <Image url="@../assets/logo.png" />
                </image>
             </ImageView>
-            <JFXListView fx:id="listOfDecks" layoutX="165.0" layoutY="208.0" prefHeight="400.0" prefWidth="283.0" style="-fx-border-color: #E7B757; -fx-background-color: #201B21;" />
+            <JFXListView fx:id="listOfDecks" layoutX="202.0" layoutY="209.0" prefHeight="324.0" prefWidth="283.0" style="-fx-border-color: #E7B757; -fx-background-color: #201B21;" />
             <JFXButton layoutX="820.0" layoutY="208.0" style="-fx-border-color: #E7B757;" text="CRIAR UM NOVO DECK" textAlignment="CENTER" textFill="#cfc6b7">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="820.0" layoutY="481.0" style="-fx-border-color: #E7B757;" text="PRONTO PARA JOGAR" textAlignment="CENTER" textFill="#cfc6b7">
+            <JFXButton fx:id="readyToPlay" layoutX="820.0" layoutY="481.0" style="-fx-border-color: #E7B757;" text="PRONTO PARA JOGAR" textAlignment="CENTER" textFill="#cfc6b7">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </JFXButton>
-            <Label layoutX="865.0" layoutY="408.0" text="Deck Escolhido" textFill="#cfc6b7">
+            <Label fx:id="escolha" layoutX="865.0" layoutY="408.0" text="Deck Escolhido" textFill="#cfc6b7">
                <font>
                   <Font size="30.0" />
                </font>

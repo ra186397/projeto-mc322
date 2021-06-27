@@ -54,17 +54,15 @@ public class Menu {
     public void openMenu() {
 
         System.out.println("Eaew monark akew");
-        /*int option = 0;
-        Scanner scanner = new Scanner(System.in);
-
-        option = scanner.nextInt();
-
-        switch (option) {
-            case 1:
-                deckNovo = deckSelection(scanner);
-                Player p1 = new Player(deckNovo, true);
-                Player p2 = new Player(getRandomDeck(), false);*/
-        }
+        /*
+         * int option = 0; Scanner scanner = new Scanner(System.in);
+         * 
+         * option = scanner.nextInt();
+         * 
+         * switch (option) { case 1: deckNovo = deckSelection(scanner); Player p1 = new
+         * Player(deckNovo, true); Player p2 = new Player(getRandomDeck(), false);
+         */
+        // }
 
     }
 

@@ -1,21 +1,46 @@
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXButton;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import menu.Menu;
 
-public class MenuController {
+public class MenuController implements Initializable {
+
+  private Menu menu;
 
   @FXML
-  private JFXButton jxj_button;
+  void handleIA(ActionEvent event) {
+    this.handleMoveToDeckSelection(event);
+
+    this.menu.openMenu();
+
+  }
 
   @FXML
-  void handleMoveToDeckSelection(ActionEvent event) {
+  void handlePlayerIA(ActionEvent event) {
+    this.handleMoveToDeckSelection(event);
+
+    this.menu.openMenu();
+  }
+
+  @FXML
+  void handlePlayerPlayer(ActionEvent event) {
+    this.handleMoveToDeckSelection(event);
+
+    this.menu.openMenu();
+  }
+
+  public void handleMoveToDeckSelection(ActionEvent event) {
 
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DeckSelection.fxml"));
@@ -28,6 +53,12 @@ public class MenuController {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public void initialize(URL arg0, ResourceBundle arg1) {
+    this.menu = Menu.getMenu();
+
   }
 
 }

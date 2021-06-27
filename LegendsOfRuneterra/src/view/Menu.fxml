@@ -72,12 +72,7 @@
                         </LinearGradient>
                      </textFill>
                   </Label>
-                  <ImageView fitHeight="253.0" fitWidth="473.0" layoutX="415.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/logo.png" />
-                     </image>
-                  </ImageView>
-                  <JFXButton fx:id="jxj_button" layoutX="518.0" layoutY="215.0" onAction="#handleMoveToDeckSelection" style="-fx-border-color: #E7B757;" text="Jogador x Jogador" textAlignment="CENTER" textFill="#cfc6b7">
+                  <JFXButton layoutX="518.0" layoutY="215.0" onAction="#handlePlayerPlayer" style="-fx-border-color: #E7B757;" text="Jogador x Jogador" textAlignment="CENTER" textFill="#cfc6b7">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -98,12 +93,17 @@
                         </RadialGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton layoutX="518.0" layoutY="307.0" prefHeight="53.0" prefWidth="245.0" style="-fx-border-color: #E7B757;" text="Jogador x IA" textFill="#cfc6b7">
+                  <ImageView fitHeight="253.0" fitWidth="473.0" layoutX="415.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logo.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="518.0" layoutY="307.0" onAction="#handlePlayerIA" prefHeight="53.0" prefWidth="245.0" style="-fx-border-color: #E7B757;" text="Jogador x IA" textFill="#cfc6b7">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton layoutX="518.0" layoutY="406.0" prefHeight="53.0" prefWidth="245.0" style="-fx-border-color: #E7B757;" text="IA x IA" textFill="#cfc6b7">
+                  <JFXButton layoutX="518.0" layoutY="406.0" onAction="#handleIA" prefHeight="53.0" prefWidth="245.0" style="-fx-border-color: #E7B757;" text="IA x IA" textFill="#cfc6b7">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

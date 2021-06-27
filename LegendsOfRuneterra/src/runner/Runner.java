@@ -12,8 +12,6 @@ public class Runner extends Application {
     public static void main(String[] args) {
 
         launch(args);
-        Menu menu = Menu.getMenu();
-        menu.openMenu();
 
     }
 
