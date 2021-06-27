@@ -93,9 +93,7 @@ public class Game {
                         }
                         passed = true;
                     }
-                
                 }
-
             }
 
         }
