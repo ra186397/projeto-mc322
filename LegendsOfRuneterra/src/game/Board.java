@@ -118,11 +118,12 @@ public class Board{
             combatingFollowers.set(position, null);
         }
         else if (follower > cards.size()) {
-            combatingFollowers.set(position, cards.get(follower));
-            cards.remove(follower);
+            System.out.print("Nao é uma unidade válida");
+            combatingFollowers.set(position, null);
         }
         else {
-            System.out.print("Nao é uma unidade válida");
+            combatingFollowers.set(position, cards.get(follower));
+            cards.remove(follower);
         }
     }
 

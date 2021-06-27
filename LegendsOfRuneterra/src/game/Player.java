@@ -148,6 +148,7 @@ public class Player {
             numCard = getRandomResult(hand.size()+1) - 1;
             nextCard = hand.get(numCard);
             return nextCard;
+            
         }
     }
 

@@ -7,6 +7,7 @@ import card.Card;
 import card.Effect;
 import card.Follower;
 import card.Trigger;
+import javafx.scene.shape.MoveTo;
 
 public class Game {
 
@@ -46,7 +47,7 @@ public class Game {
         boolean gameOver = false;
         boolean endRound = false;
         boolean passed = false;
-        Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
         while (!gameOver) {
@@ -92,7 +93,7 @@ public class Game {
                         passed = true;
                     }
                 
-                }
+                } //FAZER O TURNO DO JOGADOR MUDAR TODO TURNO
 
             }
 
@@ -105,7 +106,7 @@ public class Game {
             System.out.println("Parabéns, jogador vermelho! Você se mostrou um jogador muito habilidoso de Legends Of Runeterra!");
         }
 
-        sc.close();
+        scan.close();
 
     }
 
@@ -117,6 +118,8 @@ public class Game {
         Board attackingBoard = redBoard;
         Board defendingBoard = blueBoard;
         Player defender = bluePlayer;
+        Scanner scan = new Scanner(System.in);
+
 
         if (blueBoard.getCurrentTurn()) {
 
@@ -129,6 +132,20 @@ public class Game {
             defender = redPlayer;
 
         }
+
+        System.out.println("Escolha as unidades que devem atacar.");
+        //print board
+        String[] toAttack = scan.nextLine().split(" ");
+        for (int i = 0; i < toAttack.length; i++){
+            attackingBoard.moveToCombat(i, Integer.parseInt(toAttack[i]));
+        }
+        System.out.println("Escolha as unidades que devem defender.");
+        //print board
+        for (int i = 0; i < toAttack.length; i++){
+            System.out.println("Você quer defender a unidade" + i + " ? Digite o número da unidade que você deseja usar para defender ou -1 para nao defender.");
+            defendingBoard.moveToCombat(i, scan.nextInt());
+        }
+
 
         for (int i = 0; i < attackers.size(); i++) {
             if (defenders.get(i) == null) {
@@ -147,8 +164,8 @@ public class Game {
                 defendingBoard.returnFromCombat(i);
             }
         }
-
-    }
+        scan.close();
+    }   
 
 }
 
