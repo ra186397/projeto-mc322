@@ -52,6 +52,7 @@ public class Menu {
         return null;
     }
 
+<<<<<<< HEAD
     public ArrayList<Player> selectPlayers(TypePlayer type) {
         Player p1;
         Player p2;
@@ -77,6 +78,20 @@ public class Menu {
         return players;
 
     }
+=======
+    public void openMenu() {
+
+        System.out.println("Eaew monark akew");
+        /*
+         * int option = 0; Scanner scanner = new Scanner(System.in);
+         * 
+         * option = scanner.nextInt();
+         * 
+         * switch (option) { case 1: deckNovo = deckSelection(scanner); Player p1 = new
+         * Player(deckNovo, true); Player p2 = new Player(getRandomDeck(), false);
+         */
+        // }
+>>>>>>> 85511087ad1025cc6e9c80f99a60d4c5a2075a84
 
     private Deck getRandomDeck() {
         Random r = new Random();

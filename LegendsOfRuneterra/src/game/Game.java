@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import card.Card;
@@ -40,6 +41,7 @@ public class Game {
     public void startGame() {
         
         Player currentPlayer = null;
+        Player attackingPlayer = null;
         Color loser;
         Card nextCard;
         int nextMove;
@@ -72,11 +74,12 @@ public class Game {
                     nextMove = currentPlayer.selectAction(); 
                     if (nextMove == 0 && currentPlayer.hasCards()) {
                         nextCard = currentPlayer.selectCard();
-                        if (!nextCard.playCard(currentPlayer.getBoard())) {
+                        if (!nextCard.playCard(currentPlayer.getBoard(), )) {
                             System.out.println("Você não tem mana o suficiente para jogar essa carta! Selecione outra ou passe a vez.");
                         }
                         else {
                             validTurn = true;
+                            currentPlayer.removeCard(nextCard);
                             passed = false;
                         }
                     }
@@ -169,21 +172,32 @@ public class Game {
 
 }
 
-private Color startNewRound(Player currentPlayer) {
+private Color startNewRound(Player attackingPlayer, Player currentPlayer) {
     Color loser;
     redPlayer.updateMana();
     bluePlayer.updateMana();
-    loser = redPlayer.drawCard(1);
-    loser = bluePlayer.drawCard(1);
-    if (currentPlayer == null) {
-        blueBoard.determineTurn(redBoard);
+    if (attackingPlayer == null){
+        Random rand = new Random();
+        if (rand.nextInt(1) == 0){
+            attackingPlayer = bluePlayer;
+        }
+        else {
+            attackingPlayer = redPlayer;
+        }
     }
-    if (blueBoard.getCurrentTurn()) {
-        currentPlayer = bluePlayer;
+    else if (attackingPlayer == bluePlayer){
+        attackingPlayer = redPlayer;
     }
     else {
-        currentPlayer = redPlayer;
+        attackingPlayer = bluePlayer;
     }
+
+    currentPlayer = attackingPlayer;
+
+    attackingPlayer.drawCard(1);
+    
+    loser = redPlayer.drawCard(1);
+    loser = bluePlayer.drawCard(1);
     
     updateAllEffects(Trigger.ROUND_START);
     return loser;

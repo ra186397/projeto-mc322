@@ -17,8 +17,16 @@ public class Spell extends Card{
         super(name, description, cost, region, newEffects);
     }
 
-    public void playCard(Board board) {
-        
+    public boolean playCard(Board myBoard, Board opponentBoard) {
+        if (myBoard.getPlayer().spendMana(cost, true)){
+            for (Effect effect : effects){
+                effect.checkTrigger(Trigger.PLAY, myBoard, opponentBoard);
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }
