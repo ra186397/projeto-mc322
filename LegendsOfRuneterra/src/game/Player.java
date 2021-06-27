@@ -83,6 +83,10 @@ public class Player {
         return this.nexusLife;
     }
 
+    public Deck getDeck() {
+        return this.deck;
+    }
+
     public boolean hasCards() {
         if (hand.isEmpty()) {
             return false;
