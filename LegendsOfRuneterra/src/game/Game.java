@@ -59,13 +59,11 @@ public class Game {
 
             while (!endRound) {
 
-                if (blueBoard.getCurrentTurn()) {
+                if (currentPlayer == bluePlayer) {
                     System.out.println("Jogador azul, é sua vez!");
-                    currentPlayer = bluePlayer;
                 }
                 else {
                     System.out.println("Jogador vermelho, é sua vez!");
-                    currentPlayer = redPlayer;
                 }
 
                 while (!validTurn) {
@@ -93,7 +91,9 @@ public class Game {
                         }
                         passed = true;
                     }
+                
                 }
+
             }
 
         }
@@ -158,7 +158,15 @@ private Color startNewRound(Player currentPlayer) {
     bluePlayer.updateMana();
     loser = redPlayer.drawCard(1);
     loser = bluePlayer.drawCard(1);
-    if ()
+    if (currentPlayer == null) {
+        blueBoard.determineTurn(redBoard);
+    }
+    if (blueBoard.getCurrentTurn()) {
+        currentPlayer = bluePlayer;
+    }
+    else {
+        currentPlayer = redPlayer;
+    }
     
     updateAllEffects(Trigger.ROUND_START);
     return loser;

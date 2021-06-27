@@ -16,7 +16,6 @@ public class Board{
     private Player player;
     private boolean currentTurn;
     private Scanner scan;
-    private Board opponentBoard;
     private Random r;
 
     public Board(Player player) {
@@ -27,7 +26,7 @@ public class Board{
         this.combatingFollowers = new ArrayList<Follower>();
     }
 
-    public void replaceFollower(Follower card, int followerNum){
+    public void replaceFollower(Follower card, int followerNum, Board opponentBoard){
         cards.remove(followerNum);
         cards.add(card);
         for (Effect effect : card.getEffects()) {
@@ -35,7 +34,7 @@ public class Board{
         }
     }
 
-    public boolean addCard(Follower card) { //Retorna true se foi possível jogar a carta, false senão.
+    public boolean addCard(Follower card, Board opponentBoard) { //Retorna true se foi possível jogar a carta, false senão.
         if (cards.size() >= 6) {
             int followerNum;
             if (player.isHuman()){
@@ -48,12 +47,12 @@ public class Board{
             Follower follower = cards.get(followerNum);
             if (follower.getCost() < card.getCost()) {
                 if (player.spendMana(card.getCost() - follower.getCost(), false)) {
-                    replaceFollower(card, followerNum);
+                    replaceFollower(card, followerNum, opponentBoard);
                     return true;
                 }
 
             } else if (player.spendMana(card.getCost(), false)) {
-                replaceFollower(card, followerNum);
+                replaceFollower(card, followerNum, opponentBoard);
                 return true;
             }
 
@@ -72,23 +71,7 @@ public class Board{
         return cards;
     }
 
-    public boolean getCurrentTurn() {
-        return this.currentTurn;
-    }
-
-    public ArrayList<Follower> getCombatingFollowers() {
-        return this.combatingFollowers;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    void setTurn(boolean turn) {
-        currentTurn = turn;
-    }
-
-    public void determineTurn() {
+    public void determineTurn(Board opponentBoard) {
         if (r.nextInt(1) == 0) {
             currentTurn = true;
             opponentBoard.setTurn(false);
@@ -96,6 +79,34 @@ public class Board{
             currentTurn = false;
             opponentBoard.setTurn(true);
         }
+    }
+
+    public void switchTurn(Board opponentBoard) {
+        if (currentTurn) {
+            currentTurn = false;
+            opponentBoard.setTurn(true);
+        }
+        else {
+            currentTurn = true;
+            opponentBoard.setTurn(false);
+        }
+    }
+
+    public boolean getCurrentTurn() {
+        return this.currentTurn;
+    }
+
+    private void setTurn(boolean turn) {
+        currentTurn = turn;
+    }
+    
+
+    public ArrayList<Follower> getCombatingFollowers() {
+        return this.combatingFollowers;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public void removeCard(int card) {
