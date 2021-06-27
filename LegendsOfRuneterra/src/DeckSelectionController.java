@@ -19,15 +19,10 @@ import javafx.scene.layout.Priority;
 
 public class DeckSelectionController implements Initializable {
 
-  public void getInformation(String um, String dois) {
-    ObservableList<String> listView = FXCollections.observableArrayList(um, dois);
-    listOfDecks.setItems(listView);
-
-    listOfDecks.setCellFactory(param -> new Cell());
-  }
-
   @FXML
   private JFXListView<String> listOfDecks;
+
+  ObservableList<String> listView = FXCollections.observableArrayList("Demacia", "Noxus");
 
   static class Cell extends ListCell<String> {
     HBox hbox = new HBox();
@@ -40,6 +35,7 @@ public class DeckSelectionController implements Initializable {
 
       hbox.getChildren().addAll(label, pane, btn);
       hbox.setHgrow(pane, Priority.ALWAYS);
+      btn.addEventHandler();
     }
 
     public void updateItem(String name, boolean empty) {
@@ -56,6 +52,10 @@ public class DeckSelectionController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+
+    listOfDecks.setItems(listView);
+
+    listOfDecks.setCellFactory(param -> new Cell());
 
   }
 

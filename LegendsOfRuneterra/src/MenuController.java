@@ -20,8 +20,6 @@ public class MenuController {
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DeckSelection.fxml"));
       Parent root = (Parent) fxmlLoader.load();
-      DeckSelectionController deckController = fxmlLoader.getController();
-      deckController.getInformation("VIEIRa", "gigi");
       Scene scene = new Scene(root, 1280, 720);
       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       stage.setScene(scene);
