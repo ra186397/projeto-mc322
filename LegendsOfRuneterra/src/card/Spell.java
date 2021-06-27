@@ -17,8 +17,10 @@ public class Spell extends Card{
         super(name, description, cost, region, newEffects);
     }
 
-    public void playCard(Board board) {
-        
+    public void playCard(Board myBoard, Board opponentBoard) {
+        for (Effect effect : effects){
+            effect.checkTrigger(Trigger.PLAY, myBoard, opponentBoard);
+        }
     }
 
 }

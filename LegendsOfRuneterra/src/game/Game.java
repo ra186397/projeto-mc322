@@ -70,6 +70,7 @@ public class Game {
                         }
                         else {
                             validTurn = true;
+                            currentPlayer.removeCard(nextCard);
                         }
                     }
                     else if (nextMove == 1 && !currentPlayer.getBoard().getCards().isEmpty()){
