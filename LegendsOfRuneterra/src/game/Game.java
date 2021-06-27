@@ -7,6 +7,7 @@ import card.Card;
 import card.Effect;
 import card.Follower;
 import card.Trigger;
+import javafx.scene.shape.MoveTo;
 
 public class Game {
 
@@ -42,7 +43,7 @@ public class Game {
         boolean validTurn= false;
         boolean gameOver = false;
         boolean endRound = false;
-        Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
         while (!gameOver) {
@@ -83,7 +84,7 @@ public class Game {
 
         }
 
-        sc.close();
+        scan.close();
 
     }
 
@@ -95,6 +96,8 @@ public class Game {
         Board attackingBoard = redBoard;
         Board defendingBoard = blueBoard;
         Player defender = bluePlayer;
+        Scanner scan = new Scanner(System.in);
+
 
         if (blueBoard.getCurrentTurn()) {
 
@@ -107,6 +110,20 @@ public class Game {
             defender = redPlayer;
 
         }
+
+        System.out.println("Escolha as unidades que devem atacar.");
+        //print board
+        String[] toAttack = scan.nextLine().split(" ");
+        for (int i = 0; i < toAttack.length; i++){
+            attackingBoard.moveToCombat(i, Integer.parseInt(toAttack[i]));
+        }
+        System.out.println("Escolha as unidades que devem defender.");
+        //print board
+        for (int i = 0; i < toAttack.length; i++){
+            System.out.println("Você quer defender a unidade" + i + " ? Digite o número da unidade que você deseja usar para defender ou -1 para nao defender.");
+            defendingBoard.moveToCombat(i, scan.nextInt());
+        }
+        
 
         for (int i = 0; i < attackers.size(); i++) {
             if (defenders.get(i) == null) {
@@ -121,36 +138,38 @@ public class Game {
             if (attackers.get(i).getCurrentHealth() > 0 && attackers.get(i) != null) {
                 attackingBoard.returnFromCombat(i);
             }
-            if (defenders.get(i).getCurrentHealth() > 0 && attackers.get(i) != null) {
+            if (defenders.get(i).getCurrentHealth() > 0 && defenders.get(i) != null) {
                 defendingBoard.returnFromCombat(i);
             }
         }
 
+        scan.close();
+
     }
 
-}
-
-private void startNewRound() {
-    redPlayer.updateMana();
-    bluePlayer.updateMana();
-    redPlayer.drawCard(1);
-    bluePlayer.drawCard(1);
-    
-    updateAllEffects(Trigger.ROUND_START);
-}
+    private void startNewRound() {
+        redPlayer.updateMana();
+        bluePlayer.updateMana();
+        redPlayer.drawCard(1);
+        bluePlayer.drawCard(1);
+        
+        updateAllEffects(Trigger.ROUND_START);
+    }
 
 
-private void updateAllEffects(Trigger trigger) {
-    for (Follower follower : redBoard.getCards()) {
-        for (Effect effect : follower.getEffects()) {
-            effect.checkTrigger(trigger, redBoard, blueBoard);
+    private void updateAllEffects(Trigger trigger) {
+        for (Follower follower : redBoard.getCards()) {
+            for (Effect effect : follower.getEffects()) {
+                effect.checkTrigger(trigger, redBoard, blueBoard);
+            }
+        }
+        for (Follower follower : blueBoard.getCards()) {
+            for (Effect effect : follower.getEffects()) {
+                effect.checkTrigger(trigger, blueBoard, redBoard);
+            }
         }
     }
-    for (Follower follower : blueBoard.getCards()) {
-        for (Effect effect : follower.getEffects()) {
-            effect.checkTrigger(trigger, blueBoard, redBoard);
-        }
-    }
+
 }
 
 
