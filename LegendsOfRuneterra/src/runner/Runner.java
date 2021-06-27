@@ -6,11 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import menu.Menu;
 
 public class Runner extends Application {
     public static void main(String[] args) {
 
         launch(args);
+        Menu menu = Menu.getMenu();
+        menu.openMenu();
 
     }
 
