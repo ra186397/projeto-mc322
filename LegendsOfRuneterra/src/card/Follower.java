@@ -115,8 +115,8 @@ public class Follower extends Card {
         this.traits.add(trait);
     }
 
-    public boolean playCard(Board board) {
-        return board.addCard(this);
+    public boolean playCard(Board board, Board opponentBoard) {
+        return board.addCard(this, opponentBoard);
     }
 
     public void strike(Player player) {
