@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import card.Card;
@@ -25,7 +26,9 @@ public class Game {
         redBoard = new Board(redPlayer);
 
         p1.setBoard(blueBoard);
+        p1.setColor(Color.BLUE);
         p2.setBoard(redBoard);
+        p2.setColor(Color.RED);
     }
 
     public static Game getGame(Player p1, Player p2) {
@@ -37,27 +40,33 @@ public class Game {
 
     public void startGame() {
         
-        Player currentPlayer;
+        Player currentPlayer = null;
+        Player attackingPlayer = null;
+        Color loser;
         Card nextCard;
         int nextMove;
-        boolean validTurn= false;
+        boolean validTurn = false;
         boolean gameOver = false;
         boolean endRound = false;
+        boolean passed = false;
         Scanner scan = new Scanner(System.in);
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
         while (!gameOver) {
-            startNewRound();
+            loser = startNewRound(currentPlayer);
+
+            if (loser != Color.NONE) {
+                endRound = true;
+                gameOver = true;
+            }
 
             while (!endRound) {
 
-                if (blueBoard.getCurrentTurn()) {
+                if (currentPlayer == bluePlayer) {
                     System.out.println("Jogador azul, é sua vez!");
-                    currentPlayer = bluePlayer;
                 }
                 else {
                     System.out.println("Jogador vermelho, é sua vez!");
-                    currentPlayer = redPlayer;
                 }
 
                 while (!validTurn) {
@@ -65,24 +74,39 @@ public class Game {
                     nextMove = currentPlayer.selectAction(); 
                     if (nextMove == 0 && currentPlayer.hasCards()) {
                         nextCard = currentPlayer.selectCard();
-                        if (!nextCard.playCard(currentPlayer.getBoard())) {
+                        if (!nextCard.playCard(currentPlayer.getBoard(), )) {
                             System.out.println("Você não tem mana o suficiente para jogar essa carta! Selecione outra ou passe a vez.");
                         }
                         else {
                             validTurn = true;
                             currentPlayer.removeCard(nextCard);
+                            passed = false;
                         }
                     }
                     else if (nextMove == 1 && !currentPlayer.getBoard().getCards().isEmpty()){
                         startCombat();
                         validTurn = true;
+                        passed = false;
                     }
                     else {
                         validTurn = true;
+                        if (passed) {
+                            endRound = true;
+                        }
+                        passed = true;
                     }
-                }
+                
+                } //FAZER O TURNO DO JOGADOR MUDAR TODO TURNO
+
             }
 
+        }
+
+        if (loser == Color.BLUE) {
+            System.out.println("Parabéns, jogador azul! Você provou ser um verdadeiro mestre de Legends Of Runeterra!");
+        }
+        else {
+            System.out.println("Parabéns, jogador vermelho! Você se mostrou um jogador muito habilidoso de Legends Of Runeterra!");
         }
 
         scan.close();
@@ -124,7 +148,7 @@ public class Game {
             System.out.println("Você quer defender a unidade" + i + " ? Digite o número da unidade que você deseja usar para defender ou -1 para nao defender.");
             defendingBoard.moveToCombat(i, scan.nextInt());
         }
-        
+
 
         for (int i = 0; i < attackers.size(); i++) {
             if (defenders.get(i) == null) {
@@ -139,38 +163,58 @@ public class Game {
             if (attackers.get(i).getCurrentHealth() > 0 && attackers.get(i) != null) {
                 attackingBoard.returnFromCombat(i);
             }
-            if (defenders.get(i).getCurrentHealth() > 0 && defenders.get(i) != null) {
+            if (defenders.get(i).getCurrentHealth() > 0 && attackers.get(i) != null) {
                 defendingBoard.returnFromCombat(i);
             }
         }
-
         scan.close();
+    }   
 
-    }
+}
 
-    private void startNewRound() {
-        redPlayer.updateMana();
-        bluePlayer.updateMana();
-        redPlayer.drawCard(1);
-        bluePlayer.drawCard(1);
-        
-        updateAllEffects(Trigger.ROUND_START);
-    }
-
-
-    private void updateAllEffects(Trigger trigger) {
-        for (Follower follower : redBoard.getCards()) {
-            for (Effect effect : follower.getEffects()) {
-                effect.checkTrigger(trigger, redBoard, blueBoard);
-            }
+private Color startNewRound(Player attackingPlayer, Player currentPlayer) {
+    Color loser;
+    redPlayer.updateMana();
+    bluePlayer.updateMana();
+    if (attackingPlayer == null){
+        Random rand = new Random();
+        if (rand.nextInt(1) == 0){
+            attackingPlayer = bluePlayer;
         }
-        for (Follower follower : blueBoard.getCards()) {
-            for (Effect effect : follower.getEffects()) {
-                effect.checkTrigger(trigger, blueBoard, redBoard);
-            }
+        else {
+            attackingPlayer = redPlayer;
         }
     }
+    else if (attackingPlayer == bluePlayer){
+        attackingPlayer = redPlayer;
+    }
+    else {
+        attackingPlayer = bluePlayer;
+    }
 
+    currentPlayer = attackingPlayer;
+
+    attackingPlayer.drawCard(1);
+    
+    loser = redPlayer.drawCard(1);
+    loser = bluePlayer.drawCard(1);
+    
+    updateAllEffects(Trigger.ROUND_START);
+    return loser;
+}
+
+
+private void updateAllEffects(Trigger trigger) {
+    for (Follower follower : redBoard.getCards()) {
+        for (Effect effect : follower.getEffects()) {
+            effect.checkTrigger(trigger, redBoard, blueBoard);
+        }
+    }
+    for (Follower follower : blueBoard.getCards()) {
+        for (Effect effect : follower.getEffects()) {
+            effect.checkTrigger(trigger, blueBoard, redBoard);
+        }
+    }
 }
 
 

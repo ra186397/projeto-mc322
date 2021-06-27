@@ -116,7 +116,7 @@ public class Follower extends Card {
     }
 
     public boolean playCard(Board myBoard, Board opponentBoard) {
-        return myBoard.addCard(this);
+        return myBoard.addCard(this, opponentBoard);
     }
 
     public void strike(Player player) {

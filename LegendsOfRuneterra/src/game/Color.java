@@ -1,3 +1,3 @@
 package game;
 
-public enum Color {RED, BLUE}
+public enum Color {RED, BLUE, NONE}

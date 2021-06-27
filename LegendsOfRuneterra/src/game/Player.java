@@ -19,6 +19,7 @@ public class Player {
     private Deck deck;
     private Board board;
     private boolean isHuman;
+    private Color color;
 
     public Player(Deck deck, boolean isHuman) {
         this.hand = new ArrayList<Card>();
@@ -49,10 +50,17 @@ public class Player {
         drawCard(1);
     }
 
-    public void drawCard(int n) {
-        for (int i = 0; i < n; i++) {
-            hand.add(deck.getCards().get(0));
-            deck.getCards().remove(0);
+    public Color drawCard(int n) {
+        
+        if (deck.getCards().size() >= n) { // vê se o jogador possui cartas o suficiente para comprar.
+            for (int i = 0; i < n; i++) {
+                hand.add(deck.getCards().get(0));
+                deck.getCards().remove(0);
+            }
+            return Color.NONE;
+        }
+        else {
+            return color;
         }
     }
 
@@ -94,6 +102,10 @@ public class Player {
 
     public void setBoard(Board newBoard) {
         this.board = newBoard;
+    }
+
+    public void setColor(Color newColor) {
+        this.color = newColor;
     }
 
     public int selectAction() {
