@@ -80,12 +80,12 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="readyToPlay" layoutX="820.0" layoutY="481.0" style="-fx-border-color: #E7B757;" text="PRONTO PARA JOGAR" textAlignment="CENTER" textFill="#cfc6b7">
+            <JFXButton layoutX="820.0" layoutY="481.0" onAction="#handleStart" style="-fx-border-color: #E7B757;" text="PRONTO PARA JOGAR" textAlignment="CENTER" textFill="#cfc6b7">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </JFXButton>
-            <Label fx:id="escolha" layoutX="865.0" layoutY="408.0" text="Deck Escolhido" textFill="#cfc6b7">
+            <Label fx:id="chosen" layoutX="865.0" layoutY="408.0" text="Deck Escolhido" textFill="#cfc6b7">
                <font>
                   <Font size="30.0" />
                </font>
