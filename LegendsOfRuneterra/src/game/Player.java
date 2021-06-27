@@ -199,4 +199,8 @@ public class Player {
         Random rand = new Random();
         return rand.nextInt(max);
     }
+
+    public void removeCard(Card toRemove){
+        hand.remove(toRemove);
+    }
 }
