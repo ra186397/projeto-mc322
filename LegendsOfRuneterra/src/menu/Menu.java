@@ -89,6 +89,10 @@ public class Menu {
         return this.p2;
     }
 
+    public ArrayList<Deck> getDecks() {
+        return this.decks;
+    }
+
 
 
     /*private void deckSelection(Scanner scanner) {

@@ -11,6 +11,7 @@ public abstract class Card {
     protected int cost;
     protected Region region;
     protected ArrayList<Effect> effects;
+    //TODO CRIAR UM ATRIBUTO QUE GUARDA A IMAGEM DESSA CARTA.
 
     public Card(String name, String description, int cost, Region region, Effect[] newEffects) { //Carta com efeito
         this.name = name;
