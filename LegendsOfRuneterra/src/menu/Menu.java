@@ -53,18 +53,17 @@ public class Menu {
 
     public void openMenu() {
 
-        int option = 0;
+        System.out.println("Eaew monark akew");
+        /*int option = 0;
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Bem vindo a Legends Of Runeterra!");
-        System.out.println("Digite o modo de jogo que deseja: 1 - PvP. 2 - PvAI. 3 - AIvAI.");
         option = scanner.nextInt();
 
         switch (option) {
             case 1:
                 deckNovo = deckSelection(scanner);
                 Player p1 = new Player(deckNovo, true);
-                Player p2 = new Player(getRandomDeck(), false);
+                Player p2 = new Player(getRandomDeck(), false);*/
         }
 
     }
