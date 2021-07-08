@@ -11,12 +11,15 @@ import card.Trigger;
 import javafx.scene.shape.MoveTo;
 
 public class Game {
-
+    
     private static Game game;
     Player bluePlayer;
     Player redPlayer;
     Board blueBoard;
     Board redBoard;
+    boolean gameOver = false;
+    boolean endRound = false;
+    Color loser;
 
     private Game(Player p1, Player p2) {
         this.bluePlayer = p1;
@@ -37,35 +40,30 @@ public class Game {
         }
         return game;
     }
-
+    
     public void startGame() {
         
         Player currentPlayer = null;
         Player attackingPlayer = null;
-        Color loser;
         Card nextCard;
         int nextMove;
         boolean validTurn = false;
-        boolean gameOver = false;
-        boolean endRound = false;
         boolean passed = false;
         Scanner scan = new Scanner(System.in);
+        Board opponentBoard;
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
         while (!gameOver) {
-            loser = startNewRound(currentPlayer);
-
-            if (loser != Color.NONE) {
-                endRound = true;
-                gameOver = true;
-            }
+            startNewRound(attackingPlayer, currentPlayer);
 
             while (!endRound) {
 
                 if (currentPlayer == bluePlayer) {
+                    opponentBoard = redBoard;
                     System.out.println("Jogador azul, é sua vez!");
                 }
                 else {
+                    opponentBoard = blueBoard;
                     System.out.println("Jogador vermelho, é sua vez!");
                 }
 
@@ -74,7 +72,7 @@ public class Game {
                     nextMove = currentPlayer.selectAction(); 
                     if (nextMove == 0 && currentPlayer.hasCards()) {
                         nextCard = currentPlayer.selectCard();
-                        if (!nextCard.playCard(currentPlayer.getBoard(), )) {
+                        if (!nextCard.playCard(currentPlayer.getBoard(), opponentBoard)) {
                             System.out.println("Você não tem mana o suficiente para jogar essa carta! Selecione outra ou passe a vez.");
                         }
                         else {
@@ -96,7 +94,13 @@ public class Game {
                         passed = true;
                     }
                 
-                } //FAZER O TURNO DO JOGADOR MUDAR TODO TURNO
+                }
+
+                if (currentPlayer == bluePlayer){
+                    currentPlayer = redPlayer;
+                }
+                validTurn = false;
+                passed = false;
 
             }
 
@@ -168,55 +172,69 @@ public class Game {
             }
         }
         scan.close();
-    }   
+    }
 
-}
-
-private Color startNewRound(Player attackingPlayer, Player currentPlayer) {
-    Color loser;
-    redPlayer.updateMana();
-    bluePlayer.updateMana();
-    if (attackingPlayer == null){
-        Random rand = new Random();
-        if (rand.nextInt(1) == 0){
-            attackingPlayer = bluePlayer;
+    private void startNewRound(Player attackingPlayer, Player currentPlayer) {
+        redPlayer.updateMana();
+        bluePlayer.updateMana();
+        if (attackingPlayer == null){
+            Random rand = new Random();
+            if (rand.nextInt(1) == 0){
+                attackingPlayer = bluePlayer;
+            }
+            else {
+                attackingPlayer = redPlayer;
+            }
         }
-        else {
+        else if (attackingPlayer == bluePlayer){
             attackingPlayer = redPlayer;
         }
+        else {
+            attackingPlayer = bluePlayer;
+        }
+
+        currentPlayer = attackingPlayer;
+
+        redPlayer.drawCard(1);
+        bluePlayer.drawCard(1);
+
+        checkWin(attackingPlayer);
+        
+        updateAllEffects(Trigger.ROUND_START);
     }
-    else if (attackingPlayer == bluePlayer){
-        attackingPlayer = redPlayer;
-    }
-    else {
-        attackingPlayer = bluePlayer;
-    }
-
-    currentPlayer = attackingPlayer;
-
-    attackingPlayer.drawCard(1);
-    
-    loser = redPlayer.drawCard(1);
-    loser = bluePlayer.drawCard(1);
-    
-    updateAllEffects(Trigger.ROUND_START);
-    return loser;
-}
 
 
-private void updateAllEffects(Trigger trigger) {
-    for (Follower follower : redBoard.getCards()) {
-        for (Effect effect : follower.getEffects()) {
-            effect.checkTrigger(trigger, redBoard, blueBoard);
+    private void updateAllEffects(Trigger trigger) {
+        for (Follower follower : redBoard.getCards()) {
+            for (Effect effect : follower.getEffects()) {
+                effect.checkTrigger(trigger, redBoard, blueBoard);
+            }
+        }
+        for (Follower follower : blueBoard.getCards()) {
+            for (Effect effect : follower.getEffects()) {
+                effect.checkTrigger(trigger, blueBoard, redBoard);
+            }
         }
     }
-    for (Follower follower : blueBoard.getCards()) {
-        for (Effect effect : follower.getEffects()) {
-            effect.checkTrigger(trigger, blueBoard, redBoard);
+
+    private void checkWin(Player attackingPlayer){
+        if (bluePlayer.getLoser() == true || redPlayer.getLoser() == true){
+            gameOver = true;
+            endRound = true;
+            if (bluePlayer.getLoser() == true){
+                if (redPlayer.getLoser() == true){
+                    loser = attackingPlayer.getColor();
+                }
+                else {
+                    loser = Color.BLUE;
+                }
+            }
+            else {
+                loser = Color.RED;
+            }
         }
     }
 }
-
 
 
 

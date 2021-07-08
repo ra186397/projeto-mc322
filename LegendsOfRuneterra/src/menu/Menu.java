@@ -26,6 +26,12 @@ public class Menu {
     private static Menu menu;
     private ArrayList<Deck> decks;
     private ArrayList<Card> cards;
+    private ArrayList<Card> demacia_units;
+    private ArrayList<Card> demacia_spells;
+    private ArrayList<Card> freljord_units;
+    private ArrayList<Card> freljord_spells;
+    private ArrayList<Card> noxus_units;
+    private ArrayList<Card> noxus_spells;
 
     private Menu() {
         this.cards = new ArrayList<Card>();
@@ -63,8 +69,8 @@ public class Menu {
             case 1:
                 deckNovo = deckSelection(scanner);
                 Player p1 = new Player(deckNovo, true);
-                Player p2 = new Player(getRandomDeck(), false);*/
-        }
+                Player p2 = new Player(getRandomDeck(), false);
+        }*/
 
     }
 
