@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SelectRegionController">
+  <children>
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #201B21; -fx-border-color: #E7B757;" VBox.vgrow="ALWAYS">
+         <children>
+            <Label layoutX="219.0" layoutY="55.0" text="Escolha a primeira região do seu deck:" textAlignment="CENTER">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="Lucida Console" size="36.0" />
+               </font>
+            </Label>
+            <JFXRadioButton layoutX="307.0" layoutY="109.0" onAction="#handleSelectFirstRegion" text="Demacia">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <selectedColor>
+                  <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+               </selectedColor>
+               <unSelectedColor>
+                  <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+               </unSelectedColor>
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="firstRegion" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton contentDisplay="TOP" layoutX="829.0" layoutY="109.0" onAction="#handleSelectFirstRegion" text="Freljord" toggleGroup="$firstRegion">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <selectedColor>
+                  <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+               </selectedColor>
+               <unSelectedColor>
+                  <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+               </unSelectedColor>
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton layoutX="585.0" layoutY="109.0" onAction="#handleSelectFirstRegion" text="Noxus" toggleGroup="$firstRegion">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <selectedColor>
+                  <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+               </selectedColor>
+               <unSelectedColor>
+                  <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+               </unSelectedColor>
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+            </JFXRadioButton>
+            <Pane fx:id="selectSecondRegion" layoutX="211.0" layoutY="260.0" prefHeight="200.0" prefWidth="839.0">
+               <children>
+                  <Label layoutX="18.0" layoutY="21.0" text="Escolha a segunda região do seu deck:" textAlignment="CENTER">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="Lucida Console" size="36.0" />
+                     </font>
+                  </Label>
+                  <JFXRadioButton layoutX="86.0" layoutY="89.0" onAction="#handleSelectSecondRegion" text="Demacia">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <selectedColor>
+                        <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                     </selectedColor>
+                     <unSelectedColor>
+                        <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                     </unSelectedColor>
+                     <font>
+                        <Font name="Lucida Console" size="20.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="secondRegion" />
+                     </toggleGroup>
+                  </JFXRadioButton>
+                  <JFXRadioButton layoutX="280.0" layoutY="89.0" onAction="#handleSelectSecondRegion" text="Noxus" toggleGroup="$secondRegion">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <selectedColor>
+                        <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                     </selectedColor>
+                     <unSelectedColor>
+                        <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                     </unSelectedColor>
+                     <font>
+                        <Font name="Lucida Console" size="20.0" />
+                     </font>
+                  </JFXRadioButton>
+                  <JFXRadioButton layoutX="448.0" layoutY="89.0" onAction="#handleSelectSecondRegion" text="FrelJord" toggleGroup="$secondRegion">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <selectedColor>
+                        <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                     </selectedColor>
+                     <unSelectedColor>
+                        <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                     </unSelectedColor>
+                     <font>
+                        <Font name="Lucida Console" size="20.0" />
+                     </font>
+                  </JFXRadioButton>
+                  <JFXRadioButton layoutX="651.0" layoutY="89.0" onAction="#handleSelectSecondRegion" text="Nenhuma" toggleGroup="$secondRegion">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <selectedColor>
+                        <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                     </selectedColor>
+                     <unSelectedColor>
+                        <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                     </unSelectedColor>
+                     <font>
+                        <Font name="Lucida Console" size="20.0" />
+                     </font>
+                  </JFXRadioButton>
+               </children>
+            </Pane>
+            <Pane fx:id="insertName" layoutX="194.0" layoutY="460.0" prefHeight="200.0" prefWidth="891.0">
+               <children>
+                  <Label layoutX="153.0" layoutY="24.0" text="Digite um nome para o deck:" textAlignment="CENTER">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font name="Lucida Console" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="deckName" layoutX="153.0" layoutY="101.0" prefHeight="37.0" prefWidth="193.0" promptText="Digite um nome" style="-fx-border-color: #E7B757; -fx-background-color: #201B21; -fx-text-inner-color: #c3a75a;">
+                     <font>
+                        <Font name="Lucida Console" size="20.0" />
+                     </font></TextField>
+                  <JFXButton layoutX="395.0" layoutY="100.0" onAction="#handleMoveToCardSelection" prefHeight="39.0" prefWidth="344.0" style="-fx-border-color: #E7B757; -fx-background-color: #201B21;" text="IR PARA SELEÇÂO DE CARTAS" textFill="#906a36">
+                     <font>
+                        <Font name="Lucida Console" size="20.0" />
+                     </font>
+                  </JFXButton>
+               </children></Pane>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

@@ -75,7 +75,7 @@
                </image>
             </ImageView>
             <JFXListView fx:id="listOfDecks" layoutX="202.0" layoutY="209.0" prefHeight="324.0" prefWidth="283.0" style="-fx-border-color: #E7B757; -fx-background-color: #201B21;" />
-            <JFXButton layoutX="820.0" layoutY="208.0" style="-fx-border-color: #E7B757;" text="CRIAR UM NOVO DECK" textAlignment="CENTER" textFill="#cfc6b7">
+            <JFXButton layoutX="820.0" layoutY="208.0" onAction="#handleMoveToDeckCreation" style="-fx-border-color: #E7B757;" text="CRIAR UM NOVO DECK" textAlignment="CENTER" textFill="#cfc6b7">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

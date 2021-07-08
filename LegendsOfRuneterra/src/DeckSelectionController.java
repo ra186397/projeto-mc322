@@ -6,11 +6,15 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
 import game.Deck;
+import javafx.scene.Node;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -21,6 +25,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import menu.Menu;
 
 public class DeckSelectionController implements Initializable {
@@ -51,6 +56,21 @@ public class DeckSelectionController implements Initializable {
           found = true;
         }
       }
+    }
+  }
+
+  @FXML
+  void handleMoveToDeckCreation(ActionEvent event) {
+    try {
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/SelectRegion.fxml"));
+      Parent root = (Parent) fxmlLoader.load();
+      Scene scene = new Scene(root, 1280, 720);
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setScene(scene);
+      stage.show();
+
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
