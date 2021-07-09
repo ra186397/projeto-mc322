@@ -108,7 +108,6 @@ public class Game {
                     currentPlayer = bluePlayer;
                 }
                 validTurn = false;
-                passed = false;
 
             }
 
