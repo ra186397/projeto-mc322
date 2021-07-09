@@ -172,7 +172,7 @@ public class Menu {
             newDeck = new Deck(firstRegion, secondRegion, name);
         } else {
 
-            newDeck = new Deck(firstRegion, name);
+            newDeck = new Deck(firstRegion, firstRegion, name);
         }
 
         this.cardsSelection(newDeck, scanner);
@@ -210,7 +210,7 @@ public class Menu {
 
     private Deck buildBaseDeck() {
 
-        Deck baseDeck = new Deck(Region.DEMACIA, "Demacia");
+        Deck baseDeck = new Deck(Region.DEMACIA, Region.DEMACIA, "Demacia");
         baseDeck.addCard(getCardByName("Garen", demacia_units));
         baseDeck.addCard(getCardByName("Tiana", demacia_units));
         baseDeck.addCard(getCardByName("Vanguarda", demacia_units));
@@ -285,6 +285,32 @@ public class Menu {
                 effectCombateUmAUm, Region.DEMACIA);
         demacia_spells.add(combateUmAUm);
 
+    }
+
+    public ArrayList<Card> getUnitList(Region region){
+        switch(region) {
+            case DEMACIA:
+                return demacia_units;
+            case FRELJORD:
+                return freljord_units;
+            case NOXUS:
+                return noxus_units;
+            default:
+            return null;
+        }
+    }
+
+    public ArrayList<Card> getSpellList(Region region){
+        switch(region) {
+            case DEMACIA:
+                return demacia_spells;
+            case FRELJORD:
+                return freljord_spells;
+            case NOXUS:
+                return noxus_spells;
+            default:
+            return null;
+        }
     }
 
 }
