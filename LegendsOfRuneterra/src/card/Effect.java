@@ -11,17 +11,20 @@ public class Effect {
     int amount1;
     int amount2;
     int ally;
+    Card ownCard;
     String cardName;
 
     public Effect(int effect, Trigger trigger){
         this.trigger = trigger;
         this.effect = effect;
+        this.ownCard = null;
     }
 
     public Effect(int effect, int amount1, Trigger trigger){
         this.trigger = trigger;
         this.effect = effect;
         this.amount1 = amount1;
+        this.ownCard = null;
     }
 
     public Effect(int effect, int amount1, int amount2, Trigger trigger){
@@ -29,12 +32,18 @@ public class Effect {
         this.effect = effect;
         this.amount1 = amount1;
         this.amount2 = amount2;
+        this.ownCard = null;
     }
 
     public Effect(int effect, String cardName, Trigger trigger){
         this.trigger = trigger;
         this.effect = effect;
         this.cardName = cardName;
+        this.ownCard = null;
+    }
+    
+    public void setCard(Card card) {
+        this.ownCard = card;
     }
 
     private void applyEffect(game.Board myBoard, game.Board opponentBoard) {
@@ -44,7 +53,7 @@ public class Effect {
             case 0: // Dê +n/+m a todas as unidades aliadas evocadas.
             for (Follower follower : myBoard.getCards()) {
                 follower.baseHealth += amount1;
-                follower.basePower += amount2;//O false e se e temporario ou nao, false e permanente true e temporario => mexer nisso
+                follower.basePower += amount2;//O false e se e temporario ou nao, false e permanente true e temporario
             }
 
             case 1: // Dê +n/+m a uma unidade aliada nessa rodada.
