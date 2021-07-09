@@ -20,25 +20,34 @@ import game.Player;
 import jdk.nashorn.internal.runtime.Undefined;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Menu {
 
     private static Menu menu;
     private ArrayList<Deck> decks;
-    private ArrayList<Card> cards;
     private ArrayList<Card> demacia_units;
     private ArrayList<Card> demacia_spells;
     private ArrayList<Card> freljord_units;
     private ArrayList<Card> freljord_spells;
     private ArrayList<Card> noxus_units;
     private ArrayList<Card> noxus_spells;
+    private Player p1;
+    private Player p2;
 
     private Menu() {
-        this.cards = new ArrayList<Card>();
+        this.demacia_units = new ArrayList<Card>();
+        this.demacia_spells = new ArrayList<Card>();
+        this.freljord_units = new ArrayList<Card>();
+        this.freljord_spells = new ArrayList<Card>();
+        this.noxus_units = new ArrayList<Card>();
+        this.freljord_spells = new ArrayList<Card>();
         createCards();
         this.decks = new ArrayList<Deck>();
         Deck demacia = buildBaseDeck();
         decks.add(demacia);
+        this.p1 = null;
+        this.p2 = null;
     }
 
     public static Menu getMenu() {
@@ -48,8 +57,8 @@ public class Menu {
         return menu;
     }
 
-    private Card getCardByName(String name) {
-        for (Card card : cards) {
+    private Card getCardByName(String name, ArrayList<Card> lista) {
+        for (Card card : lista) {
             if (card.getName() == name) {
                 return card;
             }
@@ -57,24 +66,46 @@ public class Menu {
         return null;
     }
 
-    public void openMenu() {
+    public void selectPlayers(TypePlayer type) {
+        switch (type) {
+            case PVP:
 
-        System.out.println("Eaew monark akew");
-        /*int option = 0;
-        Scanner scanner = new Scanner(System.in);
-
-        option = scanner.nextInt();
-
-        switch (option) {
-            case 1:
-                deckNovo = deckSelection(scanner);
-                Player p1 = new Player(deckNovo, true);
-                Player p2 = new Player(getRandomDeck(), false);
-        }*/
+                p1 = new Player(null, true);
+                p2 = new Player(null, true);
+                break;
+            case PVIA:
+                p1 = new Player(null, true);
+                p2 = new Player(getRandomDeck(), false);
+                break;
+            case IAVIA:
+                p1 = new Player(getRandomDeck(), false);
+                p2 = new Player(getRandomDeck(), false);
+                break;
+        }
 
     }
 
-    private void deckSelection(Scanner scanner) {
+    private Deck getRandomDeck() {
+        Random r = new Random();
+        int i = r.nextInt(decks.size());
+        return decks.get(i);
+    }
+
+    public Player getPlayer1() {
+        return this.p1;
+    }
+
+    public Player getPlayer2() {
+        return this.p2;
+    }
+
+    public ArrayList<Deck> getDecks() {
+        return this.decks;
+    }
+
+
+
+    /*private void deckSelection(Scanner scanner) {
 
         int option;
         Deck chosenDeck;
@@ -100,7 +131,7 @@ public class Menu {
             }
         }
 
-    }
+    }*/
 
     private Deck createNewDeck(Scanner scanner) {
 
@@ -180,17 +211,17 @@ public class Menu {
     private Deck buildBaseDeck() {
 
         Deck baseDeck = new Deck(Region.DEMACIA, "Demacia");
-        baseDeck.addCard(getCardByName("Garen"));
-        baseDeck.addCard(getCardByName("Tiana"));
-        baseDeck.addCard(getCardByName("Vanguarda"));
-        baseDeck.addCard(getCardByName("Duelista"));
-        baseDeck.addCard(getCardByName("Defensor"));
-        baseDeck.addCard(getCardByName("Poro"));
-        baseDeck.addCard(getCardByName("Poro Defensor"));
-        baseDeck.addCard(getCardByName("Julgamento"));
-        baseDeck.addCard(getCardByName("Valor Redobrado"));
-        baseDeck.addCard(getCardByName("Golpe Certeiro"));
-        baseDeck.addCard(getCardByName("Combate um-a-um"));
+        baseDeck.addCard(getCardByName("Garen", demacia_units));
+        baseDeck.addCard(getCardByName("Tiana", demacia_units));
+        baseDeck.addCard(getCardByName("Vanguarda", demacia_units));
+        baseDeck.addCard(getCardByName("Duelista", demacia_units));
+        baseDeck.addCard(getCardByName("Defensor", demacia_units));
+        baseDeck.addCard(getCardByName("Poro", demacia_units));
+        baseDeck.addCard(getCardByName("Poro Defensor", demacia_units));
+        baseDeck.addCard(getCardByName("Julgamento", demacia_spells));
+        baseDeck.addCard(getCardByName("Valor Redobrado", demacia_spells));
+        baseDeck.addCard(getCardByName("Golpe Certeiro", demacia_spells));
+        baseDeck.addCard(getCardByName("Combate um-a-um", demacia_spells));
 
         return baseDeck;
 
@@ -201,58 +232,58 @@ public class Menu {
         // invés de golpear duas vezes. Mudamos para golpear assumindo que o professor
         // confundiu golpear com atacar.
         Garen garen = new Garen();
-        cards.add(garen);
+        demacia_units.add(garen);
 
         Fiora fiora = new Fiora();
-        cards.add(fiora);
+        demacia_units.add(fiora);
 
         Effect[] effectTiana = { new Effect(6, Trigger.PLAY) };
         Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8,
                 7, 7, Region.DEMACIA, effectTiana);
-        cards.add(tiana);
+        demacia_units.add(tiana);
 
         Effect[] effectVanguarda = { new Effect(0, 1, 1, Trigger.PLAY) };
         Follower vanguarda = new Follower("Vanguarda", "Dê +1/+1 a todos os seguidores aliados", 4, 3, 3,
                 Region.DEMACIA, effectVanguarda);
-        cards.add(vanguarda);
+        demacia_units.add(vanguarda);
 
         Effect[] effectDuelista = { new Effect(2, "Poro", Trigger.DESTROY_OPPONENT) };
         Follower duelista = new Follower("Duelista",
                 "Se a carta destruir um seguidor do inimigo nesta rodada, uma carta \"Poro\" é colocada em sua mão.", 3,
                 3, 2, Region.DEMACIA, effectDuelista);
-        cards.add(duelista);
+        demacia_units.add(duelista);
 
         Trait[] traitDefensor = { Trait.FURY };
         Follower defensor = new Follower("Defensor", "", 2, 2, 2, Region.DEMACIA, traitDefensor, 0, 1);
-        cards.add(defensor);
+        demacia_units.add(defensor);
 
         Follower poro = new Follower("Poro", "", 1, 2, 1, Region.DEMACIA);
-        cards.add(poro);
+        demacia_units.add(poro);
         Effect[] effectPoroDefensor = { new Effect(8, Trigger.LAST_BREATH) };
         Follower poroDefensor = new Follower("Poro Defensor", "Ao ser destruído, você ganha uma carta.", 1, 1, 2,
                 Region.DEMACIA, effectPoroDefensor);
-        cards.add(poroDefensor);
+        demacia_units.add(poroDefensor);
 
         Effect[] effectJulgamento = { new Effect(7, Trigger.PLAY) };
         Spell julgamento = new Spell("Julgamento", "Um aliado atacante golpeia todos os oponentes defensores", 8,
                 effectJulgamento, Region.DEMACIA);
-        cards.add(julgamento);
+        demacia_spells.add(julgamento);
 
         Effect[] effectValorRedobrado = { new Effect(3, Trigger.PLAY), new Effect(4, Trigger.PLAY) };
         Spell valorRedobrado = new Spell("Valor Redobrado",
                 "Cure inteiramente um aliado;\nDobre o ataque e defesa deste aliado", 6, effectValorRedobrado,
                 Region.DEMACIA);
-        cards.add(valorRedobrado);
+        demacia_spells.add(valorRedobrado);
 
         Effect[] effectGolpeCerteiro = { new Effect(1, 1, 1, Trigger.PLAY) };
         Spell golpeCerteiro = new Spell("Golpe Certeiro", "Dê +1/+1 a um aliado nesta rodada", 1, effectGolpeCerteiro,
                 Region.DEMACIA);
-        cards.add(golpeCerteiro);
+        demacia_spells.add(golpeCerteiro);
 
         Effect[] effectCombateUmAUm = { new Effect(5, Trigger.PLAY) };
         Spell combateUmAUm = new Spell("Combate um-a-um", "Escolha um aliado e um oponente para um combate imediato", 2,
                 effectCombateUmAUm, Region.DEMACIA);
-        cards.add(combateUmAUm);
+        demacia_spells.add(combateUmAUm);
 
     }
 

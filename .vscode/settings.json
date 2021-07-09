@@ -1,0 +1,6 @@
+{
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "c:\\Users\\gabri\\Downloads\\jfoenix-8.0.10.jar"
+  ]
+}

@@ -1,12 +1,15 @@
 package game;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 import card.Card;
 import card.Effect;
 import card.Follower;
+import card.Trait;
 import card.Trigger;
 import javafx.scene.shape.MoveTo;
 
@@ -104,6 +107,11 @@ public class Game {
 
             }
 
+            for (Follower follower : blueBoard.getCards()){
+                if (follower.hasTrait(Trait.REGENERATION)){
+                    follower.heal(0, true);
+                }
+            }
         }
 
         if (loser == Color.BLUE) {
@@ -142,24 +150,38 @@ public class Game {
 
         System.out.println("Escolha as unidades que devem atacar.");
         //print board
-        String[] toAttack = scan.nextLine().split(" ");
+        int[] toAttack = Arrays.stream(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < toAttack.length; i++){
-            attackingBoard.moveToCombat(i, Integer.parseInt(toAttack[i]));
+            attackingBoard.moveToCombat(i, toAttack[i]);
         }
         System.out.println("Escolha as unidades que devem defender.");
         //print board
         for (int i = 0; i < toAttack.length; i++){
             System.out.println("Você quer defender a unidade" + i + " ? Digite o número da unidade que você deseja usar para defender ou -1 para nao defender.");
-            defendingBoard.moveToCombat(i, scan.nextInt());
+            int defendingUnit = scan.nextInt();
+            if (attackers.get(toAttack[i]).hasTrait(Trait.ELUSIVE) || !defendingBoard.getCards().get(defendingUnit).hasTrait(Trait.ELUSIVE)){
+                System.out.println("Você só pode bloquer uma unidade elusiva com outra unidade elusiva");
+            }
+            defendingBoard.moveToCombat(i, defendingUnit);
         }
 
 
         for (int i = 0; i < attackers.size(); i++) {
             if (defenders.get(i) == null) {
+                if (attackers.get(i).hasTrait(Trait.DOUBLE_ATTACK)){
+                    attackers.get(i).strike(defender);
+                }
                 attackers.get(i).strike(defender);
-            } else {
+            }
+            else {
+                if (attackers.get(i).hasTrait(Trait.DOUBLE_ATTACK)){
+                    attackers.get(i).strike(defenders.get(i));
+                }
                 attackers.get(i).strike(defenders.get(i));
                 defenders.get(i).strike(attackers.get(i));
+            }
+            if (attackers.get(i).hasTrait(Trait.FURY) && defenders.get(i).getCurrentHealth() <= 0){
+                attackers.get(i).triggerFury();
             }
         }
 

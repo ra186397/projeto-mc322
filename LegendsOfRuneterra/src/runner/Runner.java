@@ -12,8 +12,6 @@ public class Runner extends Application {
     public static void main(String[] args) {
 
         launch(args);
-        Menu menu = Menu.getMenu();
-        menu.openMenu();
 
     }
 
@@ -22,7 +20,6 @@ public class Runner extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Menu.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 1280, 720);
-
         primaryStage.setMinWidth(1280); // s ets stage width
         primaryStage.setMinHeight(720); // sets stage heigh
         primaryStage.initStyle(StageStyle.UNDECORATED);

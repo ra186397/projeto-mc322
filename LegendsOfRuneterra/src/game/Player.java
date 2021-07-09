@@ -84,6 +84,10 @@ public class Player {
         return this.nexusLife;
     }
 
+    public Deck getDeck() {
+        return this.deck;
+    }
+
     public boolean hasCards() {
         if (hand.isEmpty()) {
             return false;
@@ -107,6 +111,12 @@ public class Player {
 
     public void setColor(Color newColor) {
         this.color = newColor;
+    }
+
+    public void selectDeck(Deck deck) {
+        if (this.deck == null) {    
+            this.deck = deck;
+        }
     }
 
     public int selectAction() {
@@ -216,4 +226,5 @@ public class Player {
     public Color getColor(){
         return color;
     }
+
 }
