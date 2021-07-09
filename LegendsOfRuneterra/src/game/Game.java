@@ -52,12 +52,15 @@ public class Game {
         int nextMove;
         boolean validTurn = false;
         boolean passed = false;
+        boolean hasAttacked = false;
         Scanner scan = new Scanner(System.in);
         Board opponentBoard;
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
         while (!gameOver) {
             startNewRound(attackingPlayer, currentPlayer);
+            hasAttacked = false;
+            passed = false;
 
             while (!endRound) {//consertar passar o round jogar depois de atacar ou nao
 
@@ -86,17 +89,21 @@ public class Game {
                             passed = false;
                         }
                     }
-                    else if (nextMove == 1 && !currentPlayer.getBoard().getCards().isEmpty() && currentPlayer == attackingPlayer){
+                    else if (nextMove == 1 && !currentPlayer.getBoard().getCards().isEmpty() && currentPlayer == attackingPlayer && hasAttacked == false){
                         startCombat();
                         validTurn = true;
                         passed = false;
+                        hasAttacked = true;
                     }
-                    else {
+                    else if (nextMove == 2){
                         validTurn = true;
                         if (passed) {
                             endRound = true;
                         }
                         passed = true;
+                    }
+                    else {
+                        System.out.println("Você tentou uma ação inválida");
                     }
                 
                 }
@@ -107,6 +114,7 @@ public class Game {
                 else {
                     currentPlayer = bluePlayer;
                 }
+
                 validTurn = false;
 
             }
