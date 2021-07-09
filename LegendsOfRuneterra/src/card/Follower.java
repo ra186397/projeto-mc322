@@ -16,7 +16,12 @@ public class Follower extends Card {
     protected int furyPower;
     protected int furyHealth;
 
-    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, //Tem traço e efeito mas não tem fúria
+    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Tem
+                                                                                                             // traço e
+                                                                                                             // efeito
+                                                                                                             // mas não
+                                                                                                             // tem
+                                                                                                             // fúria
             Effect[] newEffects, Trait[] newTraits) {
 
         super(name, description, cost, region, newEffects);
@@ -34,7 +39,8 @@ public class Follower extends Card {
         }
     }
 
-    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, Effect[] newEffects) { //Não possui traços
+    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region,
+            Effect[] newEffects) { // Não possui traços
 
         super(name, description, cost, region, newEffects);
         this.baseHealth = baseHealth;
@@ -48,7 +54,11 @@ public class Follower extends Card {
         }
     }
 
-    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Não possui efeitos nem fúria
+    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Não
+                                                                                                             // possui
+                                                                                                             // efeitos
+                                                                                                             // nem
+                                                                                                             // fúria
             Trait[] newTraits) {
 
         super(name, description, cost, region);
@@ -63,7 +73,11 @@ public class Follower extends Card {
         }
     }
 
-    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region) { // Não possui traços nem efeitos
+    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region) { // Não
+                                                                                                               // possui
+                                                                                                               // traços
+                                                                                                               // nem
+                                                                                                               // efeitos
 
         super(name, description, cost, region);
         this.baseHealth = baseHealth;
@@ -74,7 +88,13 @@ public class Follower extends Card {
         this.traits = new ArrayList<Trait>();
     }
 
-    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, //Tem traço (um deles sendo fúria) e efeito.
+    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Tem
+                                                                                                             // traço
+                                                                                                             // (um
+                                                                                                             // deles
+                                                                                                             // sendo
+                                                                                                             // fúria) e
+                                                                                                             // efeito.
             Effect[] newEffects, Trait[] newTraits, int furyPower, int furyHealth) {
 
         super(name, description, cost, region, newEffects);
@@ -94,7 +114,12 @@ public class Follower extends Card {
         }
     }
 
-    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Possui apenas traços, um deles sendo fúria.
+    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Possui
+                                                                                                             // apenas
+                                                                                                             // traços,
+                                                                                                             // um deles
+                                                                                                             // sendo
+                                                                                                             // fúria.
             Trait[] newTraits, int furyPower, int furyHealth) {
 
         super(name, description, cost, region);
@@ -121,7 +146,7 @@ public class Follower extends Card {
 
     public void strike(Player player, Board myBoard) {
         if (this.temporaryPower > 0) {
-            for (Effect effect : effects){
+            for (Effect effect : effects) {
                 effect.checkTrigger(Trigger.STRIKE, myBoard, player.getBoard());
             }
             player.takeDamage(this.temporaryPower);
@@ -130,12 +155,12 @@ public class Follower extends Card {
 
     public void strike(Follower defender, Board myBoard, Board opponentBoard) {
         if (this.temporaryPower > 0) {
-            for (Effect effect : effects){
+            for (Effect effect : effects) {
                 effect.checkTrigger(Trigger.STRIKE, myBoard, opponentBoard);
             }
             defender.takeDamage(this.temporaryPower);
-            if (defender.getCurrentHealth() <= 0){
-                for (Effect effect : effects){
+            if (defender.getCurrentHealth() <= 0) {
+                for (Effect effect : effects) {
                     effect.checkTrigger(Trigger.DESTROY_OPPONENT, myBoard, opponentBoard);
                 }
             }
@@ -143,7 +168,7 @@ public class Follower extends Card {
     }
 
     public void takeDamage(int damage) {
-        if (!hasTrait(Trait.BARRIER)){
+        if (!hasTrait(Trait.BARRIER)) {
             this.currentHealth -= damage;
         }
     }
@@ -152,20 +177,27 @@ public class Follower extends Card {
         return this.currentHealth;
     }
 
-    public boolean hasTrait(Trait traco){
+    public int getBaseHealth() {
+        return this.baseHealth;
+    }
+
+    public int getBasePower() {
+        return this.basePower;
+    }
+
+    public boolean hasTrait(Trait traco) {
         return traits.contains(traco);
     }
 
-    public void triggerFury(){
+    public void triggerFury() {
         basePower += furyPower;
         baseHealth += furyHealth;
     }
 
-    public void heal(int amount, boolean full){
-        if (currentHealth + amount >= baseHealth || full == true){
+    public void heal(int amount, boolean full) {
+        if (currentHealth + amount >= baseHealth || full == true) {
             currentHealth = baseHealth;
-        }
-        else {
+        } else {
             currentHealth += amount;
         }
     }

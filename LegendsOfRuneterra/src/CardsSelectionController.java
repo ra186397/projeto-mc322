@@ -6,7 +6,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
 import card.Follower;
+import card.Region;
 import card.Spell;
+import javafx.scene.paint.Color;
 import game.Deck;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -31,18 +33,6 @@ public class CardsSelectionController implements Initializable {
   @FXML
   private JFXListView<?> spellsDemacia;
 
-  @FXML
-  private JFXListView<?> followersNoxus;
-
-  @FXML
-  private JFXListView<?> spellsNoxus;
-
-  @FXML
-  private JFXListView<?> followersFreljord;
-
-  @FXML
-  private JFXListView<?> spellsFreljord;
-
   ObservableList<Follower> ObservableUnitsDemacia = FXCollections.observableArrayList();
   ObservableList<Spell> ObservableSpellsDemacia = FXCollections.observableArrayList();
 
@@ -53,35 +43,36 @@ public class CardsSelectionController implements Initializable {
 
   static class Cell extends ListCell<Follower> {
     HBox hbox = new HBox();
-    JFXButton btn = new JFXButton("Escolher Deck");
+    JFXButton btn = new JFXButton("Escolher Carta");
     Label name = new Label("");
-    Label description = new Label("");
     Label power = new Label("");
     Label health = new Label("");
-    Label cost = new label("");
     Pane pane = new Pane();
 
-    public Cell(Label chosen) {
+    public Cell() {
       super();
 
       Color color = Color.valueOf("#cfc6b7");
+      name.setTextFill(color);
+      power.setTextFill(color);
+      health.setTextFill(color);
 
       this.setStyle("-fx-background-color: #201B21");
-      hbox.getChildren().addAll(label, pane, btn);
+      hbox.getChildren().addAll(name, power, health, pane, btn);
       hbox.setHgrow(pane, Priority.ALWAYS);
       hbox.setStyle("-fx-background-color: #201B21");
-      label.setTextFill(color);
       btn.setTextFill(color);
-      btn.setOnAction(e -> chosen.setText(getListView().getItems().get(getIndex())));
     }
 
-    public void updateItem(Follower follwer, boolean empty) {
-      super.updateItem(name, empty);
+    public void updateItem(Follower follower, boolean empty) {
+      super.updateItem(follower, empty);
       setText(null);
       setGraphic(null);
 
-      if (name != null && !empty) {
-        label.setText(name);
+      if (follower != null && !empty) {
+        name.setText(follower.getName());
+        power.setText(Integer.toString(follower.getBasePower()));
+        health.setText(Integer.toString(follower.getBaseHealth()));
         setGraphic(hbox);
       }
     }
@@ -97,6 +88,11 @@ public class CardsSelectionController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+
+    insertIntoObservable(ObservableUnitsDemacia, menu.getUnitList(Region.DEMACIA));
+
+    followersDemacia.setItems(ObservableUnitsDemacia);
+    followersDemacia.setCellFactory(param -> new Cell());
 
   }
 

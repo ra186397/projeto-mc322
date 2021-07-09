@@ -11,9 +11,9 @@ public abstract class Card {
     protected int cost;
     protected Region region;
     protected ArrayList<Effect> effects;
-    //TODO CRIAR UM ATRIBUTO QUE GUARDA A IMAGEM DESSA CARTA.
+    // TODO CRIAR UM ATRIBUTO QUE GUARDA A IMAGEM DESSA CARTA.
 
-    public Card(String name, String description, int cost, Region region, Effect[] newEffects) { //Carta com efeito
+    public Card(String name, String description, int cost, Region region, Effect[] newEffects) { // Carta com efeito
         this.name = name;
         this.description = description;
         this.cost = cost;
@@ -24,7 +24,7 @@ public abstract class Card {
         }
     }
 
-    public Card(String name, String description, int cost, Region region) { //Carta sem efeito
+    public Card(String name, String description, int cost, Region region) { // Carta sem efeito
         this.name = name;
         this.description = description;
         this.cost = cost;
@@ -35,16 +35,20 @@ public abstract class Card {
 
     public abstract boolean playCard(Board myBoard, Board opponentBoard);
 
-    public ArrayList<Effect> getEffects(){
+    public ArrayList<Effect> getEffects() {
         return effects;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     public int getCost() {
         return cost;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
 }
