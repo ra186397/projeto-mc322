@@ -8,8 +8,8 @@ public enum Trigger {
     ROUND_START,
     STRIKE,
     ATTACK,
-    TAKE_DAMAGE,
+    TAKE_DAMAGE,//nao implementado porque nao ha cartas que usam ainda
     ROUND_END,
-    BUY_CARD
+    DRAW_CARD//o mesmo
     
 }

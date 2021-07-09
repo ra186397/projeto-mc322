@@ -111,10 +111,10 @@ public class Effect {
                     ally = scan.nextInt();
                     //printar a board
                     System.out.println("Escolha uma unidade inimiga.");
-                    myBoard.getCards().get(ally).strike(opponentBoard.getCards().get(scan.nextInt()));
+                    myBoard.getCards().get(ally).strike(opponentBoard.getCards().get(scan.nextInt()), myBoard, opponentBoard);
                 }
                 else {
-                    myBoard.getCards().get(myBoard.getPlayer().getRandomResult(myBoard.getCards().size())).strike(opponentBoard.getCards().get(myBoard.getPlayer().getRandomResult(opponentBoard.getCards().size())));
+                    myBoard.getCards().get(myBoard.getPlayer().getRandomResult(myBoard.getCards().size())).strike(opponentBoard.getCards().get(myBoard.getPlayer().getRandomResult(opponentBoard.getCards().size())), myBoard, opponentBoard);
                 }
             }
 
@@ -131,7 +131,7 @@ public class Effect {
                 else {
                     ally = myBoard.getPlayer().getRandomResult(myBoard.getCards().size());
                 }
-                myBoard.getCards().get(ally).strike(opponentBoard.getPlayer());
+                myBoard.getCards().get(ally).strike(opponentBoard.getPlayer(), myBoard);
             }
 
             case 7: // Um aliado atacante golpeia todos os oponentes defensores.
@@ -148,7 +148,7 @@ public class Effect {
                     ally = myBoard.getPlayer().getRandomResult(myBoard.getCards().size());
                 };
                 for (Follower follower : opponentBoard.getCards()) {
-                    myBoard.getCards().get(ally).strike(follower);
+                    myBoard.getCards().get(ally).strike(follower, myBoard, opponentBoard);
                 }
             }
 

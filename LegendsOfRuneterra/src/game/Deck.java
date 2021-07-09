@@ -16,18 +16,15 @@ public class Deck {
     private Region region1;
     private Region region2;
 
-    public Deck(Region region1, String name) {
-        this.numCards = 0;
-        this.region1 = region1;
-        this.region2 = null;
-        this.name = name;
-        this.cards = new ArrayList<Card>();
-    }
-
     public Deck(Region region1, Region region2, String name) {
         this.numCards = 0;
         this.region1 = region1;
-        this.region2 = region2;
+        if (region1 == region2){
+            this.region2 = null;
+        }
+        else {
+            this.region2 = region2;
+        }
         this.name = name;
         this.cards = new ArrayList<Card>();
     }
