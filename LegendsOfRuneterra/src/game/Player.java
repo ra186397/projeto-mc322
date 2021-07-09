@@ -20,6 +20,7 @@ public class Player {
     private Board board;
     private boolean isHuman;
     private Color color;
+    private boolean loser;
 
     public Player(Deck deck, boolean isHuman) {
         this.hand = new ArrayList<Card>();
@@ -29,6 +30,7 @@ public class Player {
         this.nexusLife = 20;
         this.deck = deck;
         this.isHuman = isHuman;
+        this.loser = false;
     }
 
     public void drawStartingHand() {
@@ -50,17 +52,16 @@ public class Player {
         drawCard(1);
     }
 
-    public Color drawCard(int n) {
+    public void drawCard(int n) {
         
         if (deck.getCards().size() >= n) { // vê se o jogador possui cartas o suficiente para comprar.
             for (int i = 0; i < n; i++) {
                 hand.add(deck.getCards().get(0));
                 deck.getCards().remove(0);
             }
-            return Color.NONE;
         }
         else {
-            return color;
+            lose();
         }
     }
 
@@ -213,4 +214,17 @@ public class Player {
     public void removeCard(Card toRemove){
         hand.remove(toRemove);
     }
+
+    public boolean getLoser(){
+        return loser;
+    }
+
+    public void lose(){
+        loser = true;
+    }
+
+    public Color getColor(){
+        return color;
+    }
+
 }

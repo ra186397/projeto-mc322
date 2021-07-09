@@ -60,12 +60,12 @@ public class Effect {
                 else {
                     ally = myBoard.getPlayer().getRandomResult(myBoard.getCards().size());
                 }
-                myBoard.getCards().get(ally).temporaryHealth = amount1;
+                myBoard.getCards().get(ally).temporaryPower = amount1;
                 myBoard.getCards().get(ally).temporaryHealth = amount2;
             }
 
-            case 2: // Se a carta destruir uma unidade do inimigo nessa rodada, é colocada uma nova carta de uma unidade específica na sua mão.
-            myBoard.getPlayer().drawCard(1, cardName);
+            case 2: // Se a carta destruir uma unidade do inimigo nessa rodada, compra uma carta específica do seu deck.
+            myBoard.getPlayer().drawCard(1, cardName);//colocar o efeito especificamente no relatório.
 
             case 3: // Cure inteiramente uma unidade aliada.
             if (myBoard.getCards().isEmpty()){
@@ -80,7 +80,7 @@ public class Effect {
                 else {
                     ally = myBoard.getPlayer().getRandomResult(myBoard.getCards().size());
                 }
-                myBoard.getCards().get(ally).currentHealth = myBoard.getCards().get(ally).baseHealth;
+                myBoard.getCards().get(ally).heal(0, true);
             }
 
             case 4: // Dobre o ataque e defesa de uma unidade aliada.

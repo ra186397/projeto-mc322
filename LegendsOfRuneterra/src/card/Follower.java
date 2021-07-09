@@ -132,10 +132,30 @@ public class Follower extends Card {
     }
 
     public void takeDamage(int damage) {
-        this.currentHealth -= damage;
+        if (!hasTrait(Trait.BARRIER)){
+            this.currentHealth -= damage;
+        }
     }
 
     public int getCurrentHealth() {
         return this.currentHealth;
+    }
+
+    public boolean hasTrait(Trait traco){
+        return traits.contains(traco);
+    }
+
+    public void triggerFury(){
+        basePower += furyPower;
+        baseHealth += furyHealth;
+    }
+
+    public void heal(int amount, boolean full){
+        if (currentHealth + amount >= baseHealth || full == true){
+            currentHealth = baseHealth;
+        }
+        else {
+            currentHealth += amount;
+        }
     }
 }

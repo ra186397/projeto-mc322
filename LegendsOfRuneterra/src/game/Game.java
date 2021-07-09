@@ -1,22 +1,28 @@
 package game;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 import card.Card;
 import card.Effect;
 import card.Follower;
+import card.Trait;
 import card.Trigger;
 import javafx.scene.shape.MoveTo;
 
 public class Game {
-
+    
     private static Game game;
     Player bluePlayer;
     Player redPlayer;
     Board blueBoard;
     Board redBoard;
+    boolean gameOver = false;
+    boolean endRound = false;
+    Color loser;
 
     private Game(Player p1, Player p2) {
         this.bluePlayer = p1;
@@ -37,35 +43,30 @@ public class Game {
         }
         return game;
     }
-
+    
     public void startGame() {
         
         Player currentPlayer = null;
         Player attackingPlayer = null;
-        Color loser;
         Card nextCard;
         int nextMove;
         boolean validTurn = false;
-        boolean gameOver = false;
-        boolean endRound = false;
         boolean passed = false;
         Scanner scan = new Scanner(System.in);
+        Board opponentBoard;
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
         while (!gameOver) {
-            loser = startNewRound(currentPlayer);
-
-            if (loser != Color.NONE) {
-                endRound = true;
-                gameOver = true;
-            }
+            startNewRound(attackingPlayer, currentPlayer);
 
             while (!endRound) {
 
                 if (currentPlayer == bluePlayer) {
+                    opponentBoard = redBoard;
                     System.out.println("Jogador azul, é sua vez!");
                 }
                 else {
+                    opponentBoard = blueBoard;
                     System.out.println("Jogador vermelho, é sua vez!");
                 }
 
@@ -74,7 +75,7 @@ public class Game {
                     nextMove = currentPlayer.selectAction(); 
                     if (nextMove == 0 && currentPlayer.hasCards()) {
                         nextCard = currentPlayer.selectCard();
-                        if (!nextCard.playCard(currentPlayer.getBoard(), )) {
+                        if (!nextCard.playCard(currentPlayer.getBoard(), opponentBoard)) {
                             System.out.println("Você não tem mana o suficiente para jogar essa carta! Selecione outra ou passe a vez.");
                         }
                         else {
@@ -96,10 +97,21 @@ public class Game {
                         passed = true;
                     }
                 
-                } //FAZER O TURNO DO JOGADOR MUDAR TODO TURNO
+                }
+
+                if (currentPlayer == bluePlayer){
+                    currentPlayer = redPlayer;
+                }
+                validTurn = false;
+                passed = false;
 
             }
 
+            for (Follower follower : blueBoard.getCards()){
+                if (follower.hasTrait(Trait.REGENERATION)){
+                    follower.heal(0, true);
+                }
+            }
         }
 
         if (loser == Color.BLUE) {
@@ -138,24 +150,38 @@ public class Game {
 
         System.out.println("Escolha as unidades que devem atacar.");
         //print board
-        String[] toAttack = scan.nextLine().split(" ");
+        int[] toAttack = Arrays.stream(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < toAttack.length; i++){
-            attackingBoard.moveToCombat(i, Integer.parseInt(toAttack[i]));
+            attackingBoard.moveToCombat(i, toAttack[i]);
         }
         System.out.println("Escolha as unidades que devem defender.");
         //print board
         for (int i = 0; i < toAttack.length; i++){
             System.out.println("Você quer defender a unidade" + i + " ? Digite o número da unidade que você deseja usar para defender ou -1 para nao defender.");
-            defendingBoard.moveToCombat(i, scan.nextInt());
+            int defendingUnit = scan.nextInt();
+            if (attackers.get(toAttack[i]).hasTrait(Trait.ELUSIVE) || !defendingBoard.getCards().get(defendingUnit).hasTrait(Trait.ELUSIVE)){
+                System.out.println("Você só pode bloquer uma unidade elusiva com outra unidade elusiva");
+            }
+            defendingBoard.moveToCombat(i, defendingUnit);
         }
 
 
         for (int i = 0; i < attackers.size(); i++) {
             if (defenders.get(i) == null) {
+                if (attackers.get(i).hasTrait(Trait.DOUBLE_ATTACK)){
+                    attackers.get(i).strike(defender);
+                }
                 attackers.get(i).strike(defender);
-            } else {
+            }
+            else {
+                if (attackers.get(i).hasTrait(Trait.DOUBLE_ATTACK)){
+                    attackers.get(i).strike(defenders.get(i));
+                }
                 attackers.get(i).strike(defenders.get(i));
                 defenders.get(i).strike(attackers.get(i));
+            }
+            if (attackers.get(i).hasTrait(Trait.FURY) && defenders.get(i).getCurrentHealth() <= 0){
+                attackers.get(i).triggerFury();
             }
         }
 
@@ -168,55 +194,69 @@ public class Game {
             }
         }
         scan.close();
-    }   
+    }
 
-}
-
-private Color startNewRound(Player attackingPlayer, Player currentPlayer) {
-    Color loser;
-    redPlayer.updateMana();
-    bluePlayer.updateMana();
-    if (attackingPlayer == null){
-        Random rand = new Random();
-        if (rand.nextInt(1) == 0){
-            attackingPlayer = bluePlayer;
+    private void startNewRound(Player attackingPlayer, Player currentPlayer) {
+        redPlayer.updateMana();
+        bluePlayer.updateMana();
+        if (attackingPlayer == null){
+            Random rand = new Random();
+            if (rand.nextInt(1) == 0){
+                attackingPlayer = bluePlayer;
+            }
+            else {
+                attackingPlayer = redPlayer;
+            }
         }
-        else {
+        else if (attackingPlayer == bluePlayer){
             attackingPlayer = redPlayer;
         }
+        else {
+            attackingPlayer = bluePlayer;
+        }
+
+        currentPlayer = attackingPlayer;
+
+        redPlayer.drawCard(1);
+        bluePlayer.drawCard(1);
+
+        checkWin(attackingPlayer);
+        
+        updateAllEffects(Trigger.ROUND_START);
     }
-    else if (attackingPlayer == bluePlayer){
-        attackingPlayer = redPlayer;
-    }
-    else {
-        attackingPlayer = bluePlayer;
-    }
-
-    currentPlayer = attackingPlayer;
-
-    attackingPlayer.drawCard(1);
-    
-    loser = redPlayer.drawCard(1);
-    loser = bluePlayer.drawCard(1);
-    
-    updateAllEffects(Trigger.ROUND_START);
-    return loser;
-}
 
 
-private void updateAllEffects(Trigger trigger) {
-    for (Follower follower : redBoard.getCards()) {
-        for (Effect effect : follower.getEffects()) {
-            effect.checkTrigger(trigger, redBoard, blueBoard);
+    private void updateAllEffects(Trigger trigger) {
+        for (Follower follower : redBoard.getCards()) {
+            for (Effect effect : follower.getEffects()) {
+                effect.checkTrigger(trigger, redBoard, blueBoard);
+            }
+        }
+        for (Follower follower : blueBoard.getCards()) {
+            for (Effect effect : follower.getEffects()) {
+                effect.checkTrigger(trigger, blueBoard, redBoard);
+            }
         }
     }
-    for (Follower follower : blueBoard.getCards()) {
-        for (Effect effect : follower.getEffects()) {
-            effect.checkTrigger(trigger, blueBoard, redBoard);
+
+    private void checkWin(Player attackingPlayer){
+        if (bluePlayer.getLoser() == true || redPlayer.getLoser() == true){
+            gameOver = true;
+            endRound = true;
+            if (bluePlayer.getLoser() == true){
+                if (redPlayer.getLoser() == true){
+                    loser = attackingPlayer.getColor();
+                }
+                else {
+                    loser = Color.BLUE;
+                }
+            }
+            else {
+                loser = Color.RED;
+            }
         }
     }
 }
-
 
 
 
