@@ -162,8 +162,8 @@ public class Follower extends Card {
     }
 
     public void heal(int amount, boolean full){
-        if (currentHealth + amount >= baseHealth || full == true){
-            currentHealth = baseHealth;
+        if (currentHealth + amount >= temporaryHealth || full == true){
+            currentHealth = temporaryHealth;
         }
         else {
             currentHealth += amount;

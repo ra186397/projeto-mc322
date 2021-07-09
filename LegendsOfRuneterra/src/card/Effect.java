@@ -44,7 +44,7 @@ public class Effect {
             case 0: // Dê +n/+m a todas as unidades aliadas evocadas.
             for (Follower follower : myBoard.getCards()) {
                 follower.baseHealth += amount1;
-                follower.basePower += amount2;//O false e se e temporario ou nao, false e permanente true e temporario
+                follower.basePower += amount2;//O false e se e temporario ou nao, false e permanente true e temporario => mexer nisso
             }
 
             case 1: // Dê +n/+m a uma unidade aliada nessa rodada.
@@ -189,6 +189,10 @@ public class Effect {
 
             case 11: //Golpeia o nexus do adversário para n pontos de dano.
             opponentBoard.getPlayer().takeDamage(amount1);
+
+            case 12://efeito de buff temporário
+            
+
         }
         scan.close();
     }
