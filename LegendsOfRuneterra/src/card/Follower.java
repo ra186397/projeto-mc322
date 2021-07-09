@@ -17,9 +17,9 @@ public class Follower extends Card {
     protected int furyHealth;
 
     public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, //Tem traço e efeito mas não tem fúria
-            Effect[] newEffects, Trait[] newTraits) {
+            Effect[] newEffects, Trait[] newTraits, String image) {
 
-        super(name, description, cost, region, newEffects);
+        super(name, description, cost, region, newEffects, image);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
@@ -34,9 +34,9 @@ public class Follower extends Card {
         }
     }
 
-    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, Effect[] newEffects) { //Não possui traços
+    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, Effect[] newEffects, String image) { //Não possui traços
 
-        super(name, description, cost, region, newEffects);
+        super(name, description, cost, region, newEffects, image);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
@@ -49,9 +49,9 @@ public class Follower extends Card {
     }
 
     public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Não possui efeitos nem fúria
-            Trait[] newTraits) {
+            Trait[] newTraits, String image) {
 
-        super(name, description, cost, region);
+        super(name, description, cost, region, image);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
@@ -63,9 +63,9 @@ public class Follower extends Card {
         }
     }
 
-    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region) { // Não possui traços nem efeitos
+    public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, String image) { // Não possui traços nem efeitos
 
-        super(name, description, cost, region);
+        super(name, description, cost, region, image);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
@@ -75,9 +75,9 @@ public class Follower extends Card {
     }
 
     public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, //Tem traço (um deles sendo fúria) e efeito.
-            Effect[] newEffects, Trait[] newTraits, int furyPower, int furyHealth) {
+            Effect[] newEffects, Trait[] newTraits, int furyPower, int furyHealth, String image) {
 
-        super(name, description, cost, region, newEffects);
+        super(name, description, cost, region, newEffects, image);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
@@ -95,9 +95,9 @@ public class Follower extends Card {
     }
 
     public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Possui apenas traços, um deles sendo fúria.
-            Trait[] newTraits, int furyPower, int furyHealth) {
+            Trait[] newTraits, int furyPower, int furyHealth, String image) {
 
-        super(name, description, cost, region);
+        super(name, description, cost, region, image);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;

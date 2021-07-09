@@ -244,45 +244,45 @@ public class Menu {
 
         Effect[] effectVanguarda = { new Effect(0, 1, 1, Trigger.PLAY) };
         Follower vanguarda = new Follower("Vanguarda", "Dê +1/+1 a todos os seguidores aliados", 4, 3, 3,
-                Region.DEMACIA, effectVanguarda);
+                Region.DEMACIA, effectVanguarda, "/src/assets/demacia/vanguarda.png");
         demacia_units.add(vanguarda);
 
         Effect[] effectDuelista = { new Effect(2, "Poro", Trigger.DESTROY_OPPONENT) };
         Follower duelista = new Follower("Duelista",
                 "Se a carta destruir um seguidor do inimigo nesta rodada, uma carta \"Poro\" é colocada em sua mão.", 3,
-                3, 2, Region.DEMACIA, effectDuelista);
+                3, 2, Region.DEMACIA, effectDuelista, "/src/assets/demacia/duelista.png");
         demacia_units.add(duelista);
 
         Trait[] traitDefensor = { Trait.FURY };
-        Follower defensor = new Follower("Defensor", "", 2, 2, 2, Region.DEMACIA, traitDefensor, 0, 1);
+        Follower defensor = new Follower("Defensor", "", 2, 2, 2, Region.DEMACIA, traitDefensor, 0, 1, "/src/assets/demacia/defensor.png");
         demacia_units.add(defensor);
 
-        Follower poro = new Follower("Poro", "", 1, 2, 1, Region.DEMACIA);
+        Follower poro = new Follower("Poro", "", 1, 2, 1, Region.DEMACIA, "/src/assets/demacia/poro.png");
         demacia_units.add(poro);
         Effect[] effectPoroDefensor = { new Effect(8, Trigger.LAST_BREATH) };
         Follower poroDefensor = new Follower("Poro Defensor", "Ao ser destruído, você ganha uma carta.", 1, 1, 2,
-                Region.DEMACIA, effectPoroDefensor);
+                Region.DEMACIA, effectPoroDefensor, "/src/assets/demacia/poro-defensor.png");
         demacia_units.add(poroDefensor);
 
         Effect[] effectJulgamento = { new Effect(7, Trigger.PLAY) };
         Spell julgamento = new Spell("Julgamento", "Um aliado atacante golpeia todos os oponentes defensores", 8,
-                effectJulgamento, Region.DEMACIA);
+                effectJulgamento, Region.DEMACIA, "/src/assets/demacia/julgamento.png");
         demacia_spells.add(julgamento);
 
         Effect[] effectValorRedobrado = { new Effect(3, Trigger.PLAY), new Effect(4, Trigger.PLAY) };
         Spell valorRedobrado = new Spell("Valor Redobrado",
                 "Cure inteiramente um aliado;\nDobre o ataque e defesa deste aliado", 6, effectValorRedobrado,
-                Region.DEMACIA);
+                Region.DEMACIA, "/src/assets/demacia/valor-redobrado.png");
         demacia_spells.add(valorRedobrado);
 
         Effect[] effectGolpeCerteiro = { new Effect(1, 1, 1, Trigger.PLAY) };
         Spell golpeCerteiro = new Spell("Golpe Certeiro", "Dê +1/+1 a um aliado nesta rodada", 1, effectGolpeCerteiro,
-                Region.DEMACIA);
+                Region.DEMACIA, "/src/assets/demacia/golpe-certeiro.png");
         demacia_spells.add(golpeCerteiro);
 
         Effect[] effectCombateUmAUm = { new Effect(5, Trigger.PLAY) };
         Spell combateUmAUm = new Spell("Combate um-a-um", "Escolha um aliado e um oponente para um combate imediato", 2,
-                effectCombateUmAUm, Region.DEMACIA);
+                effectCombateUmAUm, Region.DEMACIA, "/src/assets/demacia/combate-um-a-um.png");
         demacia_spells.add(combateUmAUm);
 
     }
