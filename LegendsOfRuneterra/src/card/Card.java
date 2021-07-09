@@ -55,4 +55,8 @@ public abstract class Card {
         return this.description;
     }
 
+    public String getImage() {
+        return this.image;
+    }
+
 }

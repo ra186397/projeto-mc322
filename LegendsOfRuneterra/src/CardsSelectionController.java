@@ -61,7 +61,7 @@ public class CardsSelectionController implements Initializable {
       health.setTextFill(color);
 
       this.setStyle("-fx-background-color: #201B21");
-      hbox.getChildren().addAll(name, power, health, pane, btn);
+      hbox.getChildren().addAll(imageView, name, power, health, pane, btn);
       hbox.setHgrow(pane, Priority.ALWAYS);
       hbox.setStyle("-fx-background-color: #201B21");
       btn.setTextFill(color);
@@ -76,6 +76,7 @@ public class CardsSelectionController implements Initializable {
         name.setText(follower.getName());
         power.setText(Integer.toString(follower.getBasePower()));
         health.setText(Integer.toString(follower.getBaseHealth()));
+        imageView.setImage(new Image(follower.getImage()));
         setGraphic(hbox);
       }
     }
