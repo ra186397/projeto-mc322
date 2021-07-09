@@ -9,7 +9,7 @@ public class Garen extends Champion {
   private int numAttacks;
 
   public Garen() {
-    super("Garen", "Subir de nível\n Golpeie duas vezes", 5, 5, 5, Region.DEMACIA, "/src/assets/demacia/garen.png");
+    super("Garen", "Subir de nível\n Golpeie duas vezes", 5, 5, 5, Region.DEMACIA, "/assets/demacia/garen.png");
     this.traits.add(Trait.REGENERATION);
     this.numAttacks = 0;
   }

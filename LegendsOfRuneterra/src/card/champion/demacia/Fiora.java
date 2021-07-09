@@ -8,7 +8,7 @@ public class Fiora extends Champion {
   private int deadEnemies;
 
   public Fiora() {
-    super("Fiora", "Subir de nível\n Elimine 2 inimigos", 3, 2, 3, Region.DEMACIA, "/src/assets/demacia/fiora.png");
+    super("Fiora", "Subir de nível\n Elimine 2 inimigos", 3, 2, 3, Region.DEMACIA, "/assets/demacia/fiora.png");
     this.deadEnemies = 0;
   }
 
