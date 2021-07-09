@@ -13,8 +13,8 @@ public class Spell extends Card{
     Region region;
 
 
-    public Spell(String name, String description, int cost, Effect[] newEffects, Region region) {
-        super(name, description, cost, region, newEffects);
+    public Spell(String name, String description, int cost, Effect[] newEffects, Region region, String image) {
+        super(name, description, cost, region, newEffects, image);
     }
 
     public boolean playCard(Board myBoard, Board opponentBoard) {
