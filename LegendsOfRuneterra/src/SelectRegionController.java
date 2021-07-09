@@ -57,7 +57,7 @@ public class SelectRegionController implements Initializable {
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cardsSelection.fxml"));
       Parent root = (Parent) fxmlLoader.load();
-      Scene scene = new Scene(root, 1280, 720);
+      Scene scene = new Scene(root);
       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       stage.setScene(scene);
       stage.show();
