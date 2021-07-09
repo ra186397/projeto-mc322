@@ -103,7 +103,6 @@ public class Game {
                     currentPlayer = redPlayer;
                 }
                 validTurn = false;
-                passed = false;
 
             }
 
