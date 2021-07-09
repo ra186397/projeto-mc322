@@ -19,10 +19,8 @@ public class Runner extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Menu.fxml"));
         Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root, 1280, 720);
-        primaryStage.setMinWidth(1280); // s ets stage width
-        primaryStage.setMinHeight(720); // sets stage heigh
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        Scene scene = new Scene(root);
+        // primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
