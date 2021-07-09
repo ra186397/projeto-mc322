@@ -119,15 +119,26 @@ public class Follower extends Card {
         return myBoard.addCard(this, opponentBoard);
     }
 
-    public void strike(Player player) {
+    public void strike(Player player, Board myBoard) {
         if (this.temporaryPower > 0) {
+            for (Effect effect : effects){
+                effect.checkTrigger(Trigger.STRIKE, myBoard, player.getBoard());
+            }
             player.takeDamage(this.temporaryPower);
         }
     }
 
-    public void strike(Follower defender) {
+    public void strike(Follower defender, Board myBoard, Board opponentBoard) {
         if (this.temporaryPower > 0) {
+            for (Effect effect : effects){
+                effect.checkTrigger(Trigger.STRIKE, myBoard, opponentBoard);
+            }
             defender.takeDamage(this.temporaryPower);
+            if (defender.getCurrentHealth() <= 0){
+                for (Effect effect : effects){
+                    effect.checkTrigger(Trigger.DESTROY_OPPONENT, myBoard, opponentBoard);
+                }
+            }
         }
     }
 

@@ -59,7 +59,7 @@ public class Game {
         while (!gameOver) {
             startNewRound(attackingPlayer, currentPlayer);
 
-            while (!endRound) {
+            while (!endRound) {//consertar passar o round jogar depois de atacar ou nao
 
                 if (currentPlayer == bluePlayer) {
                     opponentBoard = redBoard;
@@ -81,10 +81,12 @@ public class Game {
                         else {
                             validTurn = true;
                             currentPlayer.removeCard(nextCard);
+                            checkDeaths(currentPlayer.getBoard(), opponentBoard);
+                            checkDeaths(opponentBoard, currentPlayer.getBoard());
                             passed = false;
                         }
                     }
-                    else if (nextMove == 1 && !currentPlayer.getBoard().getCards().isEmpty()){
+                    else if (nextMove == 1 && !currentPlayer.getBoard().getCards().isEmpty() && currentPlayer == attackingPlayer){
                         startCombat();
                         validTurn = true;
                         passed = false;
@@ -102,6 +104,9 @@ public class Game {
                 if (currentPlayer == bluePlayer){
                     currentPlayer = redPlayer;
                 }
+                else {
+                    currentPlayer = bluePlayer;
+                }
                 validTurn = false;
                 passed = false;
 
@@ -112,6 +117,8 @@ public class Game {
                     follower.heal(0, true);
                 }
             }
+            updateAllEffects(Trigger.ROUND_END, blueBoard, redBoard);
+            updateAllEffects(Trigger.ROUND_END, redBoard, blueBoard);
         }
 
         if (loser == Color.BLUE) {
@@ -122,6 +129,8 @@ public class Game {
         }
 
         scan.close();
+
+        //MADNDAR DE VOLTA PARA O MENU
 
     }
 
@@ -152,6 +161,9 @@ public class Game {
         //print board
         int[] toAttack = Arrays.stream(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < toAttack.length; i++){
+            for (Effect effect : attackingBoard.getCards().get(i).getEffects()){
+                effect.checkTrigger(Trigger.ATTACK, attackingBoard, defendingBoard);
+            }
             attackingBoard.moveToCombat(i, toAttack[i]);
         }
         System.out.println("Escolha as unidades que devem defender.");
@@ -169,30 +181,25 @@ public class Game {
         for (int i = 0; i < attackers.size(); i++) {
             if (defenders.get(i) == null) {
                 if (attackers.get(i).hasTrait(Trait.DOUBLE_ATTACK)){
-                    attackers.get(i).strike(defender);
+                    attackers.get(i).strike(defender, attackingBoard);
                 }
-                attackers.get(i).strike(defender);
+                attackers.get(i).strike(defender, attackingBoard);
             }
             else {
                 if (attackers.get(i).hasTrait(Trait.DOUBLE_ATTACK)){
-                    attackers.get(i).strike(defenders.get(i));
+                    attackers.get(i).strike(defenders.get(i), attackingBoard, defendingBoard);
                 }
-                attackers.get(i).strike(defenders.get(i));
-                defenders.get(i).strike(attackers.get(i));
+                attackers.get(i).strike(defenders.get(i), attackingBoard, defendingBoard);
+                defenders.get(i).strike(attackers.get(i), attackingBoard, defendingBoard);
             }
             if (attackers.get(i).hasTrait(Trait.FURY) && defenders.get(i).getCurrentHealth() <= 0){
                 attackers.get(i).triggerFury();
             }
         }
 
-        for (int i = 0; i < attackers.size(); i++) {
-            if (attackers.get(i).getCurrentHealth() > 0 && attackers.get(i) != null) {
-                attackingBoard.returnFromCombat(i);
-            }
-            if (defenders.get(i).getCurrentHealth() > 0 && attackers.get(i) != null) {
-                defendingBoard.returnFromCombat(i);
-            }
-        }
+        checkDeaths(attackingBoard, defendingBoard);
+        checkDeaths(defendingBoard, attackingBoard);
+        
         scan.close();
     }
 
@@ -222,19 +229,31 @@ public class Game {
 
         checkWin(attackingPlayer);
         
-        updateAllEffects(Trigger.ROUND_START);
+        updateAllEffects(Trigger.ROUND_START, redBoard, blueBoard);
+        updateAllEffects(Trigger.ROUND_START, blueBoard, redBoard);
+    }
+
+    private void checkDeaths(Board myBoard, Board opponentBoard){
+        for (int i = 0; i < myBoard.getCombatingFollowers().size(); i++) {
+            if (myBoard.getCombatingFollowers().get(i) != null){
+                if (myBoard.getCombatingFollowers().get(i).getCurrentHealth() > 0) {
+                    myBoard.returnFromCombat(i);
+                }
+                else {
+                    for (Effect effect : myBoard.getCombatingFollowers().get(i).getEffects()){
+                        effect.checkTrigger(Trigger.LAST_BREATH, myBoard, opponentBoard);
+                    }
+                    myBoard.getCombatingFollowers().remove(i);
+                }
+            }
+        }
     }
 
 
-    private void updateAllEffects(Trigger trigger) {
-        for (Follower follower : redBoard.getCards()) {
+    private void updateAllEffects(Trigger trigger, Board myBoard, Board opponentBoard){
+        for (Follower follower : myBoard.getCards()) {
             for (Effect effect : follower.getEffects()) {
-                effect.checkTrigger(trigger, redBoard, blueBoard);
-            }
-        }
-        for (Follower follower : blueBoard.getCards()) {
-            for (Effect effect : follower.getEffects()) {
-                effect.checkTrigger(trigger, blueBoard, redBoard);
+                effect.checkTrigger(trigger, myBoard, opponentBoard);
             }
         }
     }
