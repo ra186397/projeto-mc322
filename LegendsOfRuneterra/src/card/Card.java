@@ -11,9 +11,9 @@ public abstract class Card {
     protected int cost;
     protected Region region;
     protected ArrayList<Effect> effects;
-    //TODO CRIAR UM ATRIBUTO QUE GUARDA A IMAGEM DESSA CARTA.
+    protected String image;
 
-    public Card(String name, String description, int cost, Region region, Effect[] newEffects) { //Carta com efeito
+    public Card(String name, String description, int cost, Region region, Effect[] newEffects, String image) { //Carta com efeito
         this.name = name;
         this.description = description;
         this.cost = cost;
@@ -22,14 +22,16 @@ public abstract class Card {
         for (int i = 0; i < newEffects.length; i++) {
             this.effects.add(newEffects[i]);
         }
+        this.image = image;
     }
 
-    public Card(String name, String description, int cost, Region region) { //Carta sem efeito
+    public Card(String name, String description, int cost, Region region, String image) { //Carta sem efeito
         this.name = name;
         this.description = description;
         this.cost = cost;
         this.region = region;
         this.effects = new ArrayList<Effect>();
+        this.image = image;
 
     }
 

@@ -239,7 +239,7 @@ public class Menu {
 
         Effect[] effectTiana = { new Effect(6, Trigger.PLAY) };
         Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8,
-                7, 7, Region.DEMACIA, effectTiana);
+                7, 7, Region.DEMACIA, effectTiana, "/src/assets/demacia/tiana.png");
         demacia_units.add(tiana);
 
         Effect[] effectVanguarda = { new Effect(0, 1, 1, Trigger.PLAY) };
