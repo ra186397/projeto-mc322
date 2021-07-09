@@ -76,6 +76,7 @@ public class CardsSelectionController implements Initializable {
         name.setText(follower.getName());
         power.setText(Integer.toString(follower.getBasePower()));
         health.setText(Integer.toString(follower.getBaseHealth()));
+
         imageView.setImage(new Image(follower.getImage()));
         setGraphic(hbox);
       }
