@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -44,6 +46,7 @@ public class CardsSelectionController implements Initializable {
   static class Cell extends ListCell<Follower> {
     HBox hbox = new HBox();
     JFXButton btn = new JFXButton("Escolher Carta");
+    ImageView imageView = new ImageView();
     Label name = new Label("");
     Label power = new Label("");
     Label health = new Label("");

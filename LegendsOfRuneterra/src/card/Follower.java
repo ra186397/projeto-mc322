@@ -201,4 +201,5 @@ public class Follower extends Card {
             currentHealth += amount;
         }
     }
+
 }
