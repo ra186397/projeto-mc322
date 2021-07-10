@@ -44,8 +44,7 @@ public class Effect {
         switch(effect) {
             case 0: // Dê +n/+m a todas as unidades aliadas evocadas.
             for (Follower follower : myBoard.getCards()) {
-                follower.baseHealth += amount1;
-                follower.basePower += amount2;//O false e se e temporario ou nao, false e permanente true e temporario
+                follower.buff(amount1, amount2);//O false e se e temporario ou nao, false e permanente true e temporario
             }
 
             case 1: // Dê +n/+m a uma unidade aliada nessa rodada.
@@ -96,9 +95,7 @@ public class Effect {
                 else {
                     ally = myBoard.getPlayer().getRandomResult(myBoard.getCards().size());
                 }
-                myBoard.getCards().get(ally).baseHealth = 2 * myBoard.getCards().get(ally).baseHealth;
-                myBoard.getCards().get(ally).currentHealth = 2 * myBoard.getCards().get(ally).currentHealth;
-                myBoard.getCards().get(ally).basePower = 2 * myBoard.getCards().get(ally).basePower;
+                myBoard.getCards().get(ally).buff(myBoard.getCards().get(ally).getTemporaryPower(), myBoard.getCards().get(ally).getCurrentHealth());
             }
 
             case 5: // Escolha um aliado e um oponente para um combate imediato.
@@ -168,7 +165,7 @@ public class Effect {
                 else {
                     ally = myBoard.getPlayer().getRandomResult(myBoard.getCards().size());
                 }
-                myBoard.getCards().get(ally).temporaryPower = 0;
+                myBoard.getCards().get(ally).addTempBuff(-myBoard.getCards().get(ally).getTemporaryPower(), 0);
             }
 
             case 10: // Cria uma barreira que anula o próximo dano que uma unidade aliada levaria. Dura uma rodada.
@@ -200,9 +197,6 @@ public class Effect {
                 Champion champion = (Champion)self_follower;
                 champion.evolve();
             }
-
-
-
         }
         scan.close();
     }

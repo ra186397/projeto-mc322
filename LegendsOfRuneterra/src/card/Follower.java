@@ -174,6 +174,14 @@ public class Follower extends Card {
         return this.currentHealth;
     }
 
+    public int getTemporaryPower() {
+        return this.temporaryPower;
+    }
+
+    public ArrayList<Trait> getTraits() {
+        return traits;
+    }
+
     public int getBaseHealth() {
         return this.baseHealth;
     }
