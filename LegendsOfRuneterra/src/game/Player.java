@@ -41,15 +41,16 @@ public class Player {
 
     public void changeStartingCards() {
 
-        Scanner scan = new Scanner(System.in);
         System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço: ");
         String[] numeros = scan.nextLine().split(" ");
+        ArrayList<Card> toChange = new ArrayList<Card>();
         for (String num : numeros) {
-            Card nextCard = hand.get(Integer.parseInt(num));
-            changeCard(nextCard);
+            toChange.add(hand.get(Integer.parseInt(num)));
+        }
+        for (Card card : toChange) {
+            changeCard(card);
         }
 
-        scan.close();
     }
 
     public void changeCard(Card toReturn) {
