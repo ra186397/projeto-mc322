@@ -36,6 +36,11 @@ public class Player {
     public void drawStartingHand() {
         deck.shuffle();
         drawCard(4);
+        
+    }
+
+    public void changeStartingCards() {
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço: ");
         String[] numeros = scan.nextLine().split(" ");
@@ -44,7 +49,6 @@ public class Player {
         }
 
         scan.close();
-        
     }
 
     public void changeCard(int index) {

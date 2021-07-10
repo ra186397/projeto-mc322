@@ -228,24 +228,26 @@ public class Menu {
     }
 
     private void createCards() { // Método que instancia todas as cartas implementadas.
-        // Nota: nas especificações está falando que o Garen deve atacar duas vezes ao
-        // invés de golpear duas vezes. Mudamos para golpear assumindo que o professor
-        // confundiu golpear com atacar.
+
         Garen garen = new Garen();
         demacia_units.add(garen);
 
+
         Fiora fiora = new Fiora();
         demacia_units.add(fiora);
+
 
         Effect[] effectTiana = { new Effect(6, Trigger.PLAY) };
         Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8,
                 7, 7, Region.DEMACIA, effectTiana, "/assets/demacia/tiana.png");
         demacia_units.add(tiana);
 
+
         Effect[] effectVanguarda = { new Effect(0, 1, 1, Trigger.PLAY) };
         Follower vanguarda = new Follower("Vanguarda", "Dê +1/+1 a todos os seguidores aliados", 4, 3, 3,
                 Region.DEMACIA, effectVanguarda, "/assets/demacia/vanguarda.png");
         demacia_units.add(vanguarda);
+
 
         Effect[] effectDuelista = { new Effect(2, "Poro", Trigger.DESTROY_OPPONENT) };
         Follower duelista = new Follower("Duelista",
@@ -253,21 +255,27 @@ public class Menu {
                 3, 2, Region.DEMACIA, effectDuelista, "/assets/demacia/duelista.png");
         demacia_units.add(duelista);
 
+
         Trait[] traitDefensor = { Trait.FURY };
         Follower defensor = new Follower("Defensor", "", 2, 2, 2, Region.DEMACIA, traitDefensor, 0, 1, "/assets/demacia/defensor.png");
         demacia_units.add(defensor);
 
+
         Follower poro = new Follower("Poro", "", 1, 2, 1, Region.DEMACIA, "/assets/demacia/poro.png");
         demacia_units.add(poro);
+
+
         Effect[] effectPoroDefensor = { new Effect(8, Trigger.LAST_BREATH) };
         Follower poroDefensor = new Follower("Poro Defensor", "Ao ser destruído, você ganha uma carta.", 1, 1, 2,
                 Region.DEMACIA, effectPoroDefensor, "/assets/demacia/poro-defensor.png");
         demacia_units.add(poroDefensor);
 
+
         Effect[] effectJulgamento = { new Effect(7, Trigger.PLAY) };
         Spell julgamento = new Spell("Julgamento", "Um aliado atacante golpeia todos os oponentes defensores", 8,
                 effectJulgamento, Region.DEMACIA, "/assets/demacia/julgamento.png");
         demacia_spells.add(julgamento);
+
 
         Effect[] effectValorRedobrado = { new Effect(3, Trigger.PLAY), new Effect(4, Trigger.PLAY) };
         Spell valorRedobrado = new Spell("Valor Redobrado",
@@ -275,23 +283,51 @@ public class Menu {
                 Region.DEMACIA, "/assets/demacia/valor-redobrado.png");
         demacia_spells.add(valorRedobrado);
 
+
         Effect[] effectGolpeCerteiro = { new Effect(1, 1, 1, Trigger.PLAY) };
         Spell golpeCerteiro = new Spell("Golpe Certeiro", "Dê +1/+1 a um aliado nesta rodada", 1, effectGolpeCerteiro,
                 Region.DEMACIA, "/assets/demacia/golpe-certeiro.png");
         demacia_spells.add(golpeCerteiro);
+
 
         Effect[] effectCombateUmAUm = { new Effect(5, Trigger.PLAY) };
         Spell combateUmAUm = new Spell("Combate um-a-um", "Escolha um aliado e um oponente para um combate imediato", 2,
                 effectCombateUmAUm, Region.DEMACIA, "/assets/demacia/combate-um-a-um.png");
         demacia_spells.add(combateUmAUm);
 
+
         Effect[] effectXamaDoGelo = {new Effect(14, Trigger.ROUND_START)};
         Follower xamaDoGelo = new Follower("Xamã do Gelo", "", 5, 3, 3, Region.FRELJORD, effectXamaDoGelo, "/assets/freljord/xama-do-gelo.png");
         freljord_units.add(xamaDoGelo);
 
+
+        Effect[] effectArqueiroDoVale = {new Effect(9, Trigger.PLAY)};
+        Follower arqueiroDoVale = new Follower("Arqueiro do Vale", "", 2, 3, 1, Region.FRELJORD, effectArqueiroDoVale, "/assets/freljord/arqueiro-do-vale.png");
+        freljord_units.add(arqueiroDoVale);
+
+
+        Effect[] effectLoboFeroz = {new Effect(16, Trigger.STRIKE)};
+        Follower loboFeroz = new Follower("Lobo Feroz", "", 2, 3, 2, Region.FRELJORD, effectLoboFeroz, "/assets/freljord/lobo-feroz.png");
+        freljord_units.add(loboFeroz);
+
+
+        Effect[] effectVigia = {new Effect(8, Trigger.LAST_BREATH)};
+        Follower vigia = new Follower("Vigia", "", 2, 2, 3, Region.FRELJORD, effectVigia, "/assets/freljord/vigia.png");
+        freljord_units.add(vigia);
+
+        Effect[] effectTaverneiroGentil = {new Effect(3, Trigger.PLAY)};
+        Follower taverneiroGentil = new Follower("Taverneiro Gentil", "", 3, 3, 3, Region.FRELJORD, effectTaverneiroGentil, "/assets/freljord/taverneiro-gentil.png");
+        freljord_units.add(taverneiroGentil);
+
+        Effect[] effectElixirDeFerro = {new Effect(1, 0, 2, Trigger.PLAY)};
+        Spell elixirDeFerro = new Spell("Elixir de Ferro", "", 0, effectElixirDeFerro, Region.FRELJORD, "/assets/freljord/elixir-de-ferro.png");
+        freljord_spells.add(elixirDeFerro);
+
+
         Effect[] effectCongelar = { new Effect(9, Trigger.PLAY)};
         Spell congelar = new Spell("Congelar", "", 1, effectCongelar, Region.FRELJORD, "/assets/freljord/congelar.png");
         freljord_spells.add(congelar);
+
 
         Effect[] effectAvalanche = {new Effect(15, 2, Trigger.PLAY)};
         Spell avalanche = new Spell("Avalanche", "", 3, effectAvalanche, Region.FRELJORD, "/assets/freljord/avalanche.png");
