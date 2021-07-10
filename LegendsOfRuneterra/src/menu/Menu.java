@@ -43,9 +43,7 @@ public class Menu {
         this.noxus_units = new ArrayList<Card>();
         this.freljord_spells = new ArrayList<Card>();
         createCards();
-        this.decks = new ArrayList<Deck>();
-        Deck demacia = buildBaseDeck();
-        decks.add(demacia);
+        this.decks = buildBaseDecks();
         this.p1 = null;
         this.p2 = null;
     }
@@ -103,22 +101,40 @@ public class Menu {
         return this.decks;
     }
 
-    private Deck buildBaseDeck() {
+    private ArrayList<Deck> buildBaseDecks() {
 
-        Deck baseDeck = new Deck(Region.DEMACIA, Region.DEMACIA, "Demacia");
-        baseDeck.addCard(getCardByName("Garen", demacia_units));
-        baseDeck.addCard(getCardByName("Tiana", demacia_units));
-        baseDeck.addCard(getCardByName("Vanguarda", demacia_units));
-        baseDeck.addCard(getCardByName("Duelista", demacia_units));
-        baseDeck.addCard(getCardByName("Defensor", demacia_units));
-        baseDeck.addCard(getCardByName("Poro", demacia_units));
-        baseDeck.addCard(getCardByName("Poro Defensor", demacia_units));
-        baseDeck.addCard(getCardByName("Julgamento", demacia_spells));
-        baseDeck.addCard(getCardByName("Valor Redobrado", demacia_spells));
-        baseDeck.addCard(getCardByName("Golpe Certeiro", demacia_spells));
-        baseDeck.addCard(getCardByName("Combate um-a-um", demacia_spells));
+        ArrayList<Deck> decks = new ArrayList<Deck>();
 
-        return baseDeck;
+        Deck demacia = new Deck(Region.DEMACIA, Region.DEMACIA, "Demacia");
+        demacia.addCard(getCardByName("Garen", demacia_units));
+        demacia.addCard(getCardByName("Tiana", demacia_units));
+        demacia.addCard(getCardByName("Vanguarda", demacia_units));
+        demacia.addCard(getCardByName("Duelista", demacia_units));
+        demacia.addCard(getCardByName("Defensor", demacia_units));
+        demacia.addCard(getCardByName("Poro", demacia_units));
+        demacia.addCard(getCardByName("Poro Defensor", demacia_units));
+        demacia.addCard(getCardByName("Julgamento", demacia_spells));
+        demacia.addCard(getCardByName("Valor Redobrado", demacia_spells));
+        demacia.addCard(getCardByName("Golpe Certeiro", demacia_spells));
+        demacia.addCard(getCardByName("Combate um-a-um", demacia_spells));
+
+        Deck freljord = new Deck(Region.FRELJORD, Region.FRELJORD, "Freljord");
+        freljord.addCard(getCardByName("Arqueiro do Vale", freljord_units));
+        freljord.addCard(getCardByName("Elnuk", freljord_units));
+        freljord.addCard(getCardByName("Taverneiro Gentil", freljord_units));
+        freljord.addCard(getCardByName("Xama do Gelo", freljord_units));
+        freljord.addCard(getCardByName("Lobo Feroz", freljord_units));
+        freljord.addCard(getCardByName("Tryndamere", freljord_units));
+        freljord.addCard(getCardByName("Vigia", freljord_units));
+        freljord.addCard(getCardByName("Avalanche", freljord_spells));
+        freljord.addCard(getCardByName("Congelar", freljord_spells));
+        freljord.addCard(getCardByName("Elixir de Ferro", freljord_spells));
+        freljord.addCard(getCardByName("Furia do Norte", freljord_spells));
+
+        decks.add(demacia);
+        decks.add(freljord);
+
+        return decks;
 
     }
 
@@ -172,6 +188,7 @@ public class Menu {
 
         Effect[] effectPorDemacia = { new Effect(17, 3, 3, Trigger.PLAY)};
         Spell porDemacia = new Spell("Por Demacia", "", 6, effectPorDemacia, Region.DEMACIA, "/assets/demacia/por-demacia.png");
+        demacia_spells.add(porDemacia);
 
 
         Effect[] effectJulgamento = { new Effect(7, Trigger.PLAY) };
