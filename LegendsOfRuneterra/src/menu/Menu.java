@@ -230,7 +230,7 @@ public class Menu {
         demacia_units.add(garen);
 
         Fiora fiora = new Fiora();
-        demacia_units.add(fiora);
+        // demacia_units.add(fiora);
 
         Effect[] effectTiana = { new Effect(6, Trigger.PLAY) };
         Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8,

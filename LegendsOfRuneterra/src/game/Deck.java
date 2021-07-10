@@ -19,10 +19,9 @@ public class Deck {
     public Deck(Region region1, Region region2, String name) {
         this.numCards = 0;
         this.region1 = region1;
-        if (region1 == region2){
+        if (region1 == region2) {
             this.region2 = null;
-        }
-        else {
+        } else {
             this.region2 = region2;
         }
         this.name = name;
@@ -39,11 +38,9 @@ public class Deck {
     }
 
     public void addCard(Card newCard) {
-        if (Collections.frequency(cards, newCard) == 3) {
-            System.out.println("Você já tem 3 cópias dessa carta no seu deck!");
-        } else {
-            cards.add(newCard);
-        }
+
+        cards.add(newCard);
+
     }
 
     public String getName() {

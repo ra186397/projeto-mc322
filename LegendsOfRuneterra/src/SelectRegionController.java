@@ -16,10 +16,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import menu.Menu;
 
 public class SelectRegionController implements Initializable {
 
   private Deck newDeck;
+  private Menu menu = Menu.getMenu();
 
   @FXML
   private ToggleGroup firstRegion;
@@ -86,13 +88,13 @@ public class SelectRegionController implements Initializable {
     newDeck = new Deck(transformRadioToRegion(selectedFirstRegion), transformRadioToRegion(selectedSecondRegion),
         deckName.getText());
 
+    menu.getDecks().add(newDeck);
+
     try {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/cardsSelection.fxml"));
       Parent root = (Parent) fxmlLoader.load();
       Scene scene = new Scene(root);
       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      CardsSelectionController cardsSelection = new CardsSelectionController();
-      cardsSelection.getDeck(newDeck);
       stage.setScene(scene);
       stage.show();
 
