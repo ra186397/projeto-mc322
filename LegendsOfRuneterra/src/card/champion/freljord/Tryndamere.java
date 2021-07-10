@@ -7,23 +7,23 @@ import card.champion.Champion;
 
 public class Tryndamere extends Champion {
 
-  private int deadEnemies;
+  public Tryndamere() {
+    super("Tryndamere", "", 8, 8, 4, Region.FRELJORD, "/assets/freljord/tryndamere.png");
+    traits.add(Trait.FURY);
+    furyHealth = 0;
+    furyPower = 2;
 
-  public Tryndamere(String name, String description, int cost, int baseHealth, int basePower, Region region,
-      Effect[] newEffects, Trait[] traits) {
-    super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
-
-    this.deadEnemies = 0;
   }
 
   @Override
   public void evolve() {
     System.out.println("Tryndamere Evoluiu!");
-    System.out.println("Tryndareme - Meu braço direito é ainda mais forte que o direito!!");
+    System.out.println("Tryndareme - Meu braço direito é ainda mais forte que o meu esquerdo!!");
 
     this.basePower = 9;
     this.baseHealth = 9;
-    this.currentHealth += 5;
+    this.currentHealth = 9;
+    
   }
 
   @Override
