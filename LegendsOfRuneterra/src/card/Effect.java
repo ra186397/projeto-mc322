@@ -131,7 +131,7 @@ public class Effect {
                 myBoard.getCards().get(ally).strike(opponentBoard.getPlayer(), myBoard);
             }
 
-            case 7: // Um aliado atacante golpeia todos os oponentes defensores.
+            case 7: // Um aliado golpeia todos os oponentes.
             if (myBoard.getCards().isEmpty()){
                 System.out.println("Você não tem nenhum aliado.");
             }
@@ -197,6 +197,10 @@ public class Effect {
                 Champion champion = (Champion)self_follower;
                 champion.evolve();
             }
+
+            case 14: //Deixe o inimigo mais forte com 0 de poder nesta rodada.
+
+            case 15: //Dê n de dano a todas as unidades.
         }
         scan.close();
     }

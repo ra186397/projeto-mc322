@@ -285,9 +285,17 @@ public class Menu {
                 effectCombateUmAUm, Region.DEMACIA, "/assets/demacia/combate-um-a-um.png");
         demacia_spells.add(combateUmAUm);
 
+        Effect[] effectXamaDoGelo = {new Effect(14, Trigger.ROUND_START)};
+        Follower xamaDoGelo = new Follower("Xamã do Gelo", "", 5, 3, 3, Region.FRELJORD, effectXamaDoGelo, "/assets/freljord/xama-do-gelo.png");
+        freljord_units.add(xamaDoGelo);
+
         Effect[] effectCongelar = { new Effect(9, Trigger.PLAY)};
         Spell congelar = new Spell("Congelar", "", 1, effectCongelar, Region.FRELJORD, "/assets/freljord/congelar.png");
         freljord_spells.add(congelar);
+
+        Effect[] effectAvalanche = {new Effect(15, 2, Trigger.PLAY)};
+        Spell avalanche = new Spell("Avalanche", "", 3, effectAvalanche, Region.FRELJORD, "/assets/freljord/avalanche.png");
+        freljord_spells.add(avalanche);
 
     }
 
