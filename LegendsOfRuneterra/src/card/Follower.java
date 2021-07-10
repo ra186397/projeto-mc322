@@ -156,6 +156,10 @@ public class Follower extends Card {
         return this.temporaryPower;
     }
 
+    public ArrayList<Trait> getTraits(){
+        return traits;
+    }
+
     public boolean hasTrait(Trait traco){
         return traits.contains(traco);
     }
