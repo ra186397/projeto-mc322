@@ -38,7 +38,7 @@ public class Effect implements Cloneable{
         this.cardName = cardName;
     }
 
-    private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower self_follower) {
+    private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower self_follower, int amount3) {
         Scanner scan = new Scanner(System.in);
 
         switch(effect) {
@@ -163,9 +163,9 @@ public class Effect implements Cloneable{
                     ally = scan.nextInt();
                 }
                 else {
-                    ally = myBoard.getPlayer().getRandomResult(myBoard.getCards().size());
+                    ally = opponentBoard.getPlayer().getRandomResult(opponentBoard.getCards().size());
                 }
-                myBoard.getCards().get(ally).addTempBuff(-myBoard.getCards().get(ally).getTemporaryPower(), 0);
+                opponentBoard.getCards().get(ally).addTempBuff(-myBoard.getCards().get(ally).getTemporaryPower(), 0);
             }
 
             case 10: // Cria uma barreira que anula o próximo dano que uma unidade aliada levaria. Dura uma rodada.
@@ -187,25 +187,45 @@ public class Effect implements Cloneable{
             case 11: //Golpeia o nexus do adversário para n pontos de dano.
             opponentBoard.getPlayer().takeDamage(amount1);
     
-            case 12://efeito de buff temporário
+            case 12://Efeito de buff temporário
             self_follower.buff(-amount1, -amount2);
             self_follower.getEffects().remove(this);
 
             case 13://Evolução
-            amount1 += 1;
-            Champion champion = (Champion)self_follower;
-            champion.checkEvolution();
-
+            amount1 += amount3;
+            if (amount1 >= amount2){
+                Champion champion = (Champion)self_follower;
+                champion.checkEvolution();
+            }
+            
             case 14: //Deixe o inimigo mais forte com 0 de poder nesta rodada.
-
+            if (opponentBoard.getCards().size() != 0){
+                Follower mostPowerful = opponentBoard.getCards().get(0);
+                for (Follower follower : opponentBoard.getCards()){
+                    if (follower.getTemporaryPower() > mostPowerful.getTemporaryPower()){
+                        mostPowerful = follower;
+                    }
+                }
+                mostPowerful.addTempBuff(-mostPowerful.getTemporaryPower(), 0);
+            }
+            
             case 15: //Dê n de dano a todas as unidades.
+            for (Follower opponent : opponentBoard.getCards()){
+                opponent.takeDamage(amount1);
+            }
+            for (Follower ally : myBoard.getCards()){
+                ally.takeDamage(amount1);
+            }
+            
+            case 16://Dê +n/+m a si mesmo
+            self_follower.buff(amount1, amount2);
         }
         scan.close();
     }
 
-    public void checkTrigger(Trigger occurredTrigger, Board myBoard, Board opponentBoard, Follower follower){
+    public void checkTrigger(Trigger occurredTrigger, Board myBoard, Board opponentBoard, Follower follower, int amount){
         if (trigger == occurredTrigger){
-            applyEffect(myBoard, opponentBoard, follower);
+            applyEffect(myBoard, opponentBoard, follower, amount);
         }
     }
 

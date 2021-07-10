@@ -10,6 +10,8 @@ public enum Trigger {
     ATTACK,
     TAKE_DAMAGE,//nao implementado porque nao ha cartas que usam ainda
     ROUND_END,
-    DRAW_CARD//o mesmo
+    DRAW_CARD,//o mesmo
+    SEEN_ALLY_DIE,
+    SPENT_MANA
     
 }

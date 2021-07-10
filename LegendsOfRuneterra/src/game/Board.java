@@ -30,7 +30,7 @@ public class Board{
         cards.remove(followerNum);
         cards.add(card);
         for (Effect effect : card.getEffects()) {
-            effect.checkTrigger(Trigger.PLAY, this, opponentBoard, card);
+            effect.checkTrigger(Trigger.PLAY, this, opponentBoard, card, 0);
         }
     }
 
@@ -59,7 +59,7 @@ public class Board{
         } else if (player.spendMana(card.getCost(), false)) {
             cards.add(card);
             for (Effect effect : card.getEffects()) {
-                effect.checkTrigger(Trigger.PLAY, this, opponentBoard, card);
+                effect.checkTrigger(Trigger.PLAY, this, opponentBoard, card, 0);
             }
             return true;
         }
