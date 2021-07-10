@@ -56,7 +56,9 @@ public class Game {
         Scanner scan = new Scanner(System.in);
         Board opponentBoard;
         bluePlayer.drawStartingHand();
+        bluePlayer.changeStartingCards();
         redPlayer.drawStartingHand();
+        redPlayer.changeStartingCards();
         while (!gameOver) {
             startNewRound(attackingPlayer, currentPlayer);
             hasAttacked = false;
