@@ -52,8 +52,9 @@ public class Player {
     }
 
     public void changeCard(int index) {
-        deck.addCard(hand.get(index));
-        hand.remove(index);
+        Card toReturn = hand.get(index);
+        deck.addCard(toReturn);
+        hand.remove(toReturn);
         deck.shuffle();
         drawCard(1);
     }
