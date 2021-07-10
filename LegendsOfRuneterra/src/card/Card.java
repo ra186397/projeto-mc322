@@ -48,5 +48,4 @@ public abstract class Card {
     public int getCost() {
         return cost;
     }
-
 }
