@@ -4,6 +4,7 @@ import java.util.Scanner;
 import game.Board;
 import game.Player;
 import card.Follower;
+import card.champion.Champion;
 public class Effect {
     
     Trigger trigger;
@@ -192,6 +193,14 @@ public class Effect {
             case 12://efeito de buff temporário
             self_follower.buff(-amount1, -amount2);
             self_follower.getEffects().remove(this);
+
+            case 13://Efeito de evolução do Garen
+            amount1 += 1;
+            if (amount1 >= 2){
+                Champion champion = (Champion)self_follower;
+                champion.evolve();
+            }
+
 
 
         }
