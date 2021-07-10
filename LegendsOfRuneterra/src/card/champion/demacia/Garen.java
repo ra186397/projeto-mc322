@@ -8,10 +8,13 @@ import card.champion.Champion;
 
 public class Garen extends Champion {
 
+  int evolutionCounter;
+
   public Garen() {
     super("Garen", "Subir de nível\n Golpeie duas vezes", 5, 5, 5, Region.DEMACIA, "/assets/demacia/garen.png");
     this.traits.add(Trait.REGENERATION);
     this.effects.add(new Effect(13, 0, Trigger.STRIKE));
+    evolutionCounter = 0;
   }
 
   @Override
@@ -28,8 +31,11 @@ public class Garen extends Champion {
   }
 
   @Override
-  public boolean checkEvolution(){
-    return true;//não sendo utilizado, remover da superclasse Champion se não for usada depois.
+  public void checkEvolution(){
+    evolutionCounter += 1;
+    if (evolutionCounter >= 2){
+      evolve();
+    }
   }
 
 }

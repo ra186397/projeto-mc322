@@ -191,12 +191,10 @@ public class Effect implements Cloneable{
             self_follower.buff(-amount1, -amount2);
             self_follower.getEffects().remove(this);
 
-            case 13://Efeito de evolução do Garen
+            case 13://Evolução
             amount1 += 1;
-            if (amount1 >= 2){
-                Champion champion = (Champion)self_follower;
-                champion.evolve();
-            }
+            Champion champion = (Champion)self_follower;
+            champion.checkEvolution();
 
             case 14: //Deixe o inimigo mais forte com 0 de poder nesta rodada.
 

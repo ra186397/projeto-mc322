@@ -81,7 +81,7 @@ public class Follower extends Card {
     public Follower(String name, String description, int cost, int basePower, int baseHealth, Region region, // Tem traço (um deles sendo fúria) e efeito.
             Effect[] newEffects, Trait[] newTraits, int furyPower, int furyHealth, String image) {
 
-        super(name, description, cost, region, newEffectList, image);
+        super(name, description, cost, region, newEffects, image);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
@@ -90,10 +90,10 @@ public class Follower extends Card {
         this.traits = new ArrayList<Trait>();
         this.furyHealth = furyHealth;
         this.furyPower = furyPower;
-        for (Trait trait : newTraitList) {
+        for (Trait trait : newTraits) {
             this.traits.add(trait);
         }
-        for (Effect effect : newEffectList) {
+        for (Effect effect : newEffects) {
             this.effects.add(effect);
         }
     }
@@ -200,19 +200,21 @@ public class Follower extends Card {
     }
 
     public Follower makeCopy(){
-        ArrayList<Effect> newEffectList = new ArrayList<Effect>();
-        for (Effect effect : effects){
+        Effect[] newEffectList = new Effect[effects.size()];
+        for (int i = 0; i < effects.size(); i++){
             try {
-                newEffectList.add((Effect)effect.clone());
-            } catch (CloneNotSupportedException e) {
+                newEffectList[i] = (Effect)effects.get(i).clone();
+            }
+            catch (CloneNotSupportedException e) {
                 System.out.println("Uma carta não pôde ser clonada");
                 e.printStackTrace();
             }
         }
-        ArrayList<Trait> newTraitList = new ArrayList<Trait>();
-        for (Trait trait : traits){
-            newTraitList.add(trait);
+        Trait[] newTraitList = new Trait[traits.size()];
+        for (int i = 0; i < traits.size(); i++){
+            newTraitList[i] = traits.get(i);
         }
         Follower newFollower = new Follower(name, description, cost, basePower, baseHealth, region, newEffectList, newTraitList, furyPower, furyHealth, image);
+        return newFollower;
     }
 }

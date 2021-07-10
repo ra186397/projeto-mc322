@@ -57,4 +57,6 @@ public abstract class Card {
         return this.image;
     }
 
+    public abstract Card makeCopy();
+
 }
