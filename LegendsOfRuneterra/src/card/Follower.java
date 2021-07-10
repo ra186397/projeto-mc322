@@ -116,7 +116,11 @@ public class Follower extends Card {
     }
 
     public void addTrait(Trait trait) {
-        this.traits.add(trait);
+
+        traits.add(trait);
+        if (trait == Trait.BARRIER){
+            effects.add(new Effect(18, Trigger.ROUND_END));
+        }
     }
 
     public boolean playCard(Board myBoard, Board opponentBoard) {
@@ -148,7 +152,13 @@ public class Follower extends Card {
 
     public void takeDamage(int damage) {
         if (!hasTrait(Trait.BARRIER)) {
+            if (hasTrait(Trait.TOUGH)){
+                damage -= 1;
+            }
             this.currentHealth -= damage;
+        }
+        else {
+            traits.remove(Trait.BARRIER);
         }
     }
 

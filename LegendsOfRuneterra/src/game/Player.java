@@ -21,12 +21,14 @@ public class Player {
     private boolean isHuman;
     private Color color;
     private boolean loser;
+    private Scanner scan;
 
     public Player(Deck deck, boolean isHuman) {
         this.hand = new ArrayList<Card>();
         this.maxMana = 0;
         this.currentMana = 0;
         this.spellMana = 0;
+        this.scan = new Scanner(System.in);
         this.nexusLife = 20;
         this.deck = deck;
         this.isHuman = isHuman;
@@ -41,14 +43,13 @@ public class Player {
 
     public void changeStartingCards() {
 
-        Scanner scan = new Scanner(System.in);
         System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço: ");
         String[] numeros = scan.nextLine().split(" ");
         for (String num : numeros) {
             changeCard(Integer.parseInt(num));
         }
 
-        scan.close();
+        scan.reset();
     }
 
     public void changeCard(int index) {
@@ -128,7 +129,6 @@ public class Player {
     public int selectAction() {
         int action;
         if (isHuman == true){
-            Scanner scan = new Scanner(System.in);
             System.out.println("Digite 0 para jogar uma carta, 1 para combater ou 2 para passar o turno: ");
             action = scan.nextInt();
             scan.close();
@@ -143,7 +143,6 @@ public class Player {
         Card nextCard;
         int numCard = 0;
         if (isHuman) {
-            Scanner scan = new Scanner(System.in);
             System.out.println("Digite o número da carta que deseja jogar: ");
             for (Card card : hand) {
                 System.out.println(numCard + " - " + card.getName());
@@ -154,7 +153,7 @@ public class Player {
                 try {
                     numCard = scan.nextInt();
                     nextCard = hand.get(numCard);
-                    scan.close();
+                    scan.reset();
                     return nextCard;
                 } catch (InputMismatchException | IndexOutOfBoundsException f) {
                     System.out.println("número inválido, tente novamente: ");
@@ -231,6 +230,10 @@ public class Player {
 
     public Color getColor(){
         return color;
+    }
+
+    public void closeScan(){
+        scan.close();
     }
 
 }

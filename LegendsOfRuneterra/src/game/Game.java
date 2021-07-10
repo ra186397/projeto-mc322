@@ -139,6 +139,10 @@ public class Game {
         }
 
         scan.close();
+        redBoard.closeScan();
+        blueBoard.closeScan();
+        redPlayer.closeScan();
+        bluePlayer.closeScan();
 
         //MADNDAR DE VOLTA PARA O MENU
 

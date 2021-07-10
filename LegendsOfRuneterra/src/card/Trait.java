@@ -7,6 +7,7 @@ public enum Trait {
     FURY,
     REGENERATION,
     BARRIER,
-    QUICK_ATTACK
+    QUICK_ATTACK,
+    TOUGH
     
 }

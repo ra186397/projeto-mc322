@@ -198,7 +198,7 @@ public class Effect implements Cloneable{
                 champion.checkEvolution();
             }
             
-            case 14: //Deixe o inimigo mais forte com 0 de poder nesta rodada.
+            case 14: //Deixa o inimigo mais forte com 0 de poder nesta rodada.
             if (opponentBoard.getCards().size() != 0){
                 Follower mostPowerful = opponentBoard.getCards().get(0);
                 for (Follower follower : opponentBoard.getCards()){
@@ -209,7 +209,7 @@ public class Effect implements Cloneable{
                 mostPowerful.addTempBuff(-mostPowerful.getTemporaryPower(), 0);
             }
             
-            case 15: //Dê n de dano a todas as unidades.
+            case 15: //Da n de dano a todas as unidades.
             for (Follower opponent : opponentBoard.getCards()){
                 opponent.takeDamage(amount1);
             }
@@ -217,8 +217,18 @@ public class Effect implements Cloneable{
                 ally.takeDamage(amount1);
             }
             
-            case 16://Dê +n/+m a si mesmo
+            case 16://Da +n/+m a si mesmo.
             self_follower.buff(amount1, amount2);
+
+            case 17://Da +n/+m a todas as unidades aliadas nessa rodada.
+            for (Follower ally : myBoard.getCards()){
+                ally.addTempBuff(3, 3);
+            }
+
+            case 18://Remove barreira de si mesmo
+            if (self_follower.hasTrait(Trait.BARRIER)){
+                self_follower.takeDamage(1);
+            }
         }
         scan.close();
     }

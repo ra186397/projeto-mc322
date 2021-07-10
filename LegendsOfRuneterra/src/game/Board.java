@@ -132,4 +132,8 @@ public class Board{
         combatingFollowers.remove(n);
     }
 
+    public void closeScan(){
+        scan.close();
+    }
+
 }
