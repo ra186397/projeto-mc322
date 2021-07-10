@@ -17,7 +17,7 @@ import card.champion.noxus.*;
 import game.Deck;
 import game.Game;
 import game.Player;
-import jdk.nashorn.internal.runtime.Undefined;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -103,30 +103,35 @@ public class Menu {
         return this.decks;
     }
 
-    /*
-     * private void deckSelection(Scanner scanner) {
-     * 
-     * int option; Deck chosenDeck; boolean hasDeck = false;
-     * 
-     * while (!hasDeck) {
-     * 
-     * System.out.println("Para começar a jogar, você deve escolher o seu deck.");
-     * System.out.printf("Você possui os seguintes decks: ");
-     * 
-     * for (int i = 0; i < this.decks.size(); i++) { System.out.printf(" %d - %s. ",
-     * i + 1, this.decks.get(i).getName()); }
-     * 
-     * System.out.println("\n"); System.out.
-     * println("Digite o número do deck que você deseja usar, ou digite 0 para criar um novo deck."
-     * ); option = scanner.nextInt();
-     * 
-     * if (option == 0) { this.decks.add(this.createNewDeck(scanner)); } else if
-     * (option >= 1 && option < decks.size()) {
-     * System.out.print("Você escolheu o deck " + decks.get(option).getName() +
-     * "!"); } }
-     * 
-     * }
-     */
+
+
+    /*private void deckSelection(Scanner scanner) {
+
+        int option;
+        Deck chosenDeck;
+        boolean hasDeck = false;
+
+        while (!hasDeck) {
+
+            System.out.println("Para começar a jogar, você deve escolher o seu deck.");
+            System.out.printf("Você possui os seguintes decks: ");
+
+            for (int i = 0; i < this.decks.size(); i++) {
+                System.out.printf(" %d - %s. ", i + 1, this.decks.get(i).getName());
+            }
+
+            System.out.println("\n");
+            System.out.println("Digite o número do deck que você deseja usar, ou digite 0 para criar um novo deck.");
+            option = scanner.nextInt();
+
+            if (option == 0) {
+                this.decks.add(this.createNewDeck(scanner));
+            } else if (option >= 1 && option < decks.size()) {
+                System.out.print("Você escolheu o deck " + decks.get(option).getName() + "!");
+            }
+        }
+
+    }*/
 
     private Deck createNewDeck(Scanner scanner) {
 
@@ -230,7 +235,7 @@ public class Menu {
         demacia_units.add(garen);
 
         Fiora fiora = new Fiora();
-        // demacia_units.add(fiora);
+        demacia_units.add(fiora);
 
         Effect[] effectTiana = { new Effect(6, Trigger.PLAY) };
         Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8,
@@ -249,8 +254,7 @@ public class Menu {
         demacia_units.add(duelista);
 
         Trait[] traitDefensor = { Trait.FURY };
-        Follower defensor = new Follower("Defensor", "", 2, 2, 2, Region.DEMACIA, traitDefensor, 0, 1,
-                "/assets/demacia/defensor.png");
+        Follower defensor = new Follower("Defensor", "", 2, 2, 2, Region.DEMACIA, traitDefensor, 0, 1, "/assets/demacia/defensor.png");
         demacia_units.add(defensor);
 
         Follower poro = new Follower("Poro", "", 1, 2, 1, Region.DEMACIA, "/assets/demacia/poro.png");
@@ -281,10 +285,22 @@ public class Menu {
                 effectCombateUmAUm, Region.DEMACIA, "/assets/demacia/combate-um-a-um.png");
         demacia_spells.add(combateUmAUm);
 
+        Effect[] effectXamaDoGelo = {new Effect(14, Trigger.ROUND_START)};
+        Follower xamaDoGelo = new Follower("Xamã do Gelo", "", 5, 3, 3, Region.FRELJORD, effectXamaDoGelo, "/assets/freljord/xama-do-gelo.png");
+        freljord_units.add(xamaDoGelo);
+
+        Effect[] effectCongelar = { new Effect(9, Trigger.PLAY)};
+        Spell congelar = new Spell("Congelar", "", 1, effectCongelar, Region.FRELJORD, "/assets/freljord/congelar.png");
+        freljord_spells.add(congelar);
+
+        Effect[] effectAvalanche = {new Effect(15, 2, Trigger.PLAY)};
+        Spell avalanche = new Spell("Avalanche", "", 3, effectAvalanche, Region.FRELJORD, "/assets/freljord/avalanche.png");
+        freljord_spells.add(avalanche);
+
     }
 
-    public ArrayList<Card> getUnitList(Region region) {
-        switch (region) {
+    public ArrayList<Card> getUnitList(Region region){
+        switch(region) {
             case DEMACIA:
                 return demacia_units;
             case FRELJORD:
@@ -292,12 +308,12 @@ public class Menu {
             case NOXUS:
                 return noxus_units;
             default:
-                return null;
+            return null;
         }
     }
 
-    public ArrayList<Card> getSpellList(Region region) {
-        switch (region) {
+    public ArrayList<Card> getSpellList(Region region){
+        switch(region) {
             case DEMACIA:
                 return demacia_spells;
             case FRELJORD:
@@ -305,7 +321,7 @@ public class Menu {
             case NOXUS:
                 return noxus_spells;
             default:
-                return null;
+            return null;
         }
     }
 

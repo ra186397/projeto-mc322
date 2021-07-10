@@ -13,9 +13,7 @@ public abstract class Card {
     protected ArrayList<Effect> effects;
     protected String image;
 
-    public Card(String name, String description, int cost, Region region, Effect[] newEffects, String image) { // Carta
-                                                                                                               // com
-                                                                                                               // efeito
+    public Card(String name, String description, int cost, Region region, Effect[] newEffects, String image) { // Carta com efeito
         this.name = name;
         this.description = description;
         this.cost = cost;
