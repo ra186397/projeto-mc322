@@ -13,7 +13,7 @@ public abstract class Card {
     protected ArrayList<Effect> effects;
     protected String image;
 
-    public Card(String name, String description, int cost, Region region, Effect[] newEffects, String image) { //Carta com efeito
+    public Card(String name, String description, int cost, Region region, Effect[] newEffects, String image) { // Carta com efeito
         this.name = name;
         this.description = description;
         this.cost = cost;
@@ -25,7 +25,7 @@ public abstract class Card {
         this.image = image;
     }
 
-    public Card(String name, String description, int cost, Region region, String image) { //Carta sem efeito
+    public Card(String name, String description, int cost, Region region, String image) { // Carta sem efeito
         this.name = name;
         this.description = description;
         this.cost = cost;
@@ -37,15 +37,24 @@ public abstract class Card {
 
     public abstract boolean playCard(Board myBoard, Board opponentBoard);
 
-    public ArrayList<Effect> getEffects(){
+    public ArrayList<Effect> getEffects() {
         return effects;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     public int getCost() {
         return cost;
     }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
 }
