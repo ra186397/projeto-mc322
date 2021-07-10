@@ -45,16 +45,20 @@ public class Player {
 
         System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço: ");
         String[] numeros = scan.nextLine().split(" ");
+        ArrayList<Card> toChange = new ArrayList<Card>();
         for (String num : numeros) {
-            changeCard(Integer.parseInt(num));
+            toChange.add(hand.get(Integer.parseInt(num)));
+        }
+        for (Card card : toChange) {
+            changeCard(card);
         }
 
         scan.reset();
     }
 
-    public void changeCard(int index) {
-        deck.addCard(hand.get(index));
-        hand.remove(index);
+    public void changeCard(Card toReturn) {
+        deck.addCard(toReturn);
+        hand.remove(toReturn);
         deck.shuffle();
         drawCard(1);
     }
