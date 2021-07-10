@@ -43,7 +43,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CardsSelectionController">
   <children>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #201B21; -fx-border-color: #E7B757;" VBox.vgrow="ALWAYS">
          <children>
@@ -252,6 +252,48 @@
                   </Tab>
               </tabs>
             </TabPane>
+            <Label layoutX="124.0" layoutY="661.0" text="Cartas no Deck: " textAlignment="CENTER">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="Lucida Console" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="numOfCards" layoutX="460.0" layoutY="661.0" text="0" textAlignment="CENTER">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="Lucida Console" size="36.0" />
+               </font>
+            </Label>
          </children>
     </AnchorPane>
   </children>
