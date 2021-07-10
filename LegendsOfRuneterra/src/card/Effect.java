@@ -189,7 +189,7 @@ public class Effect {
 
             case 11: //Golpeia o nexus do adversário para n pontos de dano.
             opponentBoard.getPlayer().takeDamage(amount1);
-
+    
             case 12://efeito de buff temporário
             self_follower.buff(-amount1, -amount2);
             self_follower.getEffects().remove(this);
