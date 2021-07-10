@@ -143,13 +143,8 @@ public class Follower extends Card {
 
     public void strike(Player player, Board myBoard) {
         if (this.temporaryPower > 0) {
-<<<<<<< HEAD
             for (Effect effect : effects) {
-                effect.checkTrigger(Trigger.STRIKE, myBoard, player.getBoard());
-=======
-            for (Effect effect : effects){
                 effect.checkTrigger(Trigger.STRIKE, myBoard, player.getBoard(), this);
->>>>>>> 3ecbe814d6beb9aea552b93b6b818c1a2252ac90
             }
             player.takeDamage(this.temporaryPower);
         }
@@ -157,23 +152,13 @@ public class Follower extends Card {
 
     public void strike(Follower defender, Board myBoard, Board opponentBoard) {
         if (this.temporaryPower > 0) {
-<<<<<<< HEAD
             for (Effect effect : effects) {
-                effect.checkTrigger(Trigger.STRIKE, myBoard, opponentBoard);
+                effect.checkTrigger(Trigger.STRIKE, myBoard, opponentBoard, this);
             }
             defender.takeDamage(this.temporaryPower);
             if (defender.getCurrentHealth() <= 0) {
                 for (Effect effect : effects) {
-                    effect.checkTrigger(Trigger.DESTROY_OPPONENT, myBoard, opponentBoard);
-=======
-            for (Effect effect : effects){
-                effect.checkTrigger(Trigger.STRIKE, myBoard, opponentBoard, this);
-            }
-            defender.takeDamage(this.temporaryPower);
-            if (defender.getCurrentHealth() <= 0){
-                for (Effect effect : effects){
                     effect.checkTrigger(Trigger.DESTROY_OPPONENT, myBoard, opponentBoard, this);
->>>>>>> 3ecbe814d6beb9aea552b93b6b818c1a2252ac90
                 }
             }
         }
@@ -214,16 +199,13 @@ public class Follower extends Card {
         }
     }
 
-<<<<<<< HEAD
-=======
-    public void buff(int powerBuff, int healthBuff){
+    public void buff(int powerBuff, int healthBuff) {
         temporaryPower += powerBuff;
         temporaryHealth += healthBuff;
     }
 
-    public void addTempBuff(int powerBuff, int healthBuff){
+    public void addTempBuff(int powerBuff, int healthBuff) {
         buff(powerBuff, healthBuff);
         effects.add(new Effect(12, powerBuff, healthBuff, Trigger.ROUND_END));
     }
->>>>>>> 3ecbe814d6beb9aea552b93b6b818c1a2252ac90
 }
