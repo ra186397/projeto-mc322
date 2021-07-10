@@ -169,7 +169,7 @@ public class Game {
         int[] toAttack = Arrays.stream(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         for (int i = 0; i < toAttack.length; i++){
             for (Effect effect : attackingBoard.getCards().get(i).getEffects()){
-                effect.checkTrigger(Trigger.ATTACK, attackingBoard, defendingBoard);
+                effect.checkTrigger(Trigger.ATTACK, attackingBoard, defendingBoard, attackingBoard.getCards().get(i));
             }
             attackingBoard.moveToCombat(i, toAttack[i]);
         }
@@ -248,7 +248,7 @@ public class Game {
                 }
                 else {
                     for (Effect effect : myBoard.getCombatingFollowers().get(i).getEffects()){
-                        effect.checkTrigger(Trigger.LAST_BREATH, myBoard, opponentBoard);
+                        effect.checkTrigger(Trigger.LAST_BREATH, myBoard, opponentBoard, myBoard.getCombatingFollowers().get(i));
                     }
                     myBoard.getCombatingFollowers().remove(i);
                 }
@@ -260,7 +260,7 @@ public class Game {
     private void updateAllEffects(Trigger trigger, Board myBoard, Board opponentBoard){
         for (Follower follower : myBoard.getCards()) {
             for (Effect effect : follower.getEffects()) {
-                effect.checkTrigger(trigger, myBoard, opponentBoard);
+                effect.checkTrigger(trigger, myBoard, opponentBoard, follower);
             }
         }
     }
