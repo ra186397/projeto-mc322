@@ -127,7 +127,6 @@ public class Menu {
         Garen garen = new Garen();
         demacia_units.add(garen);
 
-
         Tryndamere tryndamere = new Tryndamere();
         freljord_units.add(tryndamere);
 
@@ -164,6 +163,15 @@ public class Menu {
         Follower poroDefensor = new Follower("Poro Defensor", "Ao ser destruído, você ganha uma carta.", 1, 1, 2,
                 Region.DEMACIA, effectPoroDefensor, "/assets/demacia/poro-defensor.png");
         demacia_units.add(poroDefensor);
+
+
+        Effect[] effectBarreiraPrismatica = { new Effect(10, Trigger.PLAY)};
+        Spell barreiraPrismatica = new Spell("Barreira Prismatica", "", 3, effectBarreiraPrismatica, Region.DEMACIA, "/assets/demacia/barreira-prismatica.png");
+        demacia_spells.add(barreiraPrismatica);
+
+
+        Effect[] effectPorDemacia = { new Effect(17, 3, 3, Trigger.PLAY)};
+        Spell porDemacia = new Spell("Por Demacia", "", 6, effectPorDemacia, Region.DEMACIA, "/assets/demacia/por-demacia.png");
 
 
         Effect[] effectJulgamento = { new Effect(7, Trigger.PLAY) };

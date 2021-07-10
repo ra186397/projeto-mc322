@@ -10,6 +10,7 @@ import card.Region;
 import card.Spell;
 import javafx.scene.paint.Color;
 import game.Deck;
+import javafx.beans.value.ObservableBooleanValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,10 +35,18 @@ public class CardsSelectionController implements Initializable {
   private JFXListView<Follower> followersDemacia;
 
   @FXML
-  private JFXListView<Spell> spellsDemacia;
+  private JFXListView<Follower> followersFreljord;
+
+  @FXML
+  private JFXListView<Spell> spellsDemacia; 
+
+  @FXML
+  private JFXListView<Spell> spellsFreljord;
 
   ObservableList<Follower> ObservableUnitsDemacia = FXCollections.observableArrayList();
+  ObservableList<Follower> ObservableUnitsFreljord = FXCollections.observableArrayList();
   ObservableList<Spell> ObservableSpellsDemacia = FXCollections.observableArrayList();
+  ObservableList<Spell> ObservableSpellsFreljord = FXCollections.observableArrayList();
 
   static class CellUnits extends ListCell<Follower> {
     HBox vbox = new HBox();
@@ -142,13 +151,20 @@ public class CardsSelectionController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
 
     insertIntoObservable(ObservableUnitsDemacia, menu.getUnitList(Region.DEMACIA));
+    insertIntoObservable(ObservableUnitsFreljord, menu.getUnitList(Region.FRELJORD));
     followersDemacia.setItems(ObservableUnitsDemacia);
-    followersDemacia
-        .setCellFactory(param -> new CellUnits(menu.getDecks().get(menu.getDecks().size() - 1), numOfCards));
+    followersDemacia.setCellFactory(param -> new CellUnits(menu.getDecks().get(menu.getDecks().size() - 1), numOfCards));
+
+    followersFreljord.setItems(ObservableUnitsFreljord);
+    followersFreljord.setCellFactory(param -> new CellUnits(menu.getDecks().get(menu.getDecks().size() - 1), numOfCards));
 
     insertIntoObservable(ObservableSpellsDemacia, menu.getSpellList(Region.DEMACIA));
+    insertIntoObservable(ObservableSpellsFreljord, menu.getSpellList(Region.FRELJORD));
     spellsDemacia.setItems(ObservableSpellsDemacia);
     spellsDemacia.setCellFactory(param -> new CellSpells(menu.getDecks().get(menu.getDecks().size() - 1), numOfCards));
+
+    spellsFreljord.setItems(ObservableSpellsFreljord);
+    spellsFreljord.setCellFactory(param -> new CellSpells(menu.getDecks().get(menu.getDecks().size() - 1), numOfCards));
 
   }
 

@@ -222,7 +222,7 @@ public class Effect implements Cloneable{
 
             case 17://Da +n/+m a todas as unidades aliadas nessa rodada.
             for (Follower ally : myBoard.getCards()){
-                ally.addTempBuff(3, 3);
+                ally.addTempBuff(amount1, amount2);
             }
 
             case 18://Remove barreira de si mesmo

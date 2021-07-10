@@ -27,11 +27,11 @@ public class Tryndamere extends Champion {
   }
 
   @Override
-  public boolean checkEvolution() {
-    if (this.deadEnemies >= 1) {
-      return true;
+  public void checkEvolution() {
+    if (this.basePower >= 1) {
+      baseHealth++;
     }
-    return false;
+    basePower++;
   }
 
 }
