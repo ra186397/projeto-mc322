@@ -20,10 +20,10 @@ public class Tryndamere extends Champion {
     System.out.println("Tryndamere Evoluiu!");
     System.out.println("Tryndareme - Meu braço direito é ainda mais forte que o meu esquerdo!!");
 
-    this.basePower = 9;
-    this.baseHealth = 9;
+    this.basePower += 1;
+    this.baseHealth += 5;
     this.currentHealth = 9;
-    
+
   }
 
   @Override
