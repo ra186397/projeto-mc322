@@ -92,9 +92,9 @@ public class Follower extends Card {
                                                                                                              // sendo
                                                                                                              // fúria) e
                                                                                                              // efeito.
-            Effect[] newEffects, Trait[] newTraits, int furyPower, int furyHealth, String image) {
+            ArrayList<Effect> newEffectList, ArrayList<Trait> newTraitList, int furyPower, int furyHealth, String image) {
 
-        super(name, description, cost, region, newEffects, image);
+        super(name, description, cost, region, newEffectList, image);
         this.baseHealth = baseHealth;
         this.currentHealth = baseHealth;
         this.temporaryHealth = baseHealth;
@@ -103,10 +103,10 @@ public class Follower extends Card {
         this.traits = new ArrayList<Trait>();
         this.furyHealth = furyHealth;
         this.furyPower = furyPower;
-        for (Trait trait : newTraits) {
+        for (Trait trait : newTraitList) {
             this.traits.add(trait);
         }
-        for (Effect effect : newEffects) {
+        for (Effect effect : newEffectList) {
             this.effects.add(effect);
         }
     }
@@ -215,5 +215,22 @@ public class Follower extends Card {
     public void addTempBuff(int powerBuff, int healthBuff) {
         buff(powerBuff, healthBuff);
         effects.add(new Effect(12, powerBuff, healthBuff, Trigger.ROUND_END));
+    }
+
+    public Follower makeCopy(){
+        ArrayList<Effect> newEffectList = new ArrayList<Effect>();
+        for (Effect effect : effects){
+            try {
+                newEffectList.add((Effect)effect.clone());
+            } catch (CloneNotSupportedException e) {
+                System.out.println("Uma carta não pôde ser clonada");
+                e.printStackTrace();
+            }
+        }
+        ArrayList<Trait> newTraitList = new ArrayList<Trait>();
+        for (Trait trait : traits){
+            newTraitList.add(trait);
+        }
+        Follower newFollower = new Follower(name, description, cost, basePower, baseHealth, region, newEffectList, newTraitList, furyPower, furyHealth, image);
     }
 }

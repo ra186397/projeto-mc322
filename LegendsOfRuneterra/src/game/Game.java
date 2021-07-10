@@ -62,7 +62,7 @@ public class Game {
             hasAttacked = false;
             passed = false;
 
-            while (!endRound) {//consertar passar o round jogar depois de atacar ou nao
+            while (!endRound) {
 
                 if (currentPlayer == bluePlayer) {
                     opponentBoard = redBoard;

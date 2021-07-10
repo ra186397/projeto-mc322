@@ -5,7 +5,7 @@ import game.Board;
 import game.Player;
 import card.Follower;
 import card.champion.Champion;
-public class Effect {
+public class Effect implements Cloneable{
     
     Trigger trigger;
     int effect;
@@ -205,5 +205,9 @@ public class Effect {
         if (trigger == occurredTrigger){
             applyEffect(myBoard, opponentBoard, follower);
         }
+    }
+
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 }
