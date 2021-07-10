@@ -125,7 +125,7 @@ public class Player {
         int action;
         if (isHuman == true){
             Scanner scan = new Scanner(System.in);
-            System.out.println("Digite 0 para jogar uma carta, 1 para combater e 2 para passar o turno: ");
+            System.out.println("Digite 0 para jogar uma carta, 1 para combater ou 2 para passar o turno: ");
             action = scan.nextInt();
             scan.close();
         }

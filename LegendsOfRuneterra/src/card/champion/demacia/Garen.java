@@ -6,12 +6,12 @@ import card.champion.Champion;
 
 public class Garen extends Champion {
 
-  private int numAttacks;
+  private int numStrikes;
 
   public Garen() {
     super("Garen", "Subir de nível\n Golpeie duas vezes", 5, 5, 5, Region.DEMACIA, "/assets/demacia/garen.png");
     this.traits.add(Trait.REGENERATION);
-    this.numAttacks = 0;
+    this.numStrikes = 0;
   }
 
   @Override
@@ -28,7 +28,7 @@ public class Garen extends Champion {
 
   @Override
   public boolean checkEvolution() {
-    if (this.numAttacks >= 2) {
+    if (this.numStrikes >= 2) {
       return true;
     }
     return false;

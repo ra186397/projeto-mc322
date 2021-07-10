@@ -1,17 +1,8 @@
 package card;
 
-import java.util.ArrayList;
-
 import game.Board;
 
 public class Spell extends Card{
-    
-    String name;
-    String description;
-    int cost;
-    ArrayList<Effect> effects;
-    Region region;
-
 
     public Spell(String name, String description, int cost, Effect[] newEffects, Region region, String image) {
         super(name, description, cost, region, newEffects, image);

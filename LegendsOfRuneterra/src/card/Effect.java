@@ -190,9 +190,11 @@ public class Effect {
 
             case 11: //Golpeia o nexus do adversário para n pontos de dano.
             opponentBoard.getPlayer().takeDamage(amount1);
-
+    
             case 12://efeito de buff temporário
             
+            //TODO PEDRO EU PRECISO Q VOCÊ FAÇA COM QUE SEMPRE QUE UM GAREN GOLPEAR O NUMSTRIKE DELE AUMENTE EM 1, SE POSSÍVEL CRIAR UM EFEITO PRA ISSO.
+            sexo sexo
 
         }
         scan.close();
