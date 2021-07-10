@@ -11,7 +11,8 @@ public class Lux extends Champion {
 
   public Lux(String name, String description, int cost, int baseHealth, int basePower, Region region,
       Effect[] newEffects, Trait[] traits) {
-    super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
+    super("Lux", "Lul", 5, 5, 3, Region.DEMACIA, "/src/assets/demacia/lux.png");//adicionar imagem
+    this.addTrait(Trait.BARRIER);
 
     this.damageDone = 0;
   }

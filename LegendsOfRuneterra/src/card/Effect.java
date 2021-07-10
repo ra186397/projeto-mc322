@@ -5,7 +5,7 @@ import game.Board;
 import game.Player;
 import card.Follower;
 import card.champion.Champion;
-public class Effect {
+public class Effect implements Cloneable{
     
     Trigger trigger;
     int effect;
@@ -191,12 +191,10 @@ public class Effect {
             self_follower.buff(-amount1, -amount2);
             self_follower.getEffects().remove(this);
 
-            case 13://Efeito de evolução do Garen
+            case 13://Evolução
             amount1 += 1;
-            if (amount1 >= 2){
-                Champion champion = (Champion)self_follower;
-                champion.evolve();
-            }
+            Champion champion = (Champion)self_follower;
+            champion.checkEvolution();
 
             case 14: //Deixe o inimigo mais forte com 0 de poder nesta rodada.
 
@@ -209,5 +207,9 @@ public class Effect {
         if (trigger == occurredTrigger){
             applyEffect(myBoard, opponentBoard, follower);
         }
+    }
+
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 }

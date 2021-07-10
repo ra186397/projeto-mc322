@@ -20,4 +20,19 @@ public class Spell extends Card{
         }
     }
 
+    public Spell makeCopy(){
+        Effect[] newEffectList = new Effect[effects.size()];
+        for (int i = 0; i < effects.size(); i++){
+            try {
+                newEffectList[i] = (Effect)effects.get(i).clone();
+            }
+            catch (CloneNotSupportedException e) {
+                System.out.println("Uma carta não pôde ser clonada");
+                e.printStackTrace();
+            }
+        }
+        Spell newSpell = new Spell(name, description, cost, newEffectList, region, image);
+        return newSpell;
+    }
+
 }
