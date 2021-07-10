@@ -1,17 +1,17 @@
 package card.champion.demacia;
 
+import card.Effect;
 import card.Region;
 import card.Trait;
+import card.Trigger;
 import card.champion.Champion;
 
 public class Garen extends Champion {
 
-  private int numAttacks;
-
   public Garen() {
     super("Garen", "Subir de nível\n Golpeie duas vezes", 5, 5, 5, Region.DEMACIA, "/assets/demacia/garen.png");
     this.traits.add(Trait.REGENERATION);
-    this.numAttacks = 0;
+    this.effects.add(new Effect(13, 0, Trigger.STRIKE));
   }
 
   @Override
@@ -19,6 +19,7 @@ public class Garen extends Champion {
     System.out.println("Garen Evoluiu!");
     System.out.println("Garen - Por demaciaaaa!!");
 
+    this.effects.remove(0);
     this.traits.add(Trait.ELUSIVE);
 
     this.basePower = 6;
@@ -27,11 +28,8 @@ public class Garen extends Champion {
   }
 
   @Override
-  public boolean checkEvolution() {
-    if (this.numAttacks >= 2) {
-      return true;
-    }
-    return false;
+  public boolean checkEvolution(){
+    return true;//não sendo utilizado, remover da superclasse Champion se não for usada depois.
   }
 
 }

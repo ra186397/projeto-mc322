@@ -4,6 +4,7 @@ import java.util.Scanner;
 import game.Board;
 import game.Player;
 import card.Follower;
+import card.champion.Champion;
 public class Effect {
     
     Trigger trigger;
@@ -37,8 +38,7 @@ public class Effect {
         this.cardName = cardName;
     }
 
-
-    private void applyEffect(game.Board myBoard, game.Board opponentBoard) {
+    private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower self_follower) {
         Scanner scan = new Scanner(System.in);
 
         switch(effect) {
@@ -61,8 +61,7 @@ public class Effect {
                 else {
                     ally = myBoard.getPlayer().getRandomResult(myBoard.getCards().size());
                 }
-                myBoard.getCards().get(ally).temporaryPower = amount1;
-                myBoard.getCards().get(ally).temporaryHealth = amount2;
+                myBoard.getCards().get(ally).addTempBuff(amount1, amount2);
             }
 
             case 2: // Se a carta destruir uma unidade do inimigo nessa rodada, compra uma carta específica do seu deck.
@@ -190,17 +189,27 @@ public class Effect {
 
             case 11: //Golpeia o nexus do adversário para n pontos de dano.
             opponentBoard.getPlayer().takeDamage(amount1);
-
+    
             case 12://efeito de buff temporário
-            
+            self_follower.buff(-amount1, -amount2);
+            self_follower.getEffects().remove(this);
+
+            case 13://Efeito de evolução do Garen
+            amount1 += 1;
+            if (amount1 >= 2){
+                Champion champion = (Champion)self_follower;
+                champion.evolve();
+            }
+
+
 
         }
         scan.close();
     }
 
-    public void checkTrigger(Trigger occurredTrigger, Board myBoard, Board opponentBoard){
+    public void checkTrigger(Trigger occurredTrigger, Board myBoard, Board opponentBoard, Follower follower){
         if (trigger == occurredTrigger){
-            applyEffect(myBoard, opponentBoard);
+            applyEffect(myBoard, opponentBoard, follower);
         }
     }
 }
