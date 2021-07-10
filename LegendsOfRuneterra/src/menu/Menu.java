@@ -233,8 +233,8 @@ public class Menu {
         demacia_units.add(garen);
 
 
-        Fiora fiora = new Fiora();
-        demacia_units.add(fiora);
+        Tryndamere tryndamere = new Tryndamere();
+        freljord_units.add(tryndamere);
 
 
         Effect[] effectTiana = { new Effect(6, Trigger.PLAY) };
@@ -297,7 +297,7 @@ public class Menu {
 
 
         Effect[] effectXamaDoGelo = {new Effect(14, Trigger.ROUND_START)};
-        Follower xamaDoGelo = new Follower("Xamã do Gelo", "", 5, 3, 3, Region.FRELJORD, effectXamaDoGelo, "/assets/freljord/xama-do-gelo.png");
+        Follower xamaDoGelo = new Follower("Xama do Gelo", "", 5, 3, 3, Region.FRELJORD, effectXamaDoGelo, "/assets/freljord/xama-do-gelo.png");
         freljord_units.add(xamaDoGelo);
 
 
@@ -315,13 +315,23 @@ public class Menu {
         Follower vigia = new Follower("Vigia", "", 2, 2, 3, Region.FRELJORD, effectVigia, "/assets/freljord/vigia.png");
         freljord_units.add(vigia);
 
+
         Effect[] effectTaverneiroGentil = {new Effect(3, Trigger.PLAY)};
         Follower taverneiroGentil = new Follower("Taverneiro Gentil", "", 3, 3, 3, Region.FRELJORD, effectTaverneiroGentil, "/assets/freljord/taverneiro-gentil.png");
         freljord_units.add(taverneiroGentil);
 
+
+        Follower elnuk = new Follower("Elnuk", "", 4, 4, 5, Region.FRELJORD, "/assets/freljord/elnuk.png");
+        freljord_units.add(elnuk);
+
+
         Effect[] effectElixirDeFerro = {new Effect(1, 0, 2, Trigger.PLAY)};
         Spell elixirDeFerro = new Spell("Elixir de Ferro", "", 0, effectElixirDeFerro, Region.FRELJORD, "/assets/freljord/elixir-de-ferro.png");
         freljord_spells.add(elixirDeFerro);
+
+        Effect[] effectFuriaDoNorte = {new Effect(1, 3, 4, Trigger.PLAY)};
+        Spell furiaDoNorte = new Spell("Furia do Norte", "", 3, effectFuriaDoNorte, Region.FRELJORD, "/assets/freljord/furia-do-norte.png");
+        freljord_spells.add(furiaDoNorte);
 
 
         Effect[] effectCongelar = { new Effect(9, Trigger.PLAY)};
