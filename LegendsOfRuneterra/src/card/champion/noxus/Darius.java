@@ -15,11 +15,10 @@ public class Darius extends Champion {
   }
 
   @Override
-  public boolean checkEvolution() {
+  public void checkEvolution() {
     if (nexusLife <= 10) {
-      return true;
+      evolve();
     }
-    return false;
   }
 
   @Override

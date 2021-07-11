@@ -131,8 +131,26 @@ public class Menu {
         freljord.addCard(getCardByName("Elixir de Ferro", freljord_spells));
         freljord.addCard(getCardByName("Furia do Norte", freljord_spells));
 
+        Deck noxus = new Deck(Region.NOXUS, Region.NOXUS, "Noxus");
+        noxus.addCard(getCardByName("Darius", noxus_units));
+        noxus.addCard(getCardByName("Leblanc", noxus_units));
+        noxus.addCard(getCardByName("Espia", noxus_units));
+        noxus.addCard(getCardByName("Retaguarda da Legiao", noxus_units));
+        noxus.addCard(getCardByName("Trifariano", noxus_units));
+        noxus.addCard(getCardByName("Homem Bomba", noxus_units));
+        noxus.addCard(getCardByName("Quebra Escudos", noxus_units));
+        noxus.addCard(getCardByName("Comentarista da Arena", noxus_units));
+        noxus.addCard(getCardByName("Capitao Farron", noxus_units));
+        noxus.addCard(getCardByName("Determinacao", noxus_spells));
+        noxus.addCard(getCardByName("Dizimar", noxus_spells));
+        noxus.addCard(getCardByName("Fervor Noxiano", noxus_spells));
+        noxus.addCard(getCardByName("Fio de Lamina", noxus_spells));
+        noxus.addCard(getCardByName("Machado Duplo", noxus_spells));
+        noxus.addCard(getCardByName("Visao", noxus_spells));
+
         decks.add(demacia);
         decks.add(freljord);
+        decks.add(noxus);
 
         return decks;
 
@@ -148,6 +166,9 @@ public class Menu {
 
         Tryndamere tryndamere = new Tryndamere();
         freljord_units.add(tryndamere);
+
+        Anivia anivia = new Anivia();
+        freljord_units.add(anivia);
 
         Leblanc leblanc = new Leblanc();
         noxus_units.add(leblanc);

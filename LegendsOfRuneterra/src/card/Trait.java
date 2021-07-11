@@ -8,6 +8,8 @@ public enum Trait {
     REGENERATION,
     BARRIER,
     QUICK_ATTACK,
-    TOUGH
-    
+    TOUGH;
+
 }
+
+

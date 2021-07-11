@@ -191,6 +191,17 @@ public class Follower extends Card {
         baseHealth += furyHealth;
     }
 
+    @Override
+    public String toString() {
+        String dados = String.format("[%d|%d|%d] %s | Traços: ", cost, temporaryPower, temporaryHealth, name);
+        for (Trait trait : traits) {
+            dados += trait;
+            dados += " ";
+        }
+        dados += "\n" + description + "\n";
+        return dados;
+    }
+
     public void heal(int amount, boolean full) {
         if (currentHealth + amount >= temporaryHealth || full == true) {
             currentHealth = temporaryHealth;
