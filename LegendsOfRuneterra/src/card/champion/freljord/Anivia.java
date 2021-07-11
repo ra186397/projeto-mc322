@@ -13,8 +13,8 @@ public class Anivia extends Champion {
   private Effect unevolvedNexusDamageEffect;
   private Effect evolveEffect;
 
-  public Anivia(String name, String description, int cost, int baseHealth, int basePower, Region region, Effect[] newEffects, Trait[] traits) {
-    super(name, description, cost, baseHealth, basePower, region, "/assets/freljord/anivia");
+  public Anivia() {
+    super("Anivia", "Quando eu atacar, cause 1 de dano ao nexus e aos inimigos. Eu subo de nível quando você tiver 10 gemas de mana.", 6, 4, 2, Region.FRELJORD, "/assets/freljord/anivia.png");
 
     unevolvedAOEEffect =  new Effect(20, 1, Trigger.ATTACK);
     unevolvedNexusDamageEffect = new Effect(11, 1, Trigger.ATTACK);
