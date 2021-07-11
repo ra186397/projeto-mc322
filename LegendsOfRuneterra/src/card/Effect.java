@@ -229,6 +229,10 @@ public class Effect implements Cloneable{
             if (self_follower.hasTrait(Trait.BARRIER)){
                 self_follower.takeDamage(1);
             }
+
+            case 19://Dê n de dano a um inimigo se ele tiver 0 de poder. Senão, deixe ele com 0 de poder nesta rodada.
+
+            case 20://Cura seu nexus em n e ganha uma gema de mana vazia.
         }
         scan.close();
     }
