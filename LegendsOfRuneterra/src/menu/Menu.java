@@ -41,7 +41,7 @@ public class Menu {
         this.freljord_units = new ArrayList<Card>();
         this.freljord_spells = new ArrayList<Card>();
         this.noxus_units = new ArrayList<Card>();
-        this.freljord_spells = new ArrayList<Card>();
+        this.noxus_spells = new ArrayList<Card>();
         createCards();
         this.decks = buildBaseDecks();
         this.p1 = null;
@@ -165,7 +165,7 @@ public class Menu {
         demacia_units.add(tiana);
 
         Trait[] traitsCavalariaDaVanguarda = {Trait.TOUGH};
-        Follower cavalariaDaVanguarda = new Follower("Cavalaria da Vanguarda", "", 5, 5, 5, Region.DEMACIA, traitsCavalariaDaVanguarda, "/assets/demacia/cavalariaDaVanguarda.png");
+        Follower cavalariaDaVanguarda = new Follower("Cavalaria da Vanguarda", "", 5, 5, 5, Region.DEMACIA, traitsCavalariaDaVanguarda, "/assets/demacia/cavalaria-da-vanguarda.png");
         demacia_units.add(cavalariaDaVanguarda);
 
 
@@ -293,12 +293,12 @@ public class Menu {
         freljord_spells.add(avalanche);
 
 
-        Effect[] effectRepartir = {new Effect(19, 4, Trigger.PLAY)};
+        Effect[] effectRepartir = {new Effect(22, 4, Trigger.PLAY)};
         Spell repartir = new Spell("Repartir", "", 2, effectRepartir, Region.FRELJORD, "/assets/freljord/repartir.png");
         freljord_spells.add(repartir);
 
 
-        Effect[] effectGemaDeMana = {new Effect(20, 3, Trigger.PLAY)};
+        Effect[] effectGemaDeMana = {new Effect(23, 3, Trigger.PLAY)};
         Spell gemaDeMana = new Spell("Gema de Mana", "", 5, effectGemaDeMana, Region.FRELJORD, "/assets/freljord/gema-de-mana.png");
         freljord_spells.add(gemaDeMana);
 
@@ -334,7 +334,8 @@ public class Menu {
 
 
         Trait[] traitQuebraEscudos = {Trait.DOUBLE_ATTACK};
-        Follower quebraEscudos = new Follower("Quebra Escudos", "", 5, 4, 3, Region.NOXUS, traitQuebraEscudo, "/assets/noxus/quebra-escudos.png");
+        Follower quebraEscudos = new Follower("Quebra Escudos", "", 5, 4, 3, Region.NOXUS, traitQuebraEscudos, "/assets/noxus/quebra-escudos.png");
+        noxus_units.add(quebraEscudos);
 
 
         // FEITIÇOS DE NOXUS

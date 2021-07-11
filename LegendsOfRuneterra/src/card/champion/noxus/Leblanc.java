@@ -1,8 +1,5 @@
 package card.champion.noxus;
 
-import org.omg.CORBA.TRANSACTION_MODE;
-
-import card.Effect;
 import card.Region;
 import card.Trait;
 import card.champion.Champion;

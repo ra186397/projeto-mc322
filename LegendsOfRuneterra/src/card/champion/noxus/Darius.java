@@ -1,6 +1,5 @@
 package card.champion.noxus;
 
-import card.Effect;
 import card.Region;
 import card.Trait;
 import card.champion.Champion;
