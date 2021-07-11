@@ -9,25 +9,24 @@ import javafx.scene.transform.Transform;
 
 public class Anivia extends Champion {
 
-  private int damageDone;
-  private Effect transformEffect;
+  private Effect unevolvedAOEEffect;
+  private Effect unevolvedNexusDamageEffect;
 
-  public Anivia(String name, String description, int cost, int baseHealth, int basePower, Region region,
-      Effect[] newEffects, Trait[] traits) {
-    super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
+  public Anivia(String name, String description, int cost, int baseHealth, int basePower, Region region, Effect[] newEffects, Trait[] traits) {
+    super(name, description, cost, baseHealth, basePower, region, "/assets/freljord/anivia");
 
-    effects.add(new Effect(20, 1, Trigger.ATTACK)); 
-    transformEffect = new Effect(21, Trigger.LAST_BREATH);
-    effects.add(transformEffect);
-
-    this.damageDone = 0;
+    unevolvedAOEEffect =  new Effect(20, 1, Trigger.ATTACK);
+    unevolvedNexusDamageEffect = new Effect(11, 1, Trigger.ATTACK);
+    effects.add(unevolvedAOEEffect);
+    effects.add(unevolvedNexusDamageEffect);
+    effects.add(new Effect(21, Trigger.LAST_BREATH));
   }
 
   public void transform(){
     baseHealth = 1;
     basePower = 0;
     name = "Ovonivia";
-    image = "ovo";//colocar a imagem do ovo
+    image = "/assets/freljord/ovonivia.png";//colocar a imagem do ovo
     for (Effect effect : effects){
       effects.remove(effect);
     }
@@ -38,6 +37,9 @@ public class Anivia extends Champion {
     System.out.println("Anivia Evoluiu!");
     System.out.println("Anivia - Eu trago a tempestade!!");
 
+    effects.add(new Effect(20, 2, Trigger.ATTACK));
+    effects.add(new Effect(11, 2, Trigger.ATTACK));
+
     this.basePower = 3;
     this.baseHealth = 5;
     this.currentHealth += 1;
@@ -46,14 +48,15 @@ public class Anivia extends Champion {
   @Override
   public void checkEvolution() {//adicinar enlightened em round end
     if (name == "Ovonivia"){
-      effects.add(transformEffect);
+      effects.add(new Effect(21, Trigger.LAST_BREATH));
       name = "Aninia";
-      image = "ovo";
-      evolve();
     }
     else {
-      effects.remove
+      effects.remove(unevolvedAOEEffect);
+      effects.remove(unevolvedNexusDamageEffect);
     }
+    image = "/assets/freljord/anivia-evolved.png";
+    evolve();
   }
 
 }

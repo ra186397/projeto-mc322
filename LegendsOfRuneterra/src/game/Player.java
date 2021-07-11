@@ -241,4 +241,15 @@ public class Player {
         scan.close();
     }
 
+    public void addMaxMana(int mana){
+        maxMana += mana;
+    }
+
+    public void healNexus(int health){
+        nexusLife += health;
+        if (nexusLife >= 20){
+            nexusLife = 20;
+        }
+    }
+
 }

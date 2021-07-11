@@ -154,7 +154,7 @@ public class Effect implements Cloneable{
             myBoard.getPlayer().drawCard(1);
 
             case 9: // Altera o poder de uma unidade para 0 nesta rodada.
-            if (myBoard.getCards().isEmpty() && opponentBoard.getCards().isEmpty()){
+            if (opponentBoard.getCards().isEmpty()){
                 System.out.println("Não há nenhum alvo válido.");
             }
             else {
@@ -166,7 +166,7 @@ public class Effect implements Cloneable{
                 else {
                     ally = opponentBoard.getPlayer().getRandomResult(opponentBoard.getCards().size());
                 }
-                opponentBoard.getCards().get(ally).addTempBuff(-myBoard.getCards().get(ally).getTemporaryPower(), 0);
+                opponentBoard.getCards().get(ally).addTempBuff(-opponentBoard.getCards().get(ally).getTemporaryPower(), 0);
             }
 
             case 10: // Cria uma barreira que anula o próximo dano que uma unidade aliada levaria. Dura uma rodada.
@@ -242,10 +242,31 @@ public class Effect implements Cloneable{
             case 21://Efeito de transformação da Anivia em Ovonivia
             Anivia anivia = (Anivia)selfFollower;
             anivia.transform();
-            
-            case 19://Dê n de dano a um inimigo se ele tiver 0 de poder. Senão, deixe ele com 0 de poder nesta rodada.
 
-            case 20://Cura seu nexus em n e ganha uma gema de mana vazia.
+            case 22://Dê n de dano a um inimigo se ele tiver 0 de poder. Senão, deixe ele com 0 de poder nesta rodada.
+            if (opponentBoard.getCards().isEmpty()){
+                System.out.println("Não há nenhum alvo válido.");
+            }
+            else {
+                if (myBoard.getPlayer().isHuman()){
+                    System.out.println("Escolha uma unidade.");
+                    //printar a board
+                    ally = scan.nextInt();
+                }
+                else {
+                    ally = opponentBoard.getPlayer().getRandomResult(opponentBoard.getCards().size());
+                }
+                if (opponentBoard.getCards().get(ally).temporaryPower == 0){
+                    opponentBoard.getCards().get(ally).takeDamage(amount1);
+                }
+                else {
+                    opponentBoard.getCards().get(ally).addTempBuff(-opponentBoard.getCards().get(ally).getTemporaryPower(), 0);
+                }
+            }
+
+            case 23://Cura seu nexus em n e ganha uma gema de mana vazia.
+            myBoard.getPlayer().addMaxMana(1);
+            myBoard.getPlayer().healNexus(amount1);
         }
         scan.close();
     }
