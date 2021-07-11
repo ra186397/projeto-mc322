@@ -47,6 +47,8 @@ public class Game {
     }
     
     public void startGame() {
+
+        System.out.println("Bem vindx a Legends of Runeterra.");
         
         Player currentPlayer = null;
         Player attackingPlayer = null;
@@ -59,7 +61,8 @@ public class Game {
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
         while (!gameOver) {
-            startNewRound(attackingPlayer, currentPlayer);
+            attackingPlayer = startNewRound(attackingPlayer, currentPlayer);
+            currentPlayer = attackingPlayer;
             hasAttacked = false;
             passed = false;
 
@@ -68,12 +71,16 @@ public class Game {
                 if (currentPlayer == bluePlayer) {
                     opponentBoard = redBoard;
                     System.out.println("Jogador azul, é sua vez!");
-                    printHand(bluePlayer);
+                    if (bluePlayer.isHuman()){
+                        printHand(bluePlayer);
+                    }
                 }
                 else {
                     opponentBoard = blueBoard;
                     System.out.println("Jogador vermelho, é sua vez!");
-                    printHand(redPlayer);
+                    if (redPlayer.isHuman()){
+                        printHand(redPlayer);
+                    }
                 }
                 printBoard();
 
@@ -84,7 +91,9 @@ public class Game {
                     if (nextMove == 0 && currentPlayer.hasCards()) {
                         nextCard = currentPlayer.selectCard();
                         if (!nextCard.playCard(currentPlayer.getBoard(), opponentBoard)) {
-                            System.out.println("Você não tem mana o suficiente para jogar essa carta! Selecione outra ou passe a vez.");
+                            if (currentPlayer.isHuman()){
+                                System.out.println("Você não tem mana o suficiente para jogar essa carta! Selecione outra ou passe a vez.");
+                            }
                         }
                         else {
                             validTurn = true;
@@ -95,7 +104,7 @@ public class Game {
                         }
                     }
                     else if (nextMove == 1 && !currentPlayer.getBoard().getCards().isEmpty() && currentPlayer == attackingPlayer && hasAttacked == false){
-                        startCombat();
+                        startCombat(attackingPlayer);
                         validTurn = true;
                         passed = false;
                         hasAttacked = true;
@@ -108,7 +117,9 @@ public class Game {
                         passed = true;
                     }
                     else {
-                        System.out.println("Você tentou uma ação inválida");
+                        if (currentPlayer.isHuman()){
+                            System.out.println("Você tentou uma ação inválida");
+                        }
                     }
                 
                 }
@@ -149,7 +160,7 @@ public class Game {
     }
 
 
-    public void startCombat() {
+    public void startCombat(Player attackingPlayer) {
 
         ArrayList<Follower> attackers = redBoard.getCombatingFollowers();
         ArrayList<Follower> defenders = blueBoard.getCombatingFollowers();
@@ -158,7 +169,7 @@ public class Game {
         Player defender = bluePlayer;
 
 
-        if (blueBoard.getCurrentTurn()) {
+        if (attackingPlayer.getColor() == Color.BLUE) {
 
             attackers = blueBoard.getCombatingFollowers();
             defenders = redBoard.getCombatingFollowers();
@@ -169,7 +180,7 @@ public class Game {
             defender = redPlayer;
 
         }
-
+        
         System.out.println("Escolha as unidades que devem atacar.");
         printPlayerBoard(attackingBoard.getPlayer());
         int[] toAttack = Arrays.stream(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
@@ -247,7 +258,7 @@ public class Game {
         printCombat(attackers, defenders);
     }
 
-    private void startNewRound(Player attackingPlayer, Player currentPlayer) {
+    private Player startNewRound(Player attackingPlayer, Player currentPlayer) {
         redPlayer.updateMana();
         bluePlayer.updateMana();
         System.out.println("Mana máxima: " + bluePlayer.getCurrentMana());
@@ -266,10 +277,8 @@ public class Game {
         else {
             attackingPlayer = bluePlayer;
         }
-        
-        currentPlayer = attackingPlayer;
 
-        System.out.println("Jogador" + attackingPlayer.getColor().toString() + ", é a sua rodada de ataque!");
+        System.out.println("Jogador " + attackingPlayer.getColor().toString() + ", é a sua rodada de ataque!");
         
         if (bluePlayer.getCurrentMana() == 10){
             updateAllEffects(Trigger.ENLIGHTENED, bluePlayer.getBoard(), redPlayer.getBoard());
@@ -282,6 +291,7 @@ public class Game {
         
         updateAllEffects(Trigger.ROUND_START, redBoard, blueBoard);
         updateAllEffects(Trigger.ROUND_START, blueBoard, redBoard);
+        return attackingPlayer;
     }
 
     private void printAttackingUnits(ArrayList<Follower> attackers) {
@@ -312,7 +322,7 @@ public class Game {
         printCards(unitList);
     }
 
-    private void printHand(Player p) {
+    void printHand(Player p) {
         ArrayList<Card> hand = p.getHand();
         System.out.println("Cartas da sua mão: ");
         System.out.println("--------------------------");

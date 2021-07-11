@@ -38,17 +38,25 @@ public class Player {
     public void drawStartingHand() {
         deck.shuffle();
         drawCard(4);
-        changeStartingCards();
+        if (isHuman){
+            Game game = Game.getGame(this, null);
+            System.out.println("Jogador " + getColor().toString() +":");
+            game.printHand(this);
+            changeStartingCards();
+            game.printHand(this);
+        }
         
     }
 
     private void changeStartingCards() {
 
-        System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço: ");
+        System.out.println("Digite o número das cartas que deseja trocar, separadas por espaço, ou -1 se quiser manter a mão: ");
         String[] numeros = scan.nextLine().split(" ");
         ArrayList<Card> toChange = new ArrayList<Card>();
         for (String num : numeros) {
-            toChange.add(hand.get(Integer.parseInt(num)));
+            if (Integer.parseInt(num) != -1){
+                toChange.add(hand.get(Integer.parseInt(num)));
+            }
         }
         for (Card card : toChange) {
             changeCard(card);
@@ -140,7 +148,6 @@ public class Player {
         if (isHuman == true){
             System.out.println("Digite 0 para jogar uma carta, 1 para combater ou 2 para passar o turno: ");
             action = scan.nextInt();
-            scan.close();
         }
         else {
             action = getRandomResult(3);

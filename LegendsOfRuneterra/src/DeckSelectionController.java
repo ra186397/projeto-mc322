@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
 import game.Deck;
+import game.Game;
 import javafx.scene.Node;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -57,19 +58,22 @@ public class DeckSelectionController implements Initializable {
         }
       }
 
-      try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/arena.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setMinHeight(1920);
-        stage.setMinWidth(1080);
-        stage.show();
+      Game game = Game.getGame(menu.getPlayer1(), menu.getPlayer2());
+      game.startGame();
 
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+      // try {
+      //   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/arena.fxml"));
+      //   Parent root = (Parent) fxmlLoader.load();
+      //   Scene scene = new Scene(root);
+      //   Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      //   stage.setScene(scene);
+      //   stage.setMinHeight(1920);
+      //   stage.setMinWidth(1080);
+      //   stage.show();
+
+      // } catch (Exception e) {
+      //   e.printStackTrace();
+      // }
 
     }
   }

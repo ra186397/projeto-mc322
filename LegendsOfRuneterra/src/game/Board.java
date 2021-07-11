@@ -71,36 +71,6 @@ public class Board{
         return cards;
     }
 
-    public void determineTurn(Board opponentBoard) {
-        if (r.nextInt(1) == 0) {
-            currentTurn = true;
-            opponentBoard.setTurn(false);
-        } else {
-            currentTurn = false;
-            opponentBoard.setTurn(true);
-        }
-    }
-
-    public void switchTurn(Board opponentBoard) {
-        if (currentTurn) {
-            currentTurn = false;
-            opponentBoard.setTurn(true);
-        }
-        else {
-            currentTurn = true;
-            opponentBoard.setTurn(false);
-        }
-    }
-
-    public boolean getCurrentTurn() {
-        return this.currentTurn;
-    }
-
-    private void setTurn(boolean turn) {
-        currentTurn = turn;
-    }
-    
-
     public ArrayList<Follower> getCombatingFollowers() {
         return this.combatingFollowers;
     }
