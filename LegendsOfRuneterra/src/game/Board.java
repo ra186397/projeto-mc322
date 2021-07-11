@@ -113,23 +113,14 @@ public class Board{
         cards.remove(card);
     }
 
-    public void moveToCombat(int position, int follower) {
-        if (follower == -1 && currentTurn == true){
-            combatingFollowers.set(position, null);
-        }
-        else if (follower > cards.size()) {
-            System.out.print("Nao é uma unidade válida");
-            combatingFollowers.set(position, null);
-        }
-        else {
-            combatingFollowers.set(position, cards.get(follower));
-            cards.remove(follower);
-        }
+    public void moveToCombat(int position, Follower follower) {
+        combatingFollowers.set(position, follower);
+        cards.remove(follower);
     }
 
-    public void returnFromCombat(int n) {
-        cards.add(combatingFollowers.get(n));
-        combatingFollowers.remove(n);
+    public void returnFromCombat(Follower follower) {
+        cards.add(follower);
+        combatingFollowers.remove(follower);
     }
 
     public void closeScan(){

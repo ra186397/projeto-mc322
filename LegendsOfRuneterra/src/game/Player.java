@@ -92,11 +92,6 @@ public class Player {
         this.nexusLife -= damage;
     }
 
-    public void printHand() {
-        System.out.println("Cartas da sua mão: ");
-        System.out.println("--------------------------");
-        printCards(hand);
-    }
     public int getNexusLife() {
         return this.nexusLife;
     }
