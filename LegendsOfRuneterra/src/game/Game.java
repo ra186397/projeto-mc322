@@ -23,6 +23,7 @@ public class Game {
     boolean gameOver = false;
     boolean endRound = false;
     Color loser;
+    Scanner scan;
 
     private Game(Player p1, Player p2) {
         this.bluePlayer = p1;
@@ -35,6 +36,7 @@ public class Game {
         p1.setColor(Color.BLUE);
         p2.setBoard(redBoard);
         p2.setColor(Color.RED);
+        scan = new Scanner(System.in);
     }
 
     public static Game getGame(Player p1, Player p2) {
@@ -53,7 +55,6 @@ public class Game {
         boolean validTurn = false;
         boolean passed = false;
         boolean hasAttacked = false;
-        Scanner scan = new Scanner(System.in);
         Board opponentBoard;
         bluePlayer.drawStartingHand();
         redPlayer.drawStartingHand();
@@ -67,15 +68,19 @@ public class Game {
                 if (currentPlayer == bluePlayer) {
                     opponentBoard = redBoard;
                     System.out.println("Jogador azul, é sua vez!");
+                    printHand(bluePlayer);
                 }
                 else {
                     opponentBoard = blueBoard;
                     System.out.println("Jogador vermelho, é sua vez!");
+                    printHand(redPlayer);
                 }
+                printBoard();
 
                 while (!validTurn) {
 
-                    nextMove = currentPlayer.selectAction(); //DAR A OPCAO DE VER A MÃO, PRINTAR BOARD
+
+                    nextMove = currentPlayer.selectAction();
                     if (nextMove == 0 && currentPlayer.hasCards()) {
                         nextCard = currentPlayer.selectCard();
                         if (!nextCard.playCard(currentPlayer.getBoard(), opponentBoard)) {
@@ -114,8 +119,6 @@ public class Game {
                 else {
                     currentPlayer = bluePlayer;
                 }
-                //PRINTAR BOARD AQUI EM ALGUM LUGAR PELAMOR
-                blub blub
 
                 validTurn = false;
 
@@ -143,8 +146,6 @@ public class Game {
         redPlayer.closeScan();
         bluePlayer.closeScan();
 
-        //MADNDAR DE VOLTA PARA O MENU
-
     }
 
 
@@ -155,7 +156,6 @@ public class Game {
         Board attackingBoard = redBoard;
         Board defendingBoard = blueBoard;
         Player defender = bluePlayer;
-        Scanner scan = new Scanner(System.in);
 
 
         if (blueBoard.getCurrentTurn()) {
@@ -180,12 +180,7 @@ public class Game {
             for (Effect effect : attackingBoard.getCards().get(i).getEffects()){
                 effect.checkTrigger(Trigger.ATTACK, attackingBoard, defendingBoard, attackingBoard.getCards().get(i));
             }
-            if (toAttack[i] == -1){
-                aux.add(null);
-            }
-            else {
-                aux.add(attackingBoard.getCards().get(toAttack[i]));
-            }
+            aux.add(attackingBoard.getCards().get(toAttack[i]));
             
         }
         for (Follower follower : aux){
@@ -193,8 +188,8 @@ public class Game {
             position++;
         }
         System.out.println("Escolha as unidades que devem defender.");
-        printPlayerBoard(defender);
         printAttackingUnits(attackers);
+        printPlayerBoard(defender);
         aux.clear();
         position = 0;
         for (int i = 0; i < toAttack.length; i++){
@@ -223,6 +218,7 @@ public class Game {
             position++;
         }
 
+        printCombat(attackers, defenders);
 
         for (int i = 0; i < attackers.size(); i++) {
             if (defenders.get(i) == null) {
@@ -247,13 +243,14 @@ public class Game {
 
         checkDeaths(attackingBoard, defendingBoard);
         checkDeaths(defendingBoard, attackingBoard);
-        
-        scan.close();
+
+        printCombat(attackers, defenders);
     }
 
     private void startNewRound(Player attackingPlayer, Player currentPlayer) {
         redPlayer.updateMana();
         bluePlayer.updateMana();
+        System.out.println("Mana máxima: " + bluePlayer.getCurrentMana());
         if (attackingPlayer == null){
             Random rand = new Random();
             if (rand.nextInt(1) == 0){
@@ -271,6 +268,8 @@ public class Game {
         }
         
         currentPlayer = attackingPlayer;
+
+        System.out.println("Jogador" + attackingPlayer.getColor().toString() + ", é a sua rodada de ataque!");
         
         if (bluePlayer.getCurrentMana() == 10){
             updateAllEffects(Trigger.ENLIGHTENED, bluePlayer.getBoard(), redPlayer.getBoard());
@@ -289,23 +288,28 @@ public class Game {
         System.out.println("Unidades atacando: ");
         System.out.println("--------------------------");
         printCards(attackers);
-        }
     }
 
-    private void printPlayerBoard(Player p) {
+    private void printCombat(ArrayList<Follower> attackers, ArrayList<Follower> defenders){
+        printAttackingUnits(attackers);
+        System.out.println("Unidades defendendo");
+        System.out.println("--------------------------");
+        printCards(defenders);
+
+    }
+
+    public void printPlayerBoard(Player p) {
         ArrayList<Follower> unitList;
+        System.out.println("Unidades do jogador " + p.getColor().toString() + ": ");
         if (p.getColor() == Color.BLUE) {
-            System.out.println("Unidades do jogador azul: ");
             unitList = blueBoard.getCards();
         }
         else {
-            System.out.println("Unidades do jogador vermelho: ");
             unitList = redBoard.getCards();
         }
 
         System.out.println("--------------------------");
         printCards(unitList);
-        }
     }
 
     private void printHand(Player p) {
@@ -318,7 +322,7 @@ public class Game {
     private void printCards(ArrayList<? extends Card> cards) {
         int i = 0;
         for (Card card : cards) {
-            System.out.println(i + ") " + card + "\n");
+            System.out.println(i + ") " + card);
             System.out.println("--------------------------");
             i++;
         }

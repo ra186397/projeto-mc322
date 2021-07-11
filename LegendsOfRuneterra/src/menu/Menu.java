@@ -172,7 +172,7 @@ public class Menu {
         noxus_units.add(darius);
 
 
-        //INICIO SEGUIDORES DE DEMACIA
+        //INÍCIO SEGUIDORES DE DEMACIA
 
 
         Effect[] effectTiana = {new Effect(CaseEffects.ALLY_STRIKE_NEXUS, Trigger.PLAY) };
@@ -213,7 +213,7 @@ public class Menu {
         demacia_units.add(poroDefensor);
 
 
-        //INICIO FEITIÇOS DE DEMACIA
+        //INÍCIO FEITIÇOS DE DEMACIA
 
 
         Effect[] effectBarreiraPrismatica = {new Effect(CaseEffects.PRISMATIC_BARRIER, Trigger.PLAY)};
@@ -251,7 +251,7 @@ public class Menu {
         demacia_spells.add(combateUmAUm);
 
 
-        //INICIO SEGUIDORES DE FRELJORD
+        //INÍCIO SEGUIDORES DE FRELJORD
 
 
         Effect[] effectXamaDoGelo = {new Effect(CaseEffects.STRONGEST_ZERO_POWER, Trigger.ROUND_START)};
@@ -286,7 +286,7 @@ public class Menu {
         freljord_units.add(coelho);
 
 
-        //INICIO FEITIÇOS DE FRELJORD
+        //INÍCIO FEITIÇOS DE FRELJORD
 
 
         Effect[] effectElixirDeFerro = {new Effect(CaseEffects.SINGLE_TEMP_BUFF, 0, 2, Trigger.PLAY)};
@@ -319,7 +319,7 @@ public class Menu {
         freljord_spells.add(gemaDeMana);
 
 
-        //INICIO SEGUIDORES DE NOXUS
+        //INÍCIO SEGUIDORES DE NOXUS
 
 
         Follower retaguardaDaLegiao = new Follower("Retaguarda da Legiao", "", 1, 3, 2, Region.NOXUS, "/assets/noxus/retaguarda-da-legiao.png");
@@ -354,7 +354,7 @@ public class Menu {
         noxus_units.add(quebraEscudos);
 
 
-        // FEITIÇOS DE NOXUS
+        //INÍCIO FEITIÇOS DE NOXUS
 
 
         Effect[] effectDeterminacao = {new Effect(CaseEffects.SINGLE_TEMP_BUFF, 3, 2, Trigger.PLAY)};

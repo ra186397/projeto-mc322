@@ -24,7 +24,6 @@ public class Spell extends Card{
     public String toString() {
         String dados = String.format("%s | %d\n", name, cost);
         dados += description;
-        dados += "\n";
         return dados;
     }
 

@@ -2,6 +2,7 @@ package card;
 import java.util.Scanner;
 
 import game.Board;
+import game.Game;
 import game.Player;
 import card.Follower;
 import card.champion.Champion;
@@ -41,11 +42,12 @@ public class Effect implements Cloneable{
 
     private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower selfFollower) {
         Scanner scan = new Scanner(System.in);
+        Game game = Game.getGame(myBoard.getPlayer(), opponentBoard.getPlayer());
 
         switch(effect) {
             case BOARD_BUFF: // Dê +n/+m a todas as unidades aliadas evocadas.
             for (Follower follower : myBoard.getCards()) {
-                follower.buff(amount1, amount2);//O false e se e temporario ou nao, false e permanente true e temporario
+                follower.buff(amount1, amount2);
             }
             break;
 
@@ -54,9 +56,9 @@ public class Effect implements Cloneable{
                 System.out.println("Você não tem nenhum aliado.");
             }
             else {
-                System.out.println("Escolha uma unidade aliada.");
-                //printar a board
                 if (myBoard.getPlayer().isHuman()){
+                    System.out.println("Escolha uma unidade aliada.");
+                    game.printPlayerBoard(myBoard.getPlayer());
                     ally = scan.nextInt();
                 }
                 else {
@@ -66,8 +68,8 @@ public class Effect implements Cloneable{
             }
             break;
 
-            case CREATE_CARD: // Se a carta destruir uma unidade do inimigo nessa rodada, compra uma carta específica do seu deck.
-            myBoard.getPlayer().drawCard(1, cardName);//colocar o efeito especificamente no relatório.
+            case CREATE_CARD: //Compra uma carta específica do seu deck.
+            myBoard.getPlayer().drawCard(1, cardName);
             break;
 
             case FULL_HEAL: // Cure inteiramente uma unidade aliada.
@@ -75,9 +77,9 @@ public class Effect implements Cloneable{
                 System.out.println("Você não tem nenhum aliado.");
             }
             else {
-                System.out.println("Cure inteiramente uma unidade aliada.");
-                //printar a board
                 if (myBoard.getPlayer().isHuman()){
+                    System.out.println("Cure inteiramente uma unidade aliada.");
+                    game.printPlayerBoard(myBoard.getPlayer());
                     ally = scan.nextInt();
                 }
                 else {
@@ -92,9 +94,9 @@ public class Effect implements Cloneable{
                 System.out.println("Você não tem nenhum aliado.");
             }
             else {
-                System.out.println("Escolha uma unidade aliada.");
-                //printar a board
                 if (myBoard.getPlayer().isHuman()){
+                    System.out.println("Escolha uma unidade aliada.");
+                    game.printPlayerBoard(myBoard.getPlayer());
                     ally = scan.nextInt();
                 }
                 else {
@@ -109,11 +111,12 @@ public class Effect implements Cloneable{
                 System.out.println("Não há alvos válidos.");
             }
             else {
-                System.out.println("Escolha uma unidade aliada.");
                 if (myBoard.getPlayer().isHuman()){
+                    System.out.println("Escolha uma unidade aliada.");
+                    game.printPlayerBoard(myBoard.getPlayer());
                     ally = scan.nextInt();
-                    //printar a board
                     System.out.println("Escolha uma unidade inimiga.");
+                    game.printPlayerBoard(opponentBoard.getPlayer());
                     myBoard.getCards().get(ally).strike(opponentBoard.getCards().get(scan.nextInt()), myBoard, opponentBoard);
                 }
                 else {
@@ -129,7 +132,7 @@ public class Effect implements Cloneable{
             else {
                 if (myBoard.getPlayer().isHuman()){
                     System.out.println("Escolha uma unidade aliada.");
-                    //printar a board
+                    game.printPlayerBoard(myBoard.getPlayer());
                     ally = scan.nextInt();
                 }
                 else {
@@ -144,9 +147,9 @@ public class Effect implements Cloneable{
                 System.out.println("Você não tem nenhum aliado.");
             }
             else {
-                System.out.println("Escolha uma unidade aliada.");
-                //printar a board
                 if (myBoard.getPlayer().isHuman()){
+                    System.out.println("Escolha uma unidade aliada.");
+                    game.printPlayerBoard(myBoard.getPlayer());
                     ally = scan.nextInt();
                 }
                 else {
@@ -158,7 +161,7 @@ public class Effect implements Cloneable{
             }
             break;
 
-            case DRAW_CARD: // Ao ser destruído, você ganha uma carta.
+            case DRAW_CARD: // Você ganha uma carta.
             myBoard.getPlayer().drawCard(1);
             break;
 
@@ -169,7 +172,7 @@ public class Effect implements Cloneable{
             else {
                 if (myBoard.getPlayer().isHuman()){
                     System.out.println("Escolha uma unidade.");
-                    //printar a board
+                    game.printPlayerBoard(opponentBoard.getPlayer());
                     ally = scan.nextInt();
                 }
                 else {
@@ -186,7 +189,7 @@ public class Effect implements Cloneable{
             else {
                 if (myBoard.getPlayer().isHuman()){
                     System.out.println("Escolha uma unidade.");
-                    //printar a board
+                    game.printPlayerBoard(myBoard.getPlayer());
                     ally = scan.nextInt();
                 }
                 else {
@@ -251,7 +254,7 @@ public class Effect implements Cloneable{
             case DAMAGE_ANYTHING://Dê n de dano a qualquer coisa inimiga
             if (myBoard.getPlayer().isHuman()){
                 System.out.println("Digite -1 para dar dano no nexus ou um índice para dar dano em uma unidade inimiga");
-                //printar a board
+                game.printPlayerBoard(opponentBoard.getPlayer());
                 ally = scan.nextInt();
             }
             else {
@@ -283,7 +286,7 @@ public class Effect implements Cloneable{
             else {
                 if (myBoard.getPlayer().isHuman()){
                     System.out.println("Escolha uma unidade.");
-                    //printar a board
+                    game.printPlayerBoard(myBoard.getPlayer());
                     ally = scan.nextInt();
                 }
                 else {
@@ -308,6 +311,9 @@ public class Effect implements Cloneable{
 
     public void checkTrigger(Trigger occurredTrigger, Board myBoard, Board opponentBoard, Follower follower){
         if (trigger == occurredTrigger){
+            if (occurredTrigger != Trigger.PLAY){
+                System.out.println(String.format("%s ativou seu efeito!", follower.getName()));
+            }
             boolean retry = true;
             while (retry){
                 try {

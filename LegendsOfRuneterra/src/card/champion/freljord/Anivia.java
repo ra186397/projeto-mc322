@@ -30,7 +30,7 @@ public class Anivia extends Champion {
     baseHealth = 1;
     basePower = 0;
     name = "Ovonivia";
-    image = "/assets/freljord/ovonivia.png";//colocar a imagem do ovo
+    image = "/assets/freljord/ovonivia.png";
     for (Effect effect : effects){
       effects.remove(effect);
     }
@@ -52,7 +52,7 @@ public class Anivia extends Champion {
   }
 
   @Override
-  public void checkEvolution() {//adicinar enlightened em round end
+  public void checkEvolution() {
     if (name == "Ovonivia"){
       effects.add(new Effect(CaseEffects.ANIVIA_TRANSFORMATION, Trigger.LAST_BREATH));
       name = "Aninia";
