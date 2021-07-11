@@ -1,5 +1,6 @@
 package card.champion.noxus;
 
+import card.CaseEffects;
 import card.Effect;
 import card.Region;
 import card.Trait;
@@ -13,7 +14,7 @@ public class Darius extends Champion {
 
   public Darius() {
     super("Darius", "Subo de nível se o nexus inimigo tiver 10 ou menos de vida.", 6, 5, 6, Region.NOXUS, "/assets/noxus/darius.png");
-    effects.add(new Effect(13, Trigger.NEXUS_STRIKE));
+    effects.add(new Effect(CaseEffects.EVOLUTION, Trigger.NEXUS_STRIKE));
     traits.add(Trait.TOUGH);
 
     evolutionCounter = 0;
@@ -26,7 +27,7 @@ public class Darius extends Champion {
     System.out.println("Darius - Testemunhe minha verdadeira força!!");
 
     effects.remove(0);
-    effects.add(new Effect(11, 3, Trigger.ATTACK));
+    effects.add(new Effect(CaseEffects.DAMAGE_NEXUS, 3, Trigger.ATTACK));
     
     this.basePower = 10;
     this.baseHealth = 6;

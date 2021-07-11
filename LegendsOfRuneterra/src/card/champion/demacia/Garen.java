@@ -1,5 +1,6 @@
 package card.champion.demacia;
 
+import card.CaseEffects;
 import card.Effect;
 import card.Region;
 import card.Trait;
@@ -12,7 +13,7 @@ public class Garen extends Champion {
 
   public Garen() {
     super("Garen", "Subir de nível\n Golpeie duas vezes", 5, 5, 5, Region.DEMACIA, "/assets/demacia/garen.png");
-    this.effects.add(new Effect(13, Trigger.STRIKE));
+    this.effects.add(new Effect(CaseEffects.EVOLUTION, Trigger.STRIKE));
     this.traits.add(Trait.REGENERATION);
     evolutionCounter = 0;
   }

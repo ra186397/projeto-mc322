@@ -1,5 +1,6 @@
 package card.champion.freljord;
 
+import card.CaseEffects;
 import card.Effect;
 import card.Region;
 import card.Trait;
@@ -16,13 +17,13 @@ public class Anivia extends Champion {
   public Anivia() {
     super("Anivia", "Quando eu atacar, cause 1 de dano ao nexus e aos inimigos. Eu subo de nível quando você tiver 10 gemas de mana.", 6, 4, 2, Region.FRELJORD, "/assets/freljord/anivia.png");
 
-    unevolvedAOEEffect =  new Effect(20, 1, Trigger.ATTACK);
-    unevolvedNexusDamageEffect = new Effect(11, 1, Trigger.ATTACK);
-    evolveEffect = new Effect(13, Trigger.ENLIGHTENED);
+    unevolvedAOEEffect =  new Effect(CaseEffects.OPPONENT_AOE, 1, Trigger.ATTACK);
+    unevolvedNexusDamageEffect = new Effect(CaseEffects.DAMAGE_NEXUS, 1, Trigger.ATTACK);
+    evolveEffect = new Effect(CaseEffects.EVOLUTION, Trigger.ENLIGHTENED);
     effects.add(evolveEffect);
     effects.add(unevolvedAOEEffect);
     effects.add(unevolvedNexusDamageEffect);
-    effects.add(new Effect(21, Trigger.LAST_BREATH));
+    effects.add(new Effect(CaseEffects.ANIVIA_TRANSFORMATION, Trigger.LAST_BREATH));
   }
 
   public void transform(){
@@ -41,8 +42,8 @@ public class Anivia extends Champion {
     System.out.println("Anivia Evoluiu!");
     System.out.println("Anivia - Eu trago a tempestade!!");
 
-    effects.add(new Effect(20, 2, Trigger.ATTACK));
-    effects.add(new Effect(11, 2, Trigger.ATTACK));
+    effects.add(new Effect(CaseEffects.OPPONENT_AOE, 2, Trigger.ATTACK));
+    effects.add(new Effect(CaseEffects.DAMAGE_NEXUS, 2, Trigger.ATTACK));
     effects.remove(evolveEffect);
 
     this.basePower = 3;
@@ -53,7 +54,7 @@ public class Anivia extends Champion {
   @Override
   public void checkEvolution() {//adicinar enlightened em round end
     if (name == "Ovonivia"){
-      effects.add(new Effect(21, Trigger.LAST_BREATH));
+      effects.add(new Effect(CaseEffects.ANIVIA_TRANSFORMATION, Trigger.LAST_BREATH));
       name = "Aninia";
     }
     else {
