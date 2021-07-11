@@ -1,6 +1,7 @@
 package card;
 
 public enum CaseEffects {
+    //O DETALHAMENTO DE CADA EFEITO PODE SER VISTO NO MÉTODO APPLYEFFECTS DA CLASSE EFFECT
     
     BOARD_BUFF,//0
     SINGLE_TEMP_BUFF,//1

@@ -36,16 +36,11 @@ public class Leblanc extends Champion {
 
   @Override
   public void checkEvolution() {
-<<<<<<< HEAD
-    if (damageDone >= 10) {
-      return true;
-=======
     if (temporaryPower >= 6){
       evolutionCounter += 1;
       if (evolutionCounter >= 2){
         evolve();
       }
->>>>>>> 7f4f2c3d967daf85e11e1f17f0f04994ebfb59df
     }
   }
 
