@@ -39,7 +39,7 @@ public class Effect implements Cloneable{
         this.cardName = cardName;
     }
 
-    private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower selfFollower, int amount3) {
+    private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower selfFollower) {
         Scanner scan = new Scanner(System.in);
 
         switch(effect) {
@@ -47,6 +47,7 @@ public class Effect implements Cloneable{
             for (Follower follower : myBoard.getCards()) {
                 follower.buff(amount1, amount2);//O false e se e temporario ou nao, false e permanente true e temporario
             }
+            break;
 
             case 1: // Dê +n/+m a uma unidade aliada nessa rodada.
             if (myBoard.getCards().isEmpty()){
@@ -63,9 +64,11 @@ public class Effect implements Cloneable{
                 }
                 myBoard.getCards().get(ally).addTempBuff(amount1, amount2);
             }
+            break;
 
             case 2: // Se a carta destruir uma unidade do inimigo nessa rodada, compra uma carta específica do seu deck.
             myBoard.getPlayer().drawCard(1, cardName);//colocar o efeito especificamente no relatório.
+            break;
 
             case 3: // Cure inteiramente uma unidade aliada.
             if (myBoard.getCards().isEmpty()){
@@ -82,6 +85,7 @@ public class Effect implements Cloneable{
                 }
                 myBoard.getCards().get(ally).heal(0, true);
             }
+            break;
 
             case 4: // Dobre o ataque e defesa de uma unidade aliada.
             if (myBoard.getCards().isEmpty()){
@@ -98,6 +102,7 @@ public class Effect implements Cloneable{
                 }
                 myBoard.getCards().get(ally).buff(myBoard.getCards().get(ally).getTemporaryPower(), myBoard.getCards().get(ally).getCurrentHealth());
             }
+            break;
 
             case 5: // Escolha um aliado e um oponente para um combate imediato.
             if (myBoard.getCards().isEmpty() || opponentBoard.getCards().isEmpty()){
@@ -115,6 +120,7 @@ public class Effect implements Cloneable{
                     myBoard.getCards().get(myBoard.getPlayer().getRandomResult(myBoard.getCards().size())).strike(opponentBoard.getCards().get(myBoard.getPlayer().getRandomResult(opponentBoard.getCards().size())), myBoard, opponentBoard);
                 }
             }
+            break;
 
             case 6: // Uma unidade evocada ataca o nexus do adversário.
             if (myBoard.getCards().isEmpty()){
@@ -131,6 +137,7 @@ public class Effect implements Cloneable{
                 }
                 myBoard.getCards().get(ally).strike(opponentBoard.getPlayer(), myBoard);
             }
+            break;
 
             case 7: // Um aliado golpeia todos os oponentes.
             if (myBoard.getCards().isEmpty()){
@@ -149,9 +156,11 @@ public class Effect implements Cloneable{
                     myBoard.getCards().get(ally).strike(follower, myBoard, opponentBoard);
                 }
             }
+            break;
 
             case 8: // Ao ser destruído, você ganha uma carta.
             myBoard.getPlayer().drawCard(1);
+            break;
 
             case 9: // Altera o poder de uma unidade para 0 nesta rodada.
             if (opponentBoard.getCards().isEmpty()){
@@ -168,6 +177,7 @@ public class Effect implements Cloneable{
                 }
                 opponentBoard.getCards().get(ally).addTempBuff(-opponentBoard.getCards().get(ally).getTemporaryPower(), 0);
             }
+            break;
 
             case 10: // Cria uma barreira que anula o próximo dano que uma unidade aliada levaria. Dura uma rodada.
             if (myBoard.getCards().isEmpty()){
@@ -184,15 +194,21 @@ public class Effect implements Cloneable{
                 }
                 myBoard.getCards().get(ally).addTrait(Trait.BARRIER);
             }
+            break;
 
             case 11: //Golpeia o nexus do adversário para n pontos de dano.
             opponentBoard.getPlayer().takeDamage(amount1);
+            break;
     
             case 12://Efeito de buff temporário
             selfFollower.buff(-amount1, -amount2);
             selfFollower.getEffects().remove(this);
+            break;
 
             case 13://Evolução
+            Champion champion = (Champion)selfFollower;
+            champion.checkEvolution();
+            break;
             
             
             case 14: //Deixa o inimigo mais forte com 0 de poder nesta rodada.
@@ -205,6 +221,7 @@ public class Effect implements Cloneable{
                 }
                 mostPowerful.addTempBuff(-mostPowerful.getTemporaryPower(), 0);
             }
+            break;
             
             case 15: //Da n de dano a todas as unidades.
             for (Follower opponent : opponentBoard.getCards()){
@@ -213,35 +230,51 @@ public class Effect implements Cloneable{
             for (Follower ally : myBoard.getCards()){
                 ally.takeDamage(amount1);
             }
+            break;
             
             case 16://Da +n/+m a si mesmo.
             selfFollower.buff(amount1, amount2);
+            break;
 
             case 17://Da +n/+m a todas as unidades aliadas nessa rodada.
             for (Follower ally : myBoard.getCards()){
                 ally.addTempBuff(amount1, amount2);
             }
+            break;
 
             case 18://Remove barreira de si mesmo
             if (selfFollower.hasTrait(Trait.BARRIER)){
                 selfFollower.takeDamage(1);
             }
+            break;
 
-            case 19://Evolução com contagem TIRAR SE NÃO USADO
-            amount1 += amount3;
-            if (amount1 >= amount2){
-                Champion champion = (Champion)selfFollower;
-                champion.checkEvolution();
+            case 19://Dê n de dano a qualquer coisa inimiga
+            if (myBoard.getPlayer().isHuman()){
+                System.out.println("Digite -1 para dar dano no nexus ou um índice para dar dano em uma unidade inimiga");
+                //printar a board
+                ally = scan.nextInt();
             }
+            else {
+                ally = opponentBoard.getPlayer().getRandomResult(opponentBoard.getCards().size()+1)-1;
+            }
+            if (ally == -1){
+                opponentBoard.getPlayer().takeDamage(amount1);
+            }
+            else {
+                opponentBoard.getCards().get(ally).addTempBuff(-opponentBoard.getCards().get(ally).getTemporaryPower(), 0);
+            }
+            break;
 
             case 20://Dê dano a todas as unidades inimigas
             for (Follower opponent : opponentBoard.getCards()){
                 opponent.takeDamage(amount1);
             }
+            break;
 
             case 21://Efeito de transformação da Anivia em Ovonivia
             Anivia anivia = (Anivia)selfFollower;
             anivia.transform();
+            break;
 
             case 22://Dê n de dano a um inimigo se ele tiver 0 de poder. Senão, deixe ele com 0 de poder nesta rodada.
             if (opponentBoard.getCards().isEmpty()){
@@ -263,19 +296,28 @@ public class Effect implements Cloneable{
                     opponentBoard.getCards().get(ally).addTempBuff(-opponentBoard.getCards().get(ally).getTemporaryPower(), 0);
                 }
             }
+            break;
 
             case 23://Cura seu nexus em n e ganha uma gema de mana vazia.
             myBoard.getPlayer().addMaxMana(1);
             myBoard.getPlayer().healNexus(amount1);
-
-            case 24://Dê N de dano em qualquer coisa.
+            break;
         }
         scan.close();
     }
 
-    public void checkTrigger(Trigger occurredTrigger, Board myBoard, Board opponentBoard, Follower follower, int amount){
+    public void checkTrigger(Trigger occurredTrigger, Board myBoard, Board opponentBoard, Follower follower){
         if (trigger == occurredTrigger){
-            applyEffect(myBoard, opponentBoard, follower, amount);
+            boolean retry = true;
+            while (retry){
+                try {
+                    applyEffect(myBoard, opponentBoard, follower);
+                    retry = false;
+                }
+                catch (IndexOutOfBoundsException e){
+                    System.out.println("Alvo inválido, tente de novo.");
+                }
+            }
         }
     }
 

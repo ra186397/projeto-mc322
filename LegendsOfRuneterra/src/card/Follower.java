@@ -130,7 +130,8 @@ public class Follower extends Card {
     public void strike(Player player, Board myBoard) {
         if (this.temporaryPower > 0) {
             for (Effect effect : effects) {
-                effect.checkTrigger(Trigger.STRIKE, myBoard, player.getBoard(), this, 0);
+                effect.checkTrigger(Trigger.STRIKE, myBoard, player.getBoard(), this);
+                effect.checkTrigger(Trigger.NEXUS_STRIKE, myBoard, player.getBoard(), this);
             }
             player.takeDamage(this.temporaryPower);
         }
@@ -139,12 +140,12 @@ public class Follower extends Card {
     public void strike(Follower defender, Board myBoard, Board opponentBoard) {
         if (this.temporaryPower > 0) {
             for (Effect effect : effects) {
-                effect.checkTrigger(Trigger.STRIKE, myBoard, opponentBoard, this, 0);
+                effect.checkTrigger(Trigger.STRIKE, myBoard, opponentBoard, this);
             }
             defender.takeDamage(this.temporaryPower);
             if (defender.getCurrentHealth() <= 0) {
                 for (Effect effect : effects) {
-                    effect.checkTrigger(Trigger.DESTROY_OPPONENT, myBoard, opponentBoard, this, 0);
+                    effect.checkTrigger(Trigger.DESTROY_OPPONENT, myBoard, opponentBoard, this);
                 }
             }
         }
