@@ -219,7 +219,7 @@ public class Effect implements Cloneable{
 
             case 17://Da +n/+m a todas as unidades aliadas nessa rodada.
             for (Follower ally : myBoard.getCards()){
-                ally.addTempBuff(3, 3);
+                ally.addTempBuff(amount1, amount2);
             }
 
             case 18://Remove barreira de si mesmo
@@ -242,6 +242,10 @@ public class Effect implements Cloneable{
             case 21://Efeito de transformação da Anivia em Ovonivia
             Anivia anivia = (Anivia)selfFollower;
             anivia.transform();
+            
+            case 19://Dê n de dano a um inimigo se ele tiver 0 de poder. Senão, deixe ele com 0 de poder nesta rodada.
+
+            case 20://Cura seu nexus em n e ganha uma gema de mana vazia.
         }
         scan.close();
     }

@@ -149,9 +149,10 @@ public class Player {
         if (isHuman) {
             System.out.println("Digite o número da carta que deseja jogar: ");
             for (Card card : hand) {
-                System.out.println(numCard + " - " + card.getName());
+                System.out.println(numCard + " - " + card.getName() + " " + card.getCost() + " de mana");
                 numCard++;
             }
+            System.out.println("Sua mana: " + currentMana + " mais " + spellMana + " de mana de feitiço");
             System.out.println();
             while (true) {
                 try {
