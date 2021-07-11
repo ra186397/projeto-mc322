@@ -143,8 +143,17 @@ public class Menu {
         Garen garen = new Garen();
         demacia_units.add(garen);
 
+        Lucian lucian = new Lucian();
+        demacia_units.add(lucian);
+
         Tryndamere tryndamere = new Tryndamere();
         freljord_units.add(tryndamere);
+
+        Leblanc leblanc = new Leblanc();
+        noxus_units.add(leblanc);
+
+        Darius darius = new Darius();
+        noxus_units.add(darius);
 
 
         //INICIO SEGUIDORES DE DEMACIA
@@ -292,6 +301,76 @@ public class Menu {
         Effect[] effectGemaDeMana = {new Effect(20, 3, Trigger.PLAY)};
         Spell gemaDeMana = new Spell("Gema de Mana", "", 5, effectGemaDeMana, Region.FRELJORD, "/assets/freljord/gema-de-mana.png");
         freljord_spells.add(gemaDeMana);
+
+
+        //INICIO SEGUIDORES DE NOXUS
+
+
+        Follower retaguardaDaLegiao = new Follower("Retaguarda da Legiao", "", 1, 3, 2, Region.NOXUS, "/assets/noxus/retaguarda-da-legiao.png");
+        noxus_units.add(retaguardaDaLegiao);
+
+
+        Trait[] traitsEspia = {Trait.ELUSIVE};
+        Follower espia = new Follower("Espia", "", 1, 1, 1, Region.NOXUS, traitsEspia, "/assets/noxus/espia.png");
+        noxus_units.add(espia);
+
+
+        Effect[] effectComentaristaDaArena = {new Effect(0, 1,0, Trigger.PLAY)};
+        Follower comentaristaDaArena = new Follower("Comentarista da Arena", "Dê +1/+0 a todos os aliados em jogo.", 2, 2, 2, Region.NOXUS, effectComentaristaDaArena, "/assets/noxus/comentarista-da-arena.png");
+        noxus_units.add(comentaristaDaArena);
+
+
+        Follower trifariano = new Follower("Trifariano", "", 3, 5, 3, Region.NOXUS, "/assets/noxus/trifariano.png");
+        noxus_units.add(trifariano);
+
+
+        Effect[] effectHomemBomba = {new Effect(11, 1, Trigger.LAST_BREATH)};
+        Follower homemBomba = new Follower("Homem Bomba", "Quando eu morrer, cause 1 de dano ao nexus inimigo", 2, 3, 2, Region.NOXUS, effectHomemBomba, "/assets/noxus/homem-bomba.png");
+        noxus_units.add(homemBomba);
+
+
+        Follower capitaoFarron = new Follower("Capitao Farron", "", 7, 8, 9, Region.NOXUS, "/assets/noxus/capitao-farron.png");
+        noxus_units.add(capitaoFarron);
+
+
+        Trait[] traitQuebraEscudos = {Trait.DOUBLE_ATTACK};
+        Follower quebraEscudos = new Follower("Quebra Escudos", "", 5, 4, 3, Region.NOXUS, traitQuebraEscudo, "/assets/noxus/quebra-escudos.png");
+
+
+        // FEITIÇOS DE NOXUS
+
+
+        Effect[] effectDeterminacao = {new Effect(1, 3, 2, Trigger.PLAY)};
+        Spell determinacao = new Spell("Determinacao", "Dê +3/+2 a um aliado nessa rodada.", 2, effectDeterminacao, Region.NOXUS, "/assets/noxus/determinacao.png");
+        noxus_spells.add(determinacao);
+
+
+        Effect[] effectDizimar = {new Effect(11, 4, Trigger.PLAY)};
+        Spell dizimar = new Spell("Dizimar", "Dê 3 de dano ao nexus inimigo.", 5, effectDizimar, Region.NOXUS, "/assets/noxus/dizimar.png");
+        noxus_spells.add(dizimar);
+
+
+        Effect[] effectFioDeLamina = {new Effect(21, 1, Trigger.PLAY)};
+        Spell fioDeLamina = new Spell("Fio de Lamina", "Dê 1 de dano em qualquer coisa.", 1, effectFioDeLamina, Region.NOXUS, "/assets/noxus/fio-de-lamina.png");
+        noxus_spells.add(fioDeLamina);
+
+
+        Effect[] effectFervorNoxiano = {new Effect(21, 3, Trigger.PLAY)};
+        Spell fervorNoxiano = new Spell("Fervor Noxiano", "Dê 3 de dano em qualquer coisa.", 3, effectFervorNoxiano, Region.NOXUS, "/assets/noxus/fervor-noxiano.png");
+        noxus_spells.add(fervorNoxiano);
+
+
+        Effect[] effectVisao = {new Effect(0, 0, 1, Trigger.PLAY)};
+        Spell visao = new Spell("Visao", "Dê +0/+1 a todos os aliados.", 1, effectVisao, Region.NOXUS, "/assets/noxus/visao.png");
+        noxus_spells.add(visao);
+
+
+        Effect[] effectMachadoDuplo = {new Effect(1, 1, 0, Trigger.PLAY)};
+        Spell machadoDuplo = new Spell("Machado Duplo", "Dê +1/+0 a um aliado nessa rodada.", 0, effectMachadoDuplo, Region.NOXUS, "/assets/noxus/machado-duplo.png");
+        noxus_spells.add(machadoDuplo);
+
+
+
     }
 
     public ArrayList<Card> getUnitList(Region region){

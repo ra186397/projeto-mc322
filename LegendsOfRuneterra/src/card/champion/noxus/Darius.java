@@ -10,9 +10,9 @@ public class Darius extends Champion {
 
   private int nexusLife;
 
-  public Darius(String name, String description, int cost, int baseHealth, int basePower, Region region,
-      Effect[] newEffects, Trait[] traits) {
-    super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
+  public Darius() {
+    super("Darius", "Subo de nível se o nexus inimigo tiver 10 ou menos de vida.", 6, 5, 6, Region.NOXUS, "/assets/noxus/darius.png");
+    traits.add(Trait.TOUGH);
   }
 
   @Override

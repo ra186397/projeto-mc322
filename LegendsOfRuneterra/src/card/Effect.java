@@ -233,6 +233,8 @@ public class Effect implements Cloneable{
             case 19://Dê n de dano a um inimigo se ele tiver 0 de poder. Senão, deixe ele com 0 de poder nesta rodada.
 
             case 20://Cura seu nexus em n e ganha uma gema de mana vazia.
+
+            case 21://Dê n em dano em qualquer coisa.
         }
         scan.close();
     }

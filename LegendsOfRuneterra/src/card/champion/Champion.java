@@ -13,6 +13,6 @@ public abstract class Champion extends Follower {
 
   public abstract void evolve();
 
-  public abstract void checkEvolution();
+  public abstract boolean checkEvolution();
 
 }

@@ -1,5 +1,7 @@
 package card.champion.noxus;
 
+import org.omg.CORBA.TRANSACTION_MODE;
+
 import card.Effect;
 import card.Region;
 import card.Trait;
@@ -10,9 +12,9 @@ public class Leblanc extends Champion {
 
   private int damageDone;
 
-  public Leblanc(String name, String description, int cost, int baseHealth, int basePower, Region region,
-      Effect[] newEffects, Trait[] traits) {
-    super(name, description, cost, baseHealth, basePower, region, newEffects, traits);
+  public Leblanc() {
+    super("LeBlanc", "Eu subo de nível se causar 10 de dano.", 3, 2, 5, Region.NOXUS, "/assets/noxus/leblanc.png");
+    traits.add(Trait.QUICK_ATTACK);
 
     this.damageDone = 0;
   }
@@ -31,7 +33,7 @@ public class Leblanc extends Champion {
 
   @Override
   public boolean checkEvolution() {
-    if (damageDone >= 15) {
+    if (damageDone >= 10) {
       return true;
     }
     return false;
