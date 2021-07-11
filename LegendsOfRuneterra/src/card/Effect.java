@@ -5,6 +5,7 @@ import game.Board;
 import game.Player;
 import card.Follower;
 import card.champion.Champion;
+import card.champion.freljord.Anivia;
 public class Effect implements Cloneable{
     
     Trigger trigger;
@@ -38,7 +39,7 @@ public class Effect implements Cloneable{
         this.cardName = cardName;
     }
 
-    private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower self_follower, int amount3) {
+    private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower selfFollower, int amount3) {
         Scanner scan = new Scanner(System.in);
 
         switch(effect) {
@@ -188,15 +189,11 @@ public class Effect implements Cloneable{
             opponentBoard.getPlayer().takeDamage(amount1);
     
             case 12://Efeito de buff temporário
-            self_follower.buff(-amount1, -amount2);
-            self_follower.getEffects().remove(this);
+            selfFollower.buff(-amount1, -amount2);
+            selfFollower.getEffects().remove(this);
 
             case 13://Evolução
-            amount1 += amount3;
-            if (amount1 >= amount2){
-                Champion champion = (Champion)self_follower;
-                champion.checkEvolution();
-            }
+            
             
             case 14: //Deixa o inimigo mais forte com 0 de poder nesta rodada.
             if (opponentBoard.getCards().size() != 0){
@@ -218,7 +215,7 @@ public class Effect implements Cloneable{
             }
             
             case 16://Da +n/+m a si mesmo.
-            self_follower.buff(amount1, amount2);
+            selfFollower.buff(amount1, amount2);
 
             case 17://Da +n/+m a todas as unidades aliadas nessa rodada.
             for (Follower ally : myBoard.getCards()){
@@ -226,9 +223,25 @@ public class Effect implements Cloneable{
             }
 
             case 18://Remove barreira de si mesmo
-            if (self_follower.hasTrait(Trait.BARRIER)){
-                self_follower.takeDamage(1);
+            if (selfFollower.hasTrait(Trait.BARRIER)){
+                selfFollower.takeDamage(1);
             }
+
+            case 19://Evolução com contagem TIRAR SE NÃO USADO
+            amount1 += amount3;
+            if (amount1 >= amount2){
+                Champion champion = (Champion)selfFollower;
+                champion.checkEvolution();
+            }
+
+            case 20://Dê dano a todas as unidades inimigas
+            for (Follower opponent : opponentBoard.getCards()){
+                opponent.takeDamage(amount1);
+            }
+
+            case 21://Efeito de transformação da Anivia em Ovonivia
+            Anivia anivia = (Anivia)selfFollower;
+            anivia.transform();
         }
         scan.close();
     }

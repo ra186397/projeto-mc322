@@ -11,7 +11,7 @@ public class Lucian extends Champion {
   private int evolutionCounter;
 
   public Lucian() {
-    super("Lucian", "Subir de nível\n ", 2, 2, 3, Region.DEMACIA, "/src/assets/demacia/lucian.png");
+    super("Lucian", "Subir de nível\n ", 2, 2, 3, Region.DEMACIA, "/assets/demacia/lucian.png");
     this.traits.add(Trait.QUICK_ATTACK);
 
     this.evolutionCounter = 0;
@@ -21,6 +21,8 @@ public class Lucian extends Champion {
   public void evolve() {
     System.out.println("Lucian Evoluiu!");
     System.out.println("Lucian - Todo mundo morre, alguns só precisam de uma ajudinha!!");
+
+    image = "/assets/demacia/lucian.png";
 
     effects.remove(0);
     effects.add(new Effect(16, 1, 0, Trigger.SEEN_ALLY_DIE));

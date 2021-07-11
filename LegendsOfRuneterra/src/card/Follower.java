@@ -7,11 +7,11 @@ import game.Player;
 
 public class Follower extends Card {
 
-    protected int baseHealth;
-    protected int currentHealth;
-    protected int temporaryHealth;
-    protected int basePower;
-    protected int temporaryPower;
+    protected int baseHealth;//Vida máxima base da carta
+    protected int currentHealth;//Vida contando dano atual da carta
+    protected int temporaryHealth;//Vida máxima atual da carta
+    protected int basePower;//Poder base da carta
+    protected int temporaryPower;//Poder atual da carta
     protected ArrayList<Trait> traits;
     protected int furyPower;
     protected int furyHealth;
