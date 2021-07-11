@@ -22,6 +22,8 @@ public class Garen extends Champion {
     System.out.println("Garen Evoluiu!");
     System.out.println("Garen - Por demaciaaaa!!");
 
+    image = "/assets/demacia/garen.png";
+
     this.effects.remove(0);
     this.traits.add(Trait.ELUSIVE);
 

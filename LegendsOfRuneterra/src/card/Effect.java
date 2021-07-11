@@ -5,6 +5,7 @@ import game.Board;
 import game.Player;
 import card.Follower;
 import card.champion.Champion;
+import card.champion.freljord.Anivia;
 public class Effect implements Cloneable{
     
     Trigger trigger;
@@ -38,7 +39,7 @@ public class Effect implements Cloneable{
         this.cardName = cardName;
     }
 
-    private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower self_follower, int amount3) {
+    private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower selfFollower, int amount3) {
         Scanner scan = new Scanner(System.in);
 
         switch(effect) {
@@ -153,7 +154,7 @@ public class Effect implements Cloneable{
             myBoard.getPlayer().drawCard(1);
 
             case 9: // Altera o poder de uma unidade para 0 nesta rodada.
-            if (myBoard.getCards().isEmpty() && opponentBoard.getCards().isEmpty()){
+            if (opponentBoard.getCards().isEmpty()){
                 System.out.println("Não há nenhum alvo válido.");
             }
             else {
@@ -165,7 +166,7 @@ public class Effect implements Cloneable{
                 else {
                     ally = opponentBoard.getPlayer().getRandomResult(opponentBoard.getCards().size());
                 }
-                opponentBoard.getCards().get(ally).addTempBuff(-myBoard.getCards().get(ally).getTemporaryPower(), 0);
+                opponentBoard.getCards().get(ally).addTempBuff(-opponentBoard.getCards().get(ally).getTemporaryPower(), 0);
             }
 
             case 10: // Cria uma barreira que anula o próximo dano que uma unidade aliada levaria. Dura uma rodada.
@@ -188,15 +189,11 @@ public class Effect implements Cloneable{
             opponentBoard.getPlayer().takeDamage(amount1);
     
             case 12://Efeito de buff temporário
-            self_follower.buff(-amount1, -amount2);
-            self_follower.getEffects().remove(this);
+            selfFollower.buff(-amount1, -amount2);
+            selfFollower.getEffects().remove(this);
 
             case 13://Evolução
-            amount1 += amount3;
-            if (amount1 >= amount2){
-                Champion champion = (Champion)self_follower;
-                champion.checkEvolution();
-            }
+            
             
             case 14: //Deixa o inimigo mais forte com 0 de poder nesta rodada.
             if (opponentBoard.getCards().size() != 0){
@@ -218,7 +215,7 @@ public class Effect implements Cloneable{
             }
             
             case 16://Da +n/+m a si mesmo.
-            self_follower.buff(amount1, amount2);
+            selfFollower.buff(amount1, amount2);
 
             case 17://Da +n/+m a todas as unidades aliadas nessa rodada.
             for (Follower ally : myBoard.getCards()){
@@ -226,15 +223,52 @@ public class Effect implements Cloneable{
             }
 
             case 18://Remove barreira de si mesmo
-            if (self_follower.hasTrait(Trait.BARRIER)){
-                self_follower.takeDamage(1);
+            if (selfFollower.hasTrait(Trait.BARRIER)){
+                selfFollower.takeDamage(1);
             }
 
-            case 19://Dê n de dano a um inimigo se ele tiver 0 de poder. Senão, deixe ele com 0 de poder nesta rodada.
+            case 19://Evolução com contagem TIRAR SE NÃO USADO
+            amount1 += amount3;
+            if (amount1 >= amount2){
+                Champion champion = (Champion)selfFollower;
+                champion.checkEvolution();
+            }
 
-            case 20://Cura seu nexus em n e ganha uma gema de mana vazia.
+            case 20://Dê dano a todas as unidades inimigas
+            for (Follower opponent : opponentBoard.getCards()){
+                opponent.takeDamage(amount1);
+            }
 
-            case 21://Dê n em dano em qualquer coisa.
+            case 21://Efeito de transformação da Anivia em Ovonivia
+            Anivia anivia = (Anivia)selfFollower;
+            anivia.transform();
+
+            case 22://Dê n de dano a um inimigo se ele tiver 0 de poder. Senão, deixe ele com 0 de poder nesta rodada.
+            if (opponentBoard.getCards().isEmpty()){
+                System.out.println("Não há nenhum alvo válido.");
+            }
+            else {
+                if (myBoard.getPlayer().isHuman()){
+                    System.out.println("Escolha uma unidade.");
+                    //printar a board
+                    ally = scan.nextInt();
+                }
+                else {
+                    ally = opponentBoard.getPlayer().getRandomResult(opponentBoard.getCards().size());
+                }
+                if (opponentBoard.getCards().get(ally).temporaryPower == 0){
+                    opponentBoard.getCards().get(ally).takeDamage(amount1);
+                }
+                else {
+                    opponentBoard.getCards().get(ally).addTempBuff(-opponentBoard.getCards().get(ally).getTemporaryPower(), 0);
+                }
+            }
+
+            case 23://Cura seu nexus em n e ganha uma gema de mana vazia.
+            myBoard.getPlayer().addMaxMana(1);
+            myBoard.getPlayer().healNexus(amount1);
+
+            case 24://Dê N de dano em qualquer coisa.
         }
         scan.close();
     }

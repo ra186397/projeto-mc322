@@ -12,6 +12,7 @@ public enum Trigger {
     ROUND_END,
     DRAW_CARD,//o mesmo
     SEEN_ALLY_DIE,
-    SPENT_MANA
+    SPENT_MANA,
+    ENLIGHTENED
     
 }
