@@ -56,9 +56,7 @@ public class Game {
         Scanner scan = new Scanner(System.in);
         Board opponentBoard;
         bluePlayer.drawStartingHand();
-        bluePlayer.changeStartingCards();
         redPlayer.drawStartingHand();
-        redPlayer.changeStartingCards();
         while (!gameOver) {
             startNewRound(attackingPlayer, currentPlayer);
             hasAttacked = false;
@@ -77,7 +75,7 @@ public class Game {
 
                 while (!validTurn) {
 
-                    nextMove = currentPlayer.selectAction(); 
+                    nextMove = currentPlayer.selectAction(); //DAR A OPCAO DE VER A MÃO, PRINTAR BOARD
                     if (nextMove == 0 && currentPlayer.hasCards()) {
                         nextCard = currentPlayer.selectCard();
                         if (!nextCard.playCard(currentPlayer.getBoard(), opponentBoard)) {
@@ -116,6 +114,8 @@ public class Game {
                 else {
                     currentPlayer = bluePlayer;
                 }
+                //PRINTAR BOARD AQUI EM ALGUM LUGAR PELAMOR
+                blub blub
 
                 validTurn = false;
 
@@ -256,11 +256,8 @@ public class Game {
 
     private void printAttackingUnits(ArrayList<Follower> attackers) {
         System.out.println("Unidades atacando: ");
-        int i = 0;
-        for (Follower follower : attackers) {
-            System.out.println(i + ") " + follower);
-            System.out.println("--------------------------");
-            i++;
+        System.out.println("--------------------------");
+        printCards(attackers);
         }
     }
 
@@ -276,9 +273,21 @@ public class Game {
         }
 
         System.out.println("--------------------------");
+        printCards(unitList);
+        }
+    }
+                                                me note senpai
+    private void printHand(Player p) { //CONSIDERAR SE ISSO FICA MELHOR NA GAME OU NA PLAYER.
+        ArrayList<Card> hand = p.getHand();
+        System.out.println("Cartas da sua mão: ");
+        System.out.println("--------------------------");
+        printCards(hand);
+    }
+
+    private void printCards(ArrayList<? extends Card> cards) {
         int i = 0;
-        for (Follower unit : unitList) {
-            System.out.println(i + ") " + unit);
+        for (Card card : cards) {
+            System.out.println(i + ") " + card);
             System.out.println("--------------------------");
             i++;
         }

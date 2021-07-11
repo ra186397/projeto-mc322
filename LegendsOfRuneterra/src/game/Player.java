@@ -38,10 +38,11 @@ public class Player {
     public void drawStartingHand() {
         deck.shuffle();
         drawCard(4);
+        changeStartingCards();
         
     }
 
-    public void changeStartingCards() {
+    private void changeStartingCards() {
 
         System.out.println("Digite o número da cartas que deseja trocar, separadas por espaço: ");
         String[] numeros = scan.nextLine().split(" ");
@@ -91,12 +92,21 @@ public class Player {
         this.nexusLife -= damage;
     }
 
+    public void printHand() {
+        System.out.println("Cartas da sua mão: ");
+        System.out.println("--------------------------");
+        printCards(hand);
+    }
     public int getNexusLife() {
         return this.nexusLife;
     }
 
     public Deck getDeck() {
         return this.deck;
+    }
+
+    public ArrayList<Card> getHand() {
+        return this.hand;
     }
 
     public boolean hasCards() {
