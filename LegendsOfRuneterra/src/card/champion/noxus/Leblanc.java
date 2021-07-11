@@ -29,7 +29,7 @@ public class Leblanc extends Champion {
   }
 
   @Override
-  public boolean checkEvolution() {
+  public void checkEvolution() {
     if (damageDone >= 10) {
       return true;
     }

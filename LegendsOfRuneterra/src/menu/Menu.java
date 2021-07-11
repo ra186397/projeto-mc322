@@ -1,9 +1,5 @@
 package menu;
 
-import java.lang.System;
-import java.net.ConnectException;
-import java.util.Scanner;
-
 import card.Card;
 import card.Effect;
 import card.Follower;
@@ -15,7 +11,6 @@ import card.champion.demacia.*;
 import card.champion.freljord.*;
 import card.champion.noxus.*;
 import game.Deck;
-import game.Game;
 import game.Player;
 
 
