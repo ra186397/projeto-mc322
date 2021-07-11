@@ -119,7 +119,7 @@ public class Follower extends Card {
 
         traits.add(trait);
         if (trait == Trait.BARRIER){
-            effects.add(new Effect(18, Trigger.ROUND_END));
+            effects.add(new Effect(CaseEffects.REMOVE_BARRIER, Trigger.ROUND_END));
         }
     }
 
@@ -207,7 +207,7 @@ public class Follower extends Card {
 
     public void addTempBuff(int powerBuff, int healthBuff) {
         buff(powerBuff, healthBuff);
-        effects.add(new Effect(12, powerBuff, healthBuff, Trigger.ROUND_END));
+        effects.add(new Effect(CaseEffects.REMOVE_TEMP_BUFF, powerBuff, healthBuff, Trigger.ROUND_END));
     }
 
     public Follower makeCopy(){
