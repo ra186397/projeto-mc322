@@ -20,6 +20,14 @@ public class Spell extends Card{
         }
     }
 
+    @Override
+    public String toString() {
+        String dados = String.format("%s | %d\n", name, cost);
+        dados += description;
+        dados += "\n";
+        return dados;
+    }
+
     public Spell makeCopy(){
         Effect[] newEffectList = new Effect[effects.size()];
         for (int i = 0; i < effects.size(); i++){

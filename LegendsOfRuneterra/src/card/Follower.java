@@ -199,7 +199,7 @@ public class Follower extends Card {
             dados += trait;
             dados += " ";
         }
-        dados += "\n" + description + "\n";
+        dados += "\n" + description;
         return dados;
     }
 
