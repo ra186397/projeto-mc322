@@ -1,6 +1,7 @@
 package menu;
 
 import card.Card;
+import card.CaseEffects;
 import card.Effect;
 import card.Follower;
 import card.Region;
@@ -175,7 +176,7 @@ public class Menu {
         //INICIO SEGUIDORES DE DEMACIA
 
 
-        Effect[] effectTiana = {new Effect(6, Trigger.PLAY) };
+        Effect[] effectTiana = {new Effect(CaseEffects.ALLY_STRIKE_NEXUS, Trigger.PLAY) };
         Follower tiana = new Follower("Tiana", "Ao ser comprada: uma unidade evocada golpeia o nexus do adversário", 8,
                 7, 7, Region.DEMACIA, effectTiana, "/assets/demacia/tiana.png");
         demacia_units.add(tiana);
@@ -185,13 +186,13 @@ public class Menu {
         demacia_units.add(cavalariaDaVanguarda);
 
 
-        Effect[] effectVanguarda = {new Effect(0, 1, 1, Trigger.PLAY) };
+        Effect[] effectVanguarda = {new Effect(CaseEffects.BOARD_BUFF, 1, 1, Trigger.PLAY) };
         Follower vanguarda = new Follower("Vanguarda", "Dê +1/+1 a todos os seguidores aliados", 4, 3, 3,
                 Region.DEMACIA, effectVanguarda, "/assets/demacia/vanguarda.png");
         demacia_units.add(vanguarda);
 
 
-        Effect[] effectDuelista = {new Effect(2, "Poro", Trigger.DESTROY_OPPONENT) };
+        Effect[] effectDuelista = {new Effect(CaseEffects.CREATE_CARD, "Poro", Trigger.DESTROY_OPPONENT) };
         Follower duelista = new Follower("Duelista",
                 "Se a carta destruir um seguidor do inimigo nesta rodada, uma carta \"Poro\" é colocada em sua mão.", 3,
                 3, 2, Region.DEMACIA, effectDuelista, "/assets/demacia/duelista.png");
@@ -207,7 +208,7 @@ public class Menu {
         demacia_units.add(poro);
 
 
-        Effect[] effectPoroDefensor = {new Effect(8, Trigger.LAST_BREATH) };
+        Effect[] effectPoroDefensor = {new Effect(CaseEffects.DRAW_CARD, Trigger.LAST_BREATH) };
         Follower poroDefensor = new Follower("Poro Defensor", "Ao ser destruído, você ganha uma carta.", 1, 1, 2,
                 Region.DEMACIA, effectPoroDefensor, "/assets/demacia/poro-defensor.png");
         demacia_units.add(poroDefensor);
@@ -216,36 +217,36 @@ public class Menu {
         //INICIO FEITIÇOS DE DEMACIA
 
 
-        Effect[] effectBarreiraPrismatica = {new Effect(10, Trigger.PLAY)};
+        Effect[] effectBarreiraPrismatica = {new Effect(CaseEffects.PRISMATIC_BARRIER, Trigger.PLAY)};
         Spell barreiraPrismatica = new Spell("Barreira Prismatica", "", 3, effectBarreiraPrismatica, Region.DEMACIA, "/assets/demacia/barreira-prismatica.png");
         demacia_spells.add(barreiraPrismatica);
 
 
-        Effect[] effectPorDemacia = {new Effect(17, 3, 3, Trigger.PLAY)};
+        Effect[] effectPorDemacia = {new Effect(CaseEffects.AREA_TEMP_BUFF, 3, 3, Trigger.PLAY)};
         Spell porDemacia = new Spell("Por Demacia", "", 6, effectPorDemacia, Region.DEMACIA, "/assets/demacia/por-demacia.png");
         demacia_spells.add(porDemacia);
 
 
-        Effect[] effectJulgamento = {new Effect(7, Trigger.PLAY) };
+        Effect[] effectJulgamento = {new Effect(CaseEffects.JUDGEMENT, Trigger.PLAY) };
         Spell julgamento = new Spell("Julgamento", "Um aliado atacante golpeia todos os oponentes defensores", 8,
                 effectJulgamento, Region.DEMACIA, "/assets/demacia/julgamento.png");
         demacia_spells.add(julgamento);
 
 
-        Effect[] effectValorRedobrado = {new Effect(3, Trigger.PLAY), new Effect(4, Trigger.PLAY) };
+        Effect[] effectValorRedobrado = {new Effect(CaseEffects.FULL_HEAL, Trigger.PLAY), new Effect(CaseEffects.DOUBLE_STATS, Trigger.PLAY) };
         Spell valorRedobrado = new Spell("Valor Redobrado",
                 "Cure inteiramente um aliado;\nDobre o ataque e defesa deste aliado", 6, effectValorRedobrado,
                 Region.DEMACIA, "/assets/demacia/valor-redobrado.png");
         demacia_spells.add(valorRedobrado);
 
 
-        Effect[] effectGolpeCerteiro = {new Effect(1, 1, 1, Trigger.PLAY) };
+        Effect[] effectGolpeCerteiro = {new Effect(CaseEffects.SINGLE_TEMP_BUFF, 1, 1, Trigger.PLAY) };
         Spell golpeCerteiro = new Spell("Golpe Certeiro", "Dê +1/+1 a um aliado nesta rodada", 1, effectGolpeCerteiro,
                 Region.DEMACIA, "/assets/demacia/golpe-certeiro.png");
         demacia_spells.add(golpeCerteiro);
 
 
-        Effect[] effectCombateUmAUm = {new Effect(5, Trigger.PLAY) };
+        Effect[] effectCombateUmAUm = {new Effect(CaseEffects.SINGLE_COMBAT, Trigger.PLAY) };
         Spell combateUmAUm = new Spell("Combate um-a-um", "Escolha um aliado e um oponente para um combate imediato", 2,
                 effectCombateUmAUm, Region.DEMACIA, "/assets/demacia/combate-um-a-um.png");
         demacia_spells.add(combateUmAUm);
@@ -254,27 +255,27 @@ public class Menu {
         //INICIO SEGUIDORES DE FRELJORD
 
 
-        Effect[] effectXamaDoGelo = {new Effect(14, Trigger.ROUND_START)};
+        Effect[] effectXamaDoGelo = {new Effect(CaseEffects.STRONGEST_ZERO_POWER, Trigger.ROUND_START)};
         Follower xamaDoGelo = new Follower("Xama do Gelo", "", 5, 3, 3, Region.FRELJORD, effectXamaDoGelo, "/assets/freljord/xama-do-gelo.png");
         freljord_units.add(xamaDoGelo);
 
 
-        Effect[] effectArqueiroDoVale = {new Effect(9, Trigger.PLAY)};
+        Effect[] effectArqueiroDoVale = {new Effect(CaseEffects.ZERO_POWER, Trigger.PLAY)};
         Follower arqueiroDoVale = new Follower("Arqueiro do Vale", "", 2, 3, 1, Region.FRELJORD, effectArqueiroDoVale, "/assets/freljord/arqueiro-do-vale.png");
         freljord_units.add(arqueiroDoVale);
 
 
-        Effect[] effectLoboFeroz = {new Effect(16, Trigger.STRIKE)};
+        Effect[] effectLoboFeroz = {new Effect(CaseEffects.SELF_BUFF, Trigger.STRIKE)};
         Follower loboFeroz = new Follower("Lobo Feroz", "", 2, 3, 2, Region.FRELJORD, effectLoboFeroz, "/assets/freljord/lobo-feroz.png");
         freljord_units.add(loboFeroz);
 
 
-        Effect[] effectVigia = {new Effect(8, Trigger.LAST_BREATH)};
+        Effect[] effectVigia = {new Effect(CaseEffects.DRAW_CARD, Trigger.LAST_BREATH)};
         Follower vigia = new Follower("Vigia", "", 2, 2, 3, Region.FRELJORD, effectVigia, "/assets/freljord/vigia.png");
         freljord_units.add(vigia);
 
 
-        Effect[] effectTaverneiroGentil = {new Effect(3, Trigger.PLAY)};
+        Effect[] effectTaverneiroGentil = {new Effect(CaseEffects.FULL_HEAL, Trigger.PLAY)};
         Follower taverneiroGentil = new Follower("Taverneiro Gentil", "", 3, 3, 3, Region.FRELJORD, effectTaverneiroGentil, "/assets/freljord/taverneiro-gentil.png");
         freljord_units.add(taverneiroGentil);
 
@@ -289,32 +290,32 @@ public class Menu {
         //INICIO FEITIÇOS DE FRELJORD
 
 
-        Effect[] effectElixirDeFerro = {new Effect(1, 0, 2, Trigger.PLAY)};
+        Effect[] effectElixirDeFerro = {new Effect(CaseEffects.SINGLE_TEMP_BUFF, 0, 2, Trigger.PLAY)};
         Spell elixirDeFerro = new Spell("Elixir de Ferro", "", 0, effectElixirDeFerro, Region.FRELJORD, "/assets/freljord/elixir-de-ferro.png");
         freljord_spells.add(elixirDeFerro);
 
 
-        Effect[] effectFuriaDoNorte = {new Effect(1, 3, 4, Trigger.PLAY)};
+        Effect[] effectFuriaDoNorte = {new Effect(CaseEffects.SINGLE_TEMP_BUFF, 3, 4, Trigger.PLAY)};
         Spell furiaDoNorte = new Spell("Furia do Norte", "", 3, effectFuriaDoNorte, Region.FRELJORD, "/assets/freljord/furia-do-norte.png");
         freljord_spells.add(furiaDoNorte);
 
 
-        Effect[] effectCongelar = {new Effect(9, Trigger.PLAY)};
+        Effect[] effectCongelar = {new Effect(CaseEffects.ZERO_POWER, Trigger.PLAY)};
         Spell congelar = new Spell("Congelar", "", 1, effectCongelar, Region.FRELJORD, "/assets/freljord/congelar.png");
         freljord_spells.add(congelar);
 
 
-        Effect[] effectAvalanche = {new Effect(15, 2, Trigger.PLAY)};
+        Effect[] effectAvalanche = {new Effect(CaseEffects.FULL_AOE, 2, Trigger.PLAY)};
         Spell avalanche = new Spell("Avalanche", "", 3, effectAvalanche, Region.FRELJORD, "/assets/freljord/avalanche.png");
         freljord_spells.add(avalanche);
 
 
-        Effect[] effectRepartir = {new Effect(22, 4, Trigger.PLAY)};
+        Effect[] effectRepartir = {new Effect(CaseEffects.SHATTER, 4, Trigger.PLAY)};
         Spell repartir = new Spell("Repartir", "", 2, effectRepartir, Region.FRELJORD, "/assets/freljord/repartir.png");
         freljord_spells.add(repartir);
 
 
-        Effect[] effectGemaDeMana = {new Effect(23, 3, Trigger.PLAY)};
+        Effect[] effectGemaDeMana = {new Effect(CaseEffects.CATALYST, 3, Trigger.PLAY)};
         Spell gemaDeMana = new Spell("Gema de Mana", "", 5, effectGemaDeMana, Region.FRELJORD, "/assets/freljord/gema-de-mana.png");
         freljord_spells.add(gemaDeMana);
 
@@ -331,7 +332,7 @@ public class Menu {
         noxus_units.add(espia);
 
 
-        Effect[] effectComentaristaDaArena = {new Effect(0, 1,0, Trigger.PLAY)};
+        Effect[] effectComentaristaDaArena = {new Effect(CaseEffects.BOARD_BUFF, 1,0, Trigger.PLAY)};
         Follower comentaristaDaArena = new Follower("Comentarista da Arena", "Dê +1/+0 a todos os aliados em jogo.", 2, 2, 2, Region.NOXUS, effectComentaristaDaArena, "/assets/noxus/comentarista-da-arena.png");
         noxus_units.add(comentaristaDaArena);
 
@@ -340,7 +341,7 @@ public class Menu {
         noxus_units.add(trifariano);
 
 
-        Effect[] effectHomemBomba = {new Effect(11, 1, Trigger.LAST_BREATH)};
+        Effect[] effectHomemBomba = {new Effect(CaseEffects.DAMAGE_NEXUS, 1, Trigger.LAST_BREATH)};
         Follower homemBomba = new Follower("Homem Bomba", "Quando eu morrer, cause 1 de dano ao nexus inimigo", 2, 3, 2, Region.NOXUS, effectHomemBomba, "/assets/noxus/homem-bomba.png");
         noxus_units.add(homemBomba);
 
@@ -357,32 +358,32 @@ public class Menu {
         // FEITIÇOS DE NOXUS
 
 
-        Effect[] effectDeterminacao = {new Effect(1, 3, 2, Trigger.PLAY)};
+        Effect[] effectDeterminacao = {new Effect(CaseEffects.SINGLE_TEMP_BUFF, 3, 2, Trigger.PLAY)};
         Spell determinacao = new Spell("Determinacao", "Dê +3/+2 a um aliado nessa rodada.", 2, effectDeterminacao, Region.NOXUS, "/assets/noxus/determinacao.png");
         noxus_spells.add(determinacao);
 
 
-        Effect[] effectDizimar = {new Effect(11, 4, Trigger.PLAY)};
+        Effect[] effectDizimar = {new Effect(CaseEffects.DAMAGE_NEXUS, 4, Trigger.PLAY)};
         Spell dizimar = new Spell("Dizimar", "Dê 3 de dano ao nexus inimigo.", 5, effectDizimar, Region.NOXUS, "/assets/noxus/dizimar.png");
         noxus_spells.add(dizimar);
 
 
-        Effect[] effectFioDeLamina = {new Effect(21, 1, Trigger.PLAY)};
+        Effect[] effectFioDeLamina = {new Effect(CaseEffects.DAMAGE_ANYTHING, 1, Trigger.PLAY)};
         Spell fioDeLamina = new Spell("Fio de Lamina", "Dê 1 de dano em qualquer coisa.", 1, effectFioDeLamina, Region.NOXUS, "/assets/noxus/fio-de-lamina.png");
         noxus_spells.add(fioDeLamina);
 
 
-        Effect[] effectFervorNoxiano = {new Effect(21, 3, Trigger.PLAY)};
+        Effect[] effectFervorNoxiano = {new Effect(CaseEffects.DAMAGE_ANYTHING, 3, Trigger.PLAY)};
         Spell fervorNoxiano = new Spell("Fervor Noxiano", "Dê 3 de dano em qualquer coisa.", 3, effectFervorNoxiano, Region.NOXUS, "/assets/noxus/fervor-noxiano.png");
         noxus_spells.add(fervorNoxiano);
 
 
-        Effect[] effectVisao = {new Effect(0, 0, 1, Trigger.PLAY)};
+        Effect[] effectVisao = {new Effect(CaseEffects.BOARD_BUFF, 0, 1, Trigger.PLAY)};
         Spell visao = new Spell("Visao", "Dê +0/+1 a todos os aliados.", 1, effectVisao, Region.NOXUS, "/assets/noxus/visao.png");
         noxus_spells.add(visao);
 
 
-        Effect[] effectMachadoDuplo = {new Effect(1, 1, 0, Trigger.PLAY)};
+        Effect[] effectMachadoDuplo = {new Effect(CaseEffects.SINGLE_TEMP_BUFF, 1, 0, Trigger.PLAY)};
         Spell machadoDuplo = new Spell("Machado Duplo", "Dê +1/+0 a um aliado nessa rodada.", 0, effectMachadoDuplo, Region.NOXUS, "/assets/noxus/machado-duplo.png");
         noxus_spells.add(machadoDuplo);
 

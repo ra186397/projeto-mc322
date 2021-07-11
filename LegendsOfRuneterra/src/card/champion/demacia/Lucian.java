@@ -13,6 +13,7 @@ public class Lucian extends Champion {
   public Lucian() {
     super("Lucian", "Subir de nível\n ", 2, 2, 3, Region.DEMACIA, "/assets/demacia/lucian.png");
     this.traits.add(Trait.QUICK_ATTACK);
+    this.effects.add(new Effect(13, Trigger.SEEN_ALLY_DIE));
 
     this.evolutionCounter = 0;
   }

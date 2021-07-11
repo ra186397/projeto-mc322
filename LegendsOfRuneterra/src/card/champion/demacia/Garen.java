@@ -12,8 +12,8 @@ public class Garen extends Champion {
 
   public Garen() {
     super("Garen", "Subir de nível\n Golpeie duas vezes", 5, 5, 5, Region.DEMACIA, "/assets/demacia/garen.png");
+    this.effects.add(new Effect(13, Trigger.STRIKE));
     this.traits.add(Trait.REGENERATION);
-    this.effects.add(new Effect(13, 0, Trigger.STRIKE));
     evolutionCounter = 0;
   }
 

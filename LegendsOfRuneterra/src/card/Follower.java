@@ -119,7 +119,7 @@ public class Follower extends Card {
 
         traits.add(trait);
         if (trait == Trait.BARRIER){
-            effects.add(new Effect(18, Trigger.ROUND_END));
+            effects.add(new Effect(CaseEffects.REMOVE_BARRIER, Trigger.ROUND_END));
         }
     }
 
@@ -130,7 +130,8 @@ public class Follower extends Card {
     public void strike(Player player, Board myBoard) {
         if (this.temporaryPower > 0) {
             for (Effect effect : effects) {
-                effect.checkTrigger(Trigger.STRIKE, myBoard, player.getBoard(), this, 0);
+                effect.checkTrigger(Trigger.STRIKE, myBoard, player.getBoard(), this);
+                effect.checkTrigger(Trigger.NEXUS_STRIKE, myBoard, player.getBoard(), this);
             }
             player.takeDamage(this.temporaryPower);
         }
@@ -139,12 +140,12 @@ public class Follower extends Card {
     public void strike(Follower defender, Board myBoard, Board opponentBoard) {
         if (this.temporaryPower > 0) {
             for (Effect effect : effects) {
-                effect.checkTrigger(Trigger.STRIKE, myBoard, opponentBoard, this, 0);
+                effect.checkTrigger(Trigger.STRIKE, myBoard, opponentBoard, this);
             }
             defender.takeDamage(this.temporaryPower);
             if (defender.getCurrentHealth() <= 0) {
                 for (Effect effect : effects) {
-                    effect.checkTrigger(Trigger.DESTROY_OPPONENT, myBoard, opponentBoard, this, 0);
+                    effect.checkTrigger(Trigger.DESTROY_OPPONENT, myBoard, opponentBoard, this);
                 }
             }
         }
@@ -217,7 +218,7 @@ public class Follower extends Card {
 
     public void addTempBuff(int powerBuff, int healthBuff) {
         buff(powerBuff, healthBuff);
-        effects.add(new Effect(12, powerBuff, healthBuff, Trigger.ROUND_END));
+        effects.add(new Effect(CaseEffects.REMOVE_TEMP_BUFF, powerBuff, healthBuff, Trigger.ROUND_END));
     }
 
     public Follower makeCopy(){

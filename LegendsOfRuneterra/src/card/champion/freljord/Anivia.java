@@ -11,12 +11,15 @@ public class Anivia extends Champion {
 
   private Effect unevolvedAOEEffect;
   private Effect unevolvedNexusDamageEffect;
+  private Effect evolveEffect;
 
   public Anivia() {
     super("Anivia", "Quando eu atacar, cause 1 de dano ao nexus e aos inimigos. Eu subo de nível quando você tiver 10 gemas de mana.", 6, 4, 2, Region.FRELJORD, "/assets/freljord/anivia.png");
 
     unevolvedAOEEffect =  new Effect(20, 1, Trigger.ATTACK);
     unevolvedNexusDamageEffect = new Effect(11, 1, Trigger.ATTACK);
+    evolveEffect = new Effect(13, Trigger.ENLIGHTENED);
+    effects.add(evolveEffect);
     effects.add(unevolvedAOEEffect);
     effects.add(unevolvedNexusDamageEffect);
     effects.add(new Effect(21, Trigger.LAST_BREATH));
@@ -30,6 +33,7 @@ public class Anivia extends Champion {
     for (Effect effect : effects){
       effects.remove(effect);
     }
+    effects.add(evolveEffect);
   }
 
   @Override
@@ -39,6 +43,7 @@ public class Anivia extends Champion {
 
     effects.add(new Effect(20, 2, Trigger.ATTACK));
     effects.add(new Effect(11, 2, Trigger.ATTACK));
+    effects.remove(evolveEffect);
 
     this.basePower = 3;
     this.baseHealth = 5;

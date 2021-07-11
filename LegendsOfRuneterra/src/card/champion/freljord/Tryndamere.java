@@ -25,6 +25,7 @@ public class Tryndamere extends Champion {
     image = "/assets/freljord/tryndamere-evolved.png";
 
     furyPower = 3;
+    effects.remove(0);
 
     this.basePower = 9;
     this.baseHealth = 9;
