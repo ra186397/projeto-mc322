@@ -17,7 +17,6 @@ import game.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 public class Menu {
 
     private static Menu menu;
