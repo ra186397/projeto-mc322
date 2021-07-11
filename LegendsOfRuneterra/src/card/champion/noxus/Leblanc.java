@@ -1,5 +1,6 @@
 package card.champion.noxus;
 
+import card.CaseEffects;
 import card.Effect;
 import card.Region;
 import card.Trait;
@@ -14,7 +15,7 @@ public class Leblanc extends Champion {
   public Leblanc() {
     super("LeBlanc", "Eu subo de nível se causar 10 de dano.", 3, 2, 5, Region.NOXUS, "/assets/noxus/leblanc.png");
     traits.add(Trait.QUICK_ATTACK);
-    effects.add(new Effect(13, Trigger.STRIKE));
+    effects.add(new Effect(CaseEffects.EVOLUTION, Trigger.STRIKE));
 
     this.evolutionCounter = 0;
   }

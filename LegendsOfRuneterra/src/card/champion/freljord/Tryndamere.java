@@ -1,5 +1,6 @@
 package card.champion.freljord;
 
+import card.CaseEffects;
 import card.Effect;
 import card.Region;
 import card.Trait;
@@ -13,7 +14,7 @@ public class Tryndamere extends Champion {
     traits.add(Trait.FURY);
     furyPower = 2;
     furyHealth = 0;
-    effects.add(new Effect(13, Trigger.LAST_BREATH));
+    effects.add(new Effect(CaseEffects.EVOLUTION, Trigger.LAST_BREATH));
 
   }
 

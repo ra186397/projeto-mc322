@@ -1,5 +1,6 @@
 package card.champion.demacia;
 
+import card.CaseEffects;
 import card.Effect;
 import card.Region;
 import card.Trait;
@@ -13,7 +14,7 @@ public class Lucian extends Champion {
   public Lucian() {
     super("Lucian", "Subir de nível\n ", 2, 2, 3, Region.DEMACIA, "/assets/demacia/lucian.png");
     this.traits.add(Trait.QUICK_ATTACK);
-    this.effects.add(new Effect(13, Trigger.SEEN_ALLY_DIE));
+    this.effects.add(new Effect(CaseEffects.EVOLUTION, Trigger.SEEN_ALLY_DIE));
 
     this.evolutionCounter = 0;
   }
@@ -26,7 +27,7 @@ public class Lucian extends Champion {
     image = "/assets/demacia/lucian.png";
 
     effects.remove(0);
-    effects.add(new Effect(16, 1, 0, Trigger.SEEN_ALLY_DIE));
+    effects.add(new Effect(CaseEffects.SELF_BUFF, 1, 0, Trigger.SEEN_ALLY_DIE));
     traits.remove(Trait.QUICK_ATTACK);
     traits.add(Trait.DOUBLE_ATTACK);
 
