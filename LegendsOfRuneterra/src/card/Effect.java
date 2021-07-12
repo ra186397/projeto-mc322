@@ -15,16 +15,19 @@ public class Effect implements Cloneable{
     int amount2;
     int ally;
     String cardName;
+    Scanner scan;
 
     public Effect(CaseEffects effect, Trigger trigger){
         this.trigger = trigger;
         this.effect = effect;
+        scan = new Scanner(System.in);
     }
 
     public Effect(CaseEffects effect, int amount1, Trigger trigger){
         this.trigger = trigger;
         this.effect = effect;
         this.amount1 = amount1;
+        scan = new Scanner(System.in);
     }
 
     public Effect(CaseEffects effect, int amount1, int amount2, Trigger trigger){
@@ -32,17 +35,19 @@ public class Effect implements Cloneable{
         this.effect = effect;
         this.amount1 = amount1;
         this.amount2 = amount2;
+        scan = new Scanner(System.in);
     }
 
     public Effect(CaseEffects effect, String cardName, Trigger trigger){
         this.trigger = trigger;
         this.effect = effect;
         this.cardName = cardName;
+        scan = new Scanner(System.in);
     }
 
     private void applyEffect(game.Board myBoard, game.Board opponentBoard, Follower selfFollower) {
-        Scanner scan = new Scanner(System.in);
         Game game = Game.getGame(myBoard.getPlayer(), opponentBoard.getPlayer());
+        Scanner scan = game.getScanner();
 
         switch(effect) {
             case BOARD_BUFF: // Dê +n/+m a todas as unidades aliadas evocadas.
@@ -112,12 +117,15 @@ public class Effect implements Cloneable{
             }
             else {
                 if (myBoard.getPlayer().isHuman()){
+                    int opponent;
                     System.out.println("Escolha uma unidade aliada.");
                     game.printPlayerBoard(myBoard.getPlayer());
                     ally = scan.nextInt();
                     System.out.println("Escolha uma unidade inimiga.");
                     game.printPlayerBoard(opponentBoard.getPlayer());
-                    myBoard.getCards().get(ally).strike(opponentBoard.getCards().get(scan.nextInt()), myBoard, opponentBoard);
+                    opponent = scan.nextInt();
+                    myBoard.getCards().get(ally).strike(opponentBoard.getCards().get(opponent), myBoard, opponentBoard);
+                    opponentBoard.getCards().get(opponent).strike(myBoard.getCards().get(ally), opponentBoard, myBoard);
                 }
                 else {
                     myBoard.getCards().get(myBoard.getPlayer().getRandomResult(myBoard.getCards().size())).strike(opponentBoard.getCards().get(myBoard.getPlayer().getRandomResult(opponentBoard.getCards().size())), myBoard, opponentBoard);
@@ -161,7 +169,7 @@ public class Effect implements Cloneable{
             }
             break;
 
-            case DRAW_CARD: // Você ganha uma carta.
+            case DRAW_CARD: // Você compra uma carta.
             myBoard.getPlayer().drawCard(1);
             break;
 
@@ -306,7 +314,6 @@ public class Effect implements Cloneable{
             myBoard.getPlayer().healNexus(amount1);
             break;
         }
-        scan.close();
     }
 
     public void checkTrigger(Trigger occurredTrigger, Board myBoard, Board opponentBoard, Follower follower){
@@ -329,5 +336,9 @@ public class Effect implements Cloneable{
 
     public Object clone() throws CloneNotSupportedException{
         return super.clone();
+    }
+
+    public void closeScan(){
+        scan.close();
     }
 }

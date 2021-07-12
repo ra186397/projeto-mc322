@@ -2,7 +2,6 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 import java.lang.System;
 
 import card.Card;
@@ -20,7 +19,7 @@ public class Deck {
         this.numCards = 0;
         this.region1 = region1;
         if (region1 == region2) {
-            this.region2 = null;
+            this.region2 = Region.NONE;
         } else {
             this.region2 = region2;
         }
@@ -45,5 +44,13 @@ public class Deck {
 
     public String getName() {
         return name;
+    }
+
+    public Region getFirstRegion(){
+        return region1;
+    }
+
+    public Region getSecondRegion(){
+        return region2;
     }
 }

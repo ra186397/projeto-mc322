@@ -42,18 +42,55 @@ public class DeckSelectionController implements Initializable {
   @FXML
   private JFXButton readyToPlay;
 
+  @FXML
+  private Label player;
+
   ObservableList<String> listView = FXCollections.observableArrayList();
 
   @FXML
   void handleStart(ActionEvent event) {
 
-    if (chosen.getText() != "Deck Escolhido") {
+    if (player.getText() == "Player 1") {
+
+      if (chosen.getText() != "Deck Escolhido") {
+        ArrayList<Deck> decks = this.menu.getDecks();
+        boolean found = false;
+
+        for (int i = 0; i < decks.size() && !found; i++) {
+          if (decks.get(i).getName() == chosen.getText()) {
+            this.menu.getPlayer1().selectDeck(decks.get(i));
+            found = true;
+          }
+        }
+
+        if (menu.getPlayer2().isHuman()) {
+          player.setText("Player 2");
+        } else {
+
+          // AQUI ÒOOOOOOOOOOOOOO
+          try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/arena.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        }
+
+      }
+
+    } else if (player.getText() == "Player 2") {
+
       ArrayList<Deck> decks = this.menu.getDecks();
       boolean found = false;
 
       for (int i = 0; i < decks.size() && !found; i++) {
         if (decks.get(i).getName() == chosen.getText()) {
-          this.menu.getPlayer1().selectDeck(decks.get(i));
+          this.menu.getPlayer2().selectDeck(decks.get(i));
           found = true;
         }
       }
@@ -67,8 +104,6 @@ public class DeckSelectionController implements Initializable {
       //   Scene scene = new Scene(root);
       //   Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       //   stage.setScene(scene);
-      //   stage.setMinHeight(1920);
-      //   stage.setMinWidth(1080);
       //   stage.show();
 
       // } catch (Exception e) {
@@ -127,6 +162,13 @@ public class DeckSelectionController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+
+    if (menu.getPlayer1().getDeck() == null) {
+      player.setText("Player 1");
+    } else {
+      player.setText("Player 2");
+    }
+    player.setLayoutX(500);
 
     ArrayList<Deck> decks = this.menu.getDecks();
 

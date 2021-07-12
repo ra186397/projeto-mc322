@@ -152,14 +152,14 @@ public class Follower extends Card {
     }
 
     public void takeDamage(int damage) {
-        if (!hasTrait(Trait.BARRIER)) {
+        if (hasTrait(Trait.BARRIER)) {
+            traits.remove(Trait.BARRIER);
+        }
+        else {
             if (hasTrait(Trait.TOUGH)){
                 damage -= 1;
             }
             this.currentHealth -= damage;
-        }
-        else {
-            traits.remove(Trait.BARRIER);
         }
     }
 
@@ -194,7 +194,7 @@ public class Follower extends Card {
 
     @Override
     public String toString() {
-        String dados = String.format("[%d|%d|%d] %s | Traços: ", cost, temporaryPower, temporaryHealth, name);
+        String dados = String.format("[%d|%d|%d] %s | Traços: ", cost, temporaryPower, currentHealth, name);
         for (Trait trait : traits) {
             dados += trait;
             dados += " ";

@@ -14,14 +14,11 @@ public class Board{
     private ArrayList<Follower> cards;
     private ArrayList<Follower> combatingFollowers;
     private Player player;
-    private boolean currentTurn;
-    private Scanner scan;
     private Random r;
 
     public Board(Player player) {
         r = new Random();
         this.player = player;
-        this.scan = new Scanner(System.in);
         this.cards = new ArrayList<Follower>();
         this.combatingFollowers = new ArrayList<Follower>();
     }
@@ -35,6 +32,7 @@ public class Board{
     }
 
     public boolean addCard(Follower card, Board opponentBoard) { //Retorna true se foi possível jogar a carta, false senão.
+        Scanner scan = Game.getGame(null, null).getScanner();
         if (cards.size() >= 6) {
             int followerNum;
             if (player.isHuman()){
@@ -83,18 +81,14 @@ public class Board{
         cards.remove(card);
     }
 
-    public void moveToCombat(int position, Follower follower) {
-        combatingFollowers.set(position, follower);
+    public void moveToCombat(Follower follower) {
+        combatingFollowers.add(follower);
         cards.remove(follower);
     }
 
     public void returnFromCombat(Follower follower) {
         cards.add(follower);
         combatingFollowers.remove(follower);
-    }
-
-    public void closeScan(){
-        scan.close();
     }
 
 }

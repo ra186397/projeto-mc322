@@ -17,6 +17,7 @@ import game.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 public class Menu {
 
     private static Menu menu;
@@ -29,6 +30,7 @@ public class Menu {
     private ArrayList<Card> noxus_spells;
     private Player p1;
     private Player p2;
+    private Scanner scan;
 
     private Menu() {
         this.demacia_units = new ArrayList<Card>();
@@ -41,6 +43,7 @@ public class Menu {
         this.decks = buildBaseDecks();
         this.p1 = null;
         this.p2 = null;
+        this.scan = new Scanner(System.in);
     }
 
     public static Menu getMenu() {
@@ -94,6 +97,10 @@ public class Menu {
 
     public ArrayList<Deck> getDecks() {
         return this.decks;
+    }
+
+    public Scanner getScanner(){
+        return this.scan;
     }
 
     private ArrayList<Deck> buildBaseDecks() {

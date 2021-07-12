@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -70,7 +71,7 @@
             </Label>
             <TabPane layoutX="67.0" layoutY="131.0" prefHeight="550.0" prefWidth="1151.0" style="-fx-background-color: #201B21;" stylesheets="@../styles/TabPane.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Demacia">
+                <Tab fx:id="demaciaCards" text="Demacia">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -130,7 +131,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="Noxus">
+                  <Tab fx:id="noxusCards" text="Noxus">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -190,7 +191,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Freljord">
+                  <Tab fx:id="freljordCards" text="Freljord">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -294,6 +295,27 @@
                   <Font name="Lucida Console" size="36.0" />
                </font>
             </Label>
+            <JFXButton fx:id="btnCreateDeck" layoutX="643.0" layoutY="662.0" onAction="#createDeck" style="-fx-border-color: #E7B757;" text="Criar Deck">
+               <font>
+                  <Font name="Lucida Console" size="20.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </JFXButton>
          </children>
     </AnchorPane>
   </children>

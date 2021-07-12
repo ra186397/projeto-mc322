@@ -3,6 +3,7 @@ package game;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -24,6 +25,7 @@ public class Game {
     boolean endRound = false;
     Color loser;
     Scanner scan;
+    Random rand;
 
     private Game(Player p1, Player p2) {
         this.bluePlayer = p1;
@@ -37,6 +39,8 @@ public class Game {
         p2.setBoard(redBoard);
         p2.setColor(Color.RED);
         scan = new Scanner(System.in);
+
+        this.rand = new Random();
     }
 
     public static Game getGame(Player p1, Player p2) {
@@ -63,6 +67,7 @@ public class Game {
         while (!gameOver) {
             attackingPlayer = startNewRound(attackingPlayer, currentPlayer);
             currentPlayer = attackingPlayer;
+            endRound = false;
             hasAttacked = false;
             passed = false;
 
@@ -86,7 +91,7 @@ public class Game {
 
                 while (!validTurn) {
 
-
+                    printPlayerMana(currentPlayer);
                     nextMove = currentPlayer.selectAction();
                     if (nextMove == 0 && currentPlayer.hasCards()) {
                         nextCard = currentPlayer.selectCard();
@@ -152,10 +157,8 @@ public class Game {
         }
 
         scan.close();
-        redBoard.closeScan();
-        blueBoard.closeScan();
-        redPlayer.closeScan();
-        bluePlayer.closeScan();
+
+        System.exit(0);
 
     }
 
@@ -181,53 +184,75 @@ public class Game {
 
         }
         
-        System.out.println("Escolha as unidades que devem atacar.");
-        printPlayerBoard(attackingBoard.getPlayer());
-        int[] toAttack = Arrays.stream(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        int position = 0;
-        boolean validDefender = false;
-        ArrayList<Follower> aux = new ArrayList<Follower>();
-        for (int i = 0; i < toAttack.length; i++){
-            for (Effect effect : attackingBoard.getCards().get(i).getEffects()){
-                effect.checkTrigger(Trigger.ATTACK, attackingBoard, defendingBoard, attackingBoard.getCards().get(i));
+        int[] toAttack = {};
+        boolean validAttackerList = false;
+        if (defender.isHuman()){
+            while (validAttackerList == false){
+                try {
+                    System.out.println("Escolha as unidades que devem atacar.");
+                    printPlayerBoard(attackingBoard.getPlayer());
+                    toAttack = Arrays.stream(scan.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+                    ArrayList<Follower> auxAttack = new ArrayList<Follower>();
+                    for (int i = 0; i < toAttack.length; i++){
+                        for (Effect effect : attackingBoard.getCards().get(i).getEffects()){
+                            effect.checkTrigger(Trigger.ATTACK, attackingBoard, defendingBoard, attackingBoard.getCards().get(i));
+                        }
+                        auxAttack.add(attackingBoard.getCards().get(toAttack[i]));
+                        
+                    }
+                    for (Follower follower : auxAttack){
+                        attackingBoard.moveToCombat(follower);
+                    }
+                    validAttackerList = true;
+                }
+                catch (IndexOutOfBoundsException | NullPointerException e){
+                    System.out.println("Você escolheu um número inválido");
+                }
             }
-            aux.add(attackingBoard.getCards().get(toAttack[i]));
-            
         }
-        for (Follower follower : aux){
-            attackingBoard.moveToCombat(position, follower);
-            position++;
+        else {
+            attackingBoard.moveToCombat(attackingBoard.getCards().get(rand.nextInt(attackingBoard.getCards().size())));
         }
+        boolean validDefender = false;
         System.out.println("Escolha as unidades que devem defender.");
         printAttackingUnits(attackers);
         printPlayerBoard(defender);
-        aux.clear();
-        position = 0;
-        for (int i = 0; i < toAttack.length; i++){
-            while (validDefender ==  false){
-                System.out.println("Você quer defender a unidade" + i + " ? Digite o número da unidade que você deseja usar para defender ou -1 para nao defender.");
-                int defendingUnit = scan.nextInt();
-                if (defendingUnit == -1){
-                    aux.add(null);
-                    validDefender = true;
-                }
-                else {
-                    if (attackers.get(toAttack[i]).hasTrait(Trait.ELUSIVE) || !defendingBoard.getCards().get(defendingUnit).hasTrait(Trait.ELUSIVE)){
-                        System.out.println("Você só pode bloquer uma unidade elusiva com outra unidade elusiva");
-                        validDefender = false;
+        int defendingUnit;
+        try {
+            ArrayList<Follower> auxDefense = new ArrayList<Follower>();
+            for (int i = 0; i < toAttack.length; i++){
+                while (validDefender ==  false){
+                    if (defender.isHuman()){
+                        System.out.println("Você quer defender a unidade " + i + " ? Digite o número da unidade que você deseja usar para defender ou -1 para nao defender.");
+                        defendingUnit = scan.nextInt();
                     }
                     else {
-                        aux.add(defendingBoard.getCards().get(defendingUnit));
+                        defendingUnit = rand.nextInt(defendingBoard.getCards().size()+1)-1;
+                    }
+                    if (defendingUnit == -1){
+                        auxDefense.add(null);
                         validDefender = true;
                     }
+                    else {
+                        if (attackers.get(toAttack[i]).hasTrait(Trait.ELUSIVE) || !defendingBoard.getCards().get(defendingUnit).hasTrait(Trait.ELUSIVE)){
+                            System.out.println("Você só pode bloquer uma unidade elusiva com outra unidade elusiva");
+                            validDefender = false;
+                        }
+                        else {
+                            auxDefense.add(defendingBoard.getCards().get(defendingUnit));
+                            validDefender = true;
+                        }
+                    }
                 }
+                validDefender = false;
             }
-            validDefender = false;
+            for (Follower follower : auxDefense){
+                defendingBoard.moveToCombat(follower);
+            }
         }
-        for (Follower follower : aux){
-            defendingBoard.moveToCombat(position, follower);
-            position++;
-        }
+        catch (IndexOutOfBoundsException | NullPointerException e){
+            System.out.println("Você digitou um índice inválido");
+        }      
 
         printCombat(attackers, defenders);
 
@@ -237,25 +262,27 @@ public class Game {
                     attackers.get(i).strike(defender, attackingBoard);
                 }
                 attackers.get(i).strike(defender, attackingBoard);
+                System.out.println("Vida do Nexus " + defender.getColor().toString() + ": " + defender.getNexusLife());
             }
             else {
                 if (attackers.get(i).hasTrait(Trait.DOUBLE_ATTACK)){
                     attackers.get(i).strike(defenders.get(i), attackingBoard, defendingBoard);
                 }
-                attackers.get(i).strike(defenders.get(i), attackingBoard, defendingBoard);
-                if (attackers.get(i).hasTrait(Trait.DOUBLE_ATTACK) == false && attackers.get(i).hasTrait(Trait.QUICK_ATTACK) == false && defenders.get(i).getCurrentHealth() > 0){
+                if (!((attackers.get(i).hasTrait(Trait.DOUBLE_ATTACK) == true || attackers.get(i).hasTrait(Trait.QUICK_ATTACK) == true) && defenders.get(i).getCurrentHealth() < 0)){
                     defenders.get(i).strike(attackers.get(i), attackingBoard, defendingBoard);
                 }
-            }
-            if (attackers.get(i).hasTrait(Trait.FURY) && defenders.get(i).getCurrentHealth() <= 0){
-                attackers.get(i).triggerFury();
+                attackers.get(i).strike(defenders.get(i), attackingBoard, defendingBoard);
+                if (attackers.get(i).hasTrait(Trait.FURY) && defenders.get(i).getCurrentHealth() <= 0){
+                    attackers.get(i).triggerFury();
+                }
             }
         }
 
         checkDeaths(attackingBoard, defendingBoard);
         checkDeaths(defendingBoard, attackingBoard);
 
-        printCombat(attackers, defenders);
+        defenders.clear();
+
     }
 
     private Player startNewRound(Player attackingPlayer, Player currentPlayer) {
@@ -264,7 +291,7 @@ public class Game {
         System.out.println("Mana máxima: " + bluePlayer.getCurrentMana());
         if (attackingPlayer == null){
             Random rand = new Random();
-            if (rand.nextInt(1) == 0){
+            if (rand.nextInt(2) == 0){
                 attackingPlayer = bluePlayer;
             }
             else {
@@ -344,22 +371,47 @@ public class Game {
        System.out.println("\n");
        printPlayerBoard(redPlayer);
     }
+    private void printPlayerMana(Player p){
+        System.out.println("Sua mana: " + p.getCurrentMana() + " mais " + p.getSpellMana() + " de mana de feitiço");
+    }
+
+    public Scanner getScanner(){
+        return scan;
+    }
 
     private void checkDeaths(Board myBoard, Board opponentBoard){
+        ArrayList<Follower> toReturn = new ArrayList<Follower>();
+        ArrayList<Follower> toRemove = new ArrayList<Follower>();
         for (Follower follower : myBoard.getCombatingFollowers()) {
             if (follower != null){
                 if (follower.getCurrentHealth() > 0) {
-                    myBoard.returnFromCombat(follower);
+                    toReturn.add(follower);
                 }
                 else {
                     for (Effect effect : follower.getEffects()){
                         effect.checkTrigger(Trigger.LAST_BREATH, myBoard, opponentBoard, follower);
                     }
                     updateAllEffects(Trigger.SEEN_ALLY_DIE, myBoard, opponentBoard);
-                    myBoard.getCombatingFollowers().remove(follower);
+                    toRemove.add(follower);
                 }
             }
         }
+        for (Follower backFollower : myBoard.getCards()){
+            if (backFollower != null){
+                if (backFollower.getCurrentHealth() <= 0) {
+                    for (Effect effect : backFollower.getEffects()){
+                        effect.checkTrigger(Trigger.LAST_BREATH, myBoard, opponentBoard, backFollower);
+                    }
+                    updateAllEffects(Trigger.SEEN_ALLY_DIE, myBoard, opponentBoard);
+                    toRemove.add(backFollower);
+                }
+            }
+        }
+        for (Follower livingFollower : toReturn){
+            myBoard.returnFromCombat(livingFollower);
+        }
+        for (Follower deadFollower : toRemove)
+        myBoard.getCombatingFollowers().remove(deadFollower);
     }
 
 
@@ -389,26 +441,3 @@ public class Game {
         }
     }
 }
-
-
-
-/*
-array de todos os seguidores em jogo (Ax)
-
-foreach seguidor em Ax
-
-seguidor.AtualizarFisico(indice do seguidor em Ax)
-
-
-public void atualizarFisico() {
-
-    posicao 0:
-    se tiver seguidor de indice 0
-        colocar seguidor de indice 0
-
-    posicao 1:
-        se tiver seguidor de indice 1
-        colocar seguidor de indice 1
-}
-*/
-

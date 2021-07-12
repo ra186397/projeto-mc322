@@ -85,9 +85,30 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </JFXButton>
-            <Label fx:id="chosen" layoutX="865.0" layoutY="408.0" text="Deck Escolhido" textFill="#cfc6b7">
+            <Label fx:id="chosen" layoutX="902.0" layoutY="405.0" text="Deck Escolhido" textFill="#cfc6b7">
                <font>
                   <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="player" layoutX="419.0" layoutY="43.0" text="Vez do Jogador" textAlignment="CENTER">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5647059082984924" green="0.4156862795352936" blue="0.21176470816135406" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.7647058963775635" green="0.6549019813537598" blue="0.3529411852359772" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="Lucida Console" size="52.0" />
                </font>
             </Label>
          </children></AnchorPane>

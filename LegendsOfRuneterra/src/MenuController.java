@@ -17,36 +17,34 @@ import javafx.stage.StageStyle;
 import menu.Menu;
 import menu.TypePlayer;
 
-public class MenuController implements Initializable {
+public class MenuController {
 
   private Menu menu = Menu.getMenu();
 
   @FXML
   void handleIA(ActionEvent event) {
-    this.handleMoveToDeckSelection(event);
 
     this.menu.selectPlayers(TypePlayer.IAVIA);
+    this.handleMoveToDeckSelection(event, "arena.fxml");
 
   }
 
   @FXML
   void handlePlayerIA(ActionEvent event) {
-    this.handleMoveToDeckSelection(event);
-
     this.menu.selectPlayers(TypePlayer.PVIA);
+    this.handleMoveToDeckSelection(event, "DeckSelection.fxml");
   }
 
   @FXML
   void handlePlayerPlayer(ActionEvent event) {
-    this.handleMoveToDeckSelection(event);
-
     this.menu.selectPlayers(TypePlayer.PVP);
+    this.handleMoveToDeckSelection(event, "DeckSelection.fxml");
   }
 
-  public void handleMoveToDeckSelection(ActionEvent event) {
+  public void handleMoveToDeckSelection(ActionEvent event, String name) {
 
     try {
-      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DeckSelection.fxml"));
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/" + name));
       Parent root = (Parent) fxmlLoader.load();
       Scene scene = new Scene(root);
       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -56,12 +54,6 @@ public class MenuController implements Initializable {
     } catch (Exception e) {
       e.printStackTrace();
     }
-  }
-
-  @Override
-  public void initialize(URL arg0, ResourceBundle arg1) {
-    this.menu = Menu.getMenu();
-
   }
 
 }

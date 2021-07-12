@@ -20,7 +20,6 @@ public class Runner extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Menu.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        // primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

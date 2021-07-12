@@ -21,14 +21,12 @@ public class Player {
     private boolean isHuman;
     private Color color;
     private boolean loser;
-    private Scanner scan;
 
     public Player(Deck deck, boolean isHuman) {
         this.hand = new ArrayList<Card>();
         this.maxMana = 0;
         this.currentMana = 0;
         this.spellMana = 0;
-        this.scan = new Scanner(System.in);
         this.nexusLife = 20;
         this.deck = deck;
         this.isHuman = isHuman;
@@ -49,7 +47,7 @@ public class Player {
     }
 
     private void changeStartingCards() {
-
+        Scanner scan = Game.getGame(null, null).getScanner();
         System.out.println("Digite o número das cartas que deseja trocar, separadas por espaço, ou -1 se quiser manter a mão: ");
         String[] numeros = scan.nextLine().split(" ");
         ArrayList<Card> toChange = new ArrayList<Card>();
@@ -61,8 +59,6 @@ public class Player {
         for (Card card : toChange) {
             changeCard(card);
         }
-
-        scan.reset();
     }
 
     public void changeCard(Card toReturn) {
@@ -144,6 +140,7 @@ public class Player {
     }
 
     public int selectAction() {
+        Scanner scan = Game.getGame(null, null).getScanner();
         int action;
         if (isHuman == true){
             System.out.println("Digite 0 para jogar uma carta, 1 para combater ou 2 para passar o turno: ");
@@ -156,6 +153,7 @@ public class Player {
     }
 
     public Card selectCard() {
+        Scanner scan = Game.getGame(null, null).getScanner();
         Card nextCard;
         int numCard = 0;
         if (isHuman) {
@@ -170,7 +168,6 @@ public class Player {
                 try {
                     numCard = scan.nextInt();
                     nextCard = hand.get(numCard);
-                    scan.reset();
                     return nextCard;
                 } catch (InputMismatchException | IndexOutOfBoundsException f) {
                     System.out.println("número inválido, tente novamente: ");
@@ -183,6 +180,10 @@ public class Player {
             return nextCard;
             
         }
+    }
+
+    public int getSpellMana(){
+        return spellMana;
     }
 
     public void updateMana() {
@@ -247,10 +248,6 @@ public class Player {
 
     public Color getColor(){
         return color;
-    }
-
-    public void closeScan(){
-        scan.close();
     }
 
     public void addMaxMana(int mana){
